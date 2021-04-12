@@ -29,7 +29,7 @@ Hello guys! My name is Jinghao Miao (Tony) and I'm now 2nd year computer science
 Hi everyone! My name is Joseph Christopher Priyanto, and I go by Chris. I'm a third year student and I am majoring in Computer Science. I am currnetly in my home country, Indonesia. What I do for a hobby is that I often play video games with my friends, I watch Netflix, and I love trying out new foods! I aspire to be a Software Engineer which could create new things that could help the people in need who doesn't have the access to the current technology we have.
 ### Steven Youssef
 ### Taorui Wang
-Hello everyone, my name is Tony and I'm a third computer engineering student from China. My hobbies involve Soccer, gaming, skiing and watching all kinds of shows. I plan to work in HCI-related field in the future so feel free to chat with me about it or anything else!
+Hello everyone, my name is [Taorui Wang](https://github.com/t2wang)(Tony） and I'm a third computer engineering student from China. My hobbies involve Soccer, gaming, skiing and watching all kinds of shows. I plan to work in HCI-related field in the future so feel free to chat with me about it or anything else!
 ### Yang Yue
 I am Yang Yue, second-year student from Warren College. My major is Computer Science, but I am more interested in Mathematics, especially Combinatorics and Graph Theory. They are powerful tools for several area in computer science, such as data structure and algorithm designs. I have no project experience yet. My coding skills are just what learned from UCSD’s computer science courses. I will learn and try my best to facilitate our project development. Also, I am determined to overcome procrastination in this quarter. Cheer up!
 ### Yiteng Zhao
