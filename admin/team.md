@@ -24,6 +24,7 @@
 ### Gaurav Dheeraj Kaliaperumal Kalidasan
 ### Haoxuan Wang  
 ### Jinghao Miao
+Hello guys! My name is Jinghao Miao (Tony) and I'm now 2nd year computer science student in ERC. I come from China and now studying remotely here. I love listening to musics, almost including every genre, playing games, especially Star Citizen, and playing pools and snooker. For my future, I'm now aiming to become an algorithm engineer of AI. Let's have a nice quarter and teamwork!
 ### Joseph Priyanto
 ### Steven Youssef
 ### Taorui Wang
