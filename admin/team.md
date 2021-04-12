@@ -7,20 +7,27 @@
 ## Team Values
 
 ## Team Roster
-- [Brian Wang](#brian-wang)
-- [Gaurav Dheeraj Kaliaperumal Kalidasan](#gaurav-dheeraj-kaliaperumal-kalidasan)
-- [Haoxuan Wang](#haoxuan-wang)
-- [Jinghao Miao](#jinghao-miao)
-- [Joseph Priyanto](#joseph-priyanto)
-- [Steven Youssef](#steven-youssef)
-- [Taorui Wang](#taorui-wang)
-- [Yang Yue](#yang-yue)
-- [Yiteng Zhao](#yiteng-zhao)
-- [Zhuoliang Pu](#zhuoliang-pu)
+- [Group 34 Team Page](#group-34-team-page)
+    - [All in big headers are to be filled.](#all-in-big-headers-are-to-be-filled)
+  - [Team Name](#team-name)
+  - [Team Brand](#team-brand)
+  - [Team Values](#team-values)
+  - [Team Roster](#team-roster)
+    - [Brian Wang](#brian-wang)
+    - [Gaurav Dheeraj Kaliaperumal Kalidasan](#gaurav-dheeraj-kaliaperumal-kalidasan)
+    - [Haoxuan Wang](#haoxuan-wang)
+    - [Jinghao Miao](#jinghao-miao)
+    - [Joseph Priyanto](#joseph-priyanto)
+    - [Steven Youssef](#steven-youssef)
+    - [Taorui Wang](#taorui-wang)
+    - [Yang Yue](#yang-yue)
+    - [Yiteng Zhao](#yiteng-zhao)
+    - [Zhuoliang Pu](#zhuoliang-pu)
     
 
 
 ### Brian Wang
+Hi, My name is Brian Wang, a 2nd year data science trying to transfer to computer science major(and suffering from waiting application result). My hobbies are playing sports as well as reading books. One fun fact about myself is that I really like to eat ice cream, to the extent that I ate 23 scoops in an all-you-can eat buffet. For my future, I am not sure if I want to pursue as a software engineer/developer or to become a data scientist and work in machine learning fields/AI, but so far, I like both of them !!! I look foward to working with these awesome people ! 
 ### Gaurav Dheeraj Kaliaperumal Kalidasan
 ### Haoxuan Wang  
 ### Jinghao Miao
