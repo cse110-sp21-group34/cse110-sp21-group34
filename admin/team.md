@@ -16,7 +16,7 @@
 - [Taorui Wang](#taorui-wang)
 - [Yang Yue](#yang-yue)
 - [Yiteng Zhao](#yiteng-zhao)
-- [Zhouliang Pu](#zhouliang-pu)
+- [Zhuoliang Pu](#zhuoliang-pu)
     
 
 
@@ -33,4 +33,5 @@ Hello everyone, my name is Tony and I'm a third computer engineering student fro
 ### Yang Yue
 I am Yang Yue, second-year student from Warren College. My major is Computer Science, but I am more interested in Mathematics, especially Combinatorics and Graph Theory. They are powerful tools for several area in computer science, such as data structure and algorithm designs. I have no project experience yet. My coding skills are just what learned from UCSD’s computer science courses. I will learn and try my best to facilitate our project development. Also, I am determined to overcome procrastination in this quarter. Cheer up!
 ### Yiteng Zhao
-### Zhouliang Pu 
+### Zhuoliang Pu 
+Hello folks! My name is [Zhuoliang Pu](https://github.com/pzl233), and I'm a transfer student major in Computer Science. I actually should have still been waiting for the acceptance letters if I didn't take an overloaded amount of courseworks when I was in community college (so that I could transfer along with one of my ex-girlfriend), and I'm really glad I made that desicion, which leads me here in a team that I'm really proud of and it's really nice to know all these brilliant people! Some of my hobbies are powerlifting, bodybuilding, reading, watching animes/NBA games, and also playing video games (favorites are [<em>Metal Gear Solid</em>](https://en.wikipedia.org/wiki/Metal_Gear) and [<em> God of War</em>](https://en.wikipedia.org/wiki/God_of_War_(2018_video_game)) series). I'm currently in my home country, which is China. My daily routine is like study hard, train hard, eat healthy( I put on ~20kgs of fats during the pandemic, though already got out of 12kgs :), and (trying to) sleep well. Anyway, I'm really proud of being in this team and extremely looking forward to have a wonderful quarter with these guys!
