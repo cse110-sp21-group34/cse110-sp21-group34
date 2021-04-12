@@ -9,7 +9,7 @@
 #### Group 34
 ####  Professor Thomas A. Powell
 ####  TA Sasya Reddi - sreddi@ucsd.edu
-####  Team Name (TO BE CHANGED)
+####  Equinox Coding
 
 #### Team Member Info:
 
@@ -24,7 +24,7 @@
 | 7. | Taorui Wang  | t2wang@ucsd.edu  |
 | 8. | Yang Yue | yayue@ucsd.edu  |
 | 9. | Yiteng Zhao | yiz097@ucsd.edu  |
-| 10. | Zhouliang Pu | zhpu@ucsd.edu |
+| 10. | Zhuoliang Pu | zhpu@ucsd.edu |
 
 ## 2) Primary Means Of Communication
 
