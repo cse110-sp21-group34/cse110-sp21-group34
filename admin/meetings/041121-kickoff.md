@@ -1,21 +1,21 @@
-4/11/2021 – Group 34
-Meeting type: Zoom
-Time start: 7pm PST
+### 4/11/2021 – Group 34
+#### Meeting type: Zoom - Kickoff Meeting
+#### Time start: 7pm PST
 
-Attendance:
+#### Attendance:
 -	Joseph Christopher Priyanto
 -	Steven Youssef
 -	Haoxuan Wang
 -	Taorui Wang
--	Gaurav
+-	Gaurav Dheeraj Kaliaperumal Kalidasan
 -	Yang Yue
 -	Brian Wang
 -	Zhuoliang Pu
--	Yiteng
+-	Yiteng Zhao
 -	Sasya Reddi
 -	Jinghao Miao (Tony)
 
-What we did:
+#### What we did:
 -	Introduction from each member.
 -	Starting Management – Group Kickoff, Repo and Meeting Prop
 -	Joining the group repo for the first time.
@@ -24,19 +24,18 @@ What we did:
 -	Coming up with ideas for branding
 -	Team name is Equinox
 -	Finished Starting Management – Group Kickoff, Repo and Meeting Prop
--	We played 2 truths 1 lie (in preparation for group bonding)
 
-Decisions
+#### Decisions
 -	Chris agreed to make the team logo and icon.
 -	Steven in charge for team video
 -	Yang is in charge for the team page and readme
 -	Everyone agreed to sign the group contract
 -	Everyone agreed to add a short intro into the team page
 
-Next time:
+#### Next time:
 -	Group bonding assignment.
 
-Notes:
+#### Notes:
 -	If there are any questions, ask Sasya Reddi
 -	One of the best ways to communicate is to have standup meetings.
 -	Roles can be switched.
