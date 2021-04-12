@@ -31,5 +31,6 @@ Hi everyone! My name is Joseph Christopher Priyanto, and I go by Chris. I'm a th
 ### Taorui Wang
 Hello everyone, my name is Tony and I'm a third computer engineering student from China. My hobbies involve Soccer, gaming, skiing and watching all kinds of shows. I plan to work in HCI-related field in the future so feel free to chat with me about it or anything else!
 ### Yang Yue
+I am Yang Yue, second-year student from Warren College. My major is Computer Science, but I am more interested in Mathematics, especially Combinatorics and Graph Theory. They are powerful tools for several area in computer science, such as data structure and algorithm designs. I have no project experience yet. My coding skills are just what learned from UCSD’s computer science courses. I will learn and try my best to facilitate our project development. Also, I am determined to overcome procrastination in this quarter. Cheer up!
 ### Yiteng Zhao
 ### Zhouliang Pu 
