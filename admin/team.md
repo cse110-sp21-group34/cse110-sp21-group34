@@ -27,6 +27,7 @@
 ### Joseph Priyanto
 ### Steven Youssef
 ### Taorui Wang
+Hello everyone, my name is Tony and I'm a third computer engineering student from China. My hobbies involve Soccer, gaming, skiing and watching all kinds of shows. I plan to work in HCI-related field in the future so feel free to chat with me about it or anything else!
 ### Yang Yue
 ### Yiteng Zhao
 ### Zhouliang Pu 
