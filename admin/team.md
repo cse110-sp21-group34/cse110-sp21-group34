@@ -46,6 +46,7 @@ Hello guys! My name is [Jinghao Miao (Tony)](https://github.com/laboner6) and I'
 ### Joseph Priyanto
 Hi everyone! My name is [Joseph Christopher Priyanto](https://github.com/jcpriyanto), and I go by Chris. I'm a third year student and I am majoring in Computer Science. I am currnetly in my home country, Indonesia. What I do for a hobby is that I often play video games with my friends, I watch Netflix, and I love trying out new foods! I aspire to be a Software Engineer which could create new things that could help the people in need who doesn't have the access to the current technology we have.
 ### Steven Youssef
+Hello! My name is Steven Youssef (http://github.com/stevenyoussef), I'm an Egyptian American 3rd year computer engineer. I hope to enter the industry as soon as possible, so I am glad to have this project as practice. In my spare time, I play video games, edit videos, and sometimes even getting out of the house for fresh air (I know so ghoulish of me). Hopefully I work on this project for long enough that I don't need to go outside.
 ### Taorui Wang
 Hello everyone, my name is [Taorui Wang](https://github.com/t2wang)(Tony) and I'm a third computer engineering student from China. My hobbies involve Soccer, gaming, skiing and watching all kinds of shows. I plan to work in HCI-related field in the future so feel free to chat with me about it or anything else!
 ### Yang Yue
