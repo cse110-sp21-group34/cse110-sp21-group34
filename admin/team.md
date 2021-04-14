@@ -1,24 +1,35 @@
 # Group 34 Team Page
 
-### All in big headers are to be filled.
 ## Team Name
 
 ### Equinox
 
 ## Team Brand
 
-### TO BE FILLED AS BRANDING MATERIALS ARE READY
+
+### Brand Logo
+<img src="branding/team-icon.jpeg" width="400" alt="equinox-logo">
+
+### Slack Workspace Icon
+<img src="branding/slack-icon.jpg" width="150" alt="slack-icon">
+
+### Slides Theme
+![Slides Theme](branding/slides-theme.png)
+
+### Team Colors
+
+![Team Colors](branding/team-colors.jpeg)
 
 ## Team Values
 
 ### We are Equinox!
-✅ At Equinox, we believe that applications should be both safe and easy for the user. By stepping into our users' shoes, we are developing this app to have an extremely intuitive design to make the process of Bullet Journalling as simple as it could be. By focusing on UI/UX Design and Quality Control first and foremost, we believe we could engineer a stunning app.
+✔️ At Equinox, we believe that applications should be both safe and easy for the user. By stepping into our users' shoes, we are developing this app to have an extremely intuitive design to make the process of Bullet Journalling as simple as it could be. By focusing on UI/UX Design and Quality Control first and foremost, we believe we could engineer a stunning app.
 
-✅ We believe in pushing our talents and capabilites much further than we have ever pushed for the benefit of our entire team.
+✔️ We believe in pushing our talents and capabilites much further than we have ever pushed for the benefit of our entire team.
 
-✅ We believe that all of our group members are our own leaders and we would all rise up to the occassion to steer the team towards success.
+✔️ We believe that all of our group members are our own leaders and we would all rise up to the occassion to steer the team towards success.
 
-✅ We believe in efficient collaboration through effective communication. Through a tight-knit group allowing for each member to voice their opinions and let them be heard by the team, we engineer true collaboration within our team.
+✔️ We believe in efficient collaboration through effective communication. Through a tight-knit group allowing for each member to voice their opinions and let them be heard by the team, we engineer true collaboration within our team.
 
 ## Team Roster
 |No. | Name          | Github         |
