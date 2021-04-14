@@ -12,7 +12,7 @@
 ## Team Values
 
 ### We are Equinox!
-✅ At Equinox, we believe that applications should be both safe and easy for the user. By stepping into our users' shoes, we are creating this app to make the process of Digital Bullet Journalling as simple as it could be. By focusing on UI/UX Design and Quality Control first and foremost, we belive we could engineer a stunning app.
+✅ At Equinox, we believe that applications should be both safe and easy for the user. By stepping into our users' shoes, we are developing this app to have an extremely intuitive design to make the process of Bullet Journalling as simple as it could be. By focusing on UI/UX Design and Quality Control first and foremost, we believe we could engineer a stunning app.
 
 ✅ We believe in pushing our talents and capabilites much further than we have ever pushed for the benefit of our entire team.
 

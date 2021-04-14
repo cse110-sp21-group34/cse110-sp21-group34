@@ -1,4 +1,14 @@
-# cse110-sp21-group34
-CSE 110 Bullet Journal Project
+# Equinox - CSE 110 Group 34 Project
+### Organize Your Life Through Bullet Journaling!
 
-Empty Link to [Team Page](./admin/team.md). Make meaningful as this README.md is filled.
+
+### INSERT LOGO AND ICON HERE BEFORE SUBMITTING
+Check out our [**Team Page**](./admin/team.md) for more information about the developers of Equinox!
+
+👨‍💻 Equinox aims to make the process of Bullet Journaling simpler. 
+
+👨‍💻 We, as developers, strive for stepping into the users' shoes to develop an extremely intuitive design for anyone using Equinox.
+
+👨‍💻 Equinox serves as the Group 34's Project for CSE 110: Software Engineering.
+
+
