@@ -18,7 +18,7 @@
 
 ### Team Colors
 
-![Team Colors](branding/team-colors.jpeg)
+<img src="branding/team-colors.jpeg" width="500" alt="team-colors">
 
 ## Team Values
 
