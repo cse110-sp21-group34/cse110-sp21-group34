@@ -24,7 +24,6 @@
         -   Keywords & Labels & Search Function
         -   Personalization 
 -   Miro (used for brainstorming activity)
-- 
 -   Bullet Journal Characteristics
     -   Simple,Clean UI, User-convenient, intuitive
     -   Seperated into days 
