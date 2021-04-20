@@ -13,6 +13,7 @@
 -	Brian Wang
 -	Zhuoliang Pu
 -	Yiteng Zhao
+-	Jinghao Miao
 
 #### What we did (BrainStorming):
 -   Meeting summary
