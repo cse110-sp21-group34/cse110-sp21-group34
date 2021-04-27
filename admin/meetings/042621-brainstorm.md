@@ -1,4 +1,4 @@
-#### 4/11/2021 – Group 34
+#### 4/26/2021 – Group 34
 #### Meeting type: Zoom - Kickoff Meeting
 #### Time start: 9pm PST
 #### Time end: 11pm PST
