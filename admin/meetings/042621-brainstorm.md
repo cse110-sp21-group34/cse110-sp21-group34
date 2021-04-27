@@ -17,4 +17,18 @@
 
 #### What we did (BrainStorming):
 - Meeting Summary: to make up for the missed writing part of brainstorming assignment
-- 
+   - learned other group's flowchart and improve on ours.
+   - Miro (for presenting features and functionalities of our bullet journal)
+   - Allocate tasks for starting pitch
+
+#### Some introduction of our bullet journal
+- User needs:
+  - a tool to help people do make plannings and record what they did
+- Interface Design
+  - Sample Desktop Design
+  - Timeline Mode
+  - Responsive Design
+- Specific Functional Explanation
+- Some idea pieces
+
+
