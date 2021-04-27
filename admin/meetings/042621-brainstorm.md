@@ -20,6 +20,7 @@
    - learned other group's flowchart and improve on ours.
    - Miro (for presenting features and functionalities of our bullet journal)
    - Allocate tasks for starting pitch
+   - Notifies everyone to write journal every day
 
 #### Some introduction of our bullet journal
 - User needs:
