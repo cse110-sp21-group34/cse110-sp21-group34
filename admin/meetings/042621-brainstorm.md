@@ -1,7 +1,7 @@
 #### 4/26/2021 – Group 34
 #### Meeting type: Zoom - Kickoff Meeting
 #### Time start: 9pm PST
-#### Time end: 11pm PST
+#### Time end: 11:10pm PST
 
 #### Attendance:
 - Joseph Christopher Priyanto
