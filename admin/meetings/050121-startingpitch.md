@@ -1,5 +1,5 @@
 ### 5/1/2021 – Group 34
-#### Meeting type: Zoom 
+#### Meeting type: Zoom - Starting Pitch Discussion
 #### Time start: 1am PST
 
 #### Attendance:
@@ -12,9 +12,9 @@
 
 #### What we did: 
 -	Discuss system diagrams
-o	System diagrams looks good
-o	We can finalize the diagram (probably add more color)
-o	Suggest anything if there is something missing
+-	System diagrams looks good
+-	We can finalize the diagram (probably add more color)
+-	Suggest anything if there is something missing
 
 -	Discuss wireframes
 -	Discussed both web and mobile version
@@ -27,7 +27,7 @@ o	Suggest anything if there is something missing
 
 -	Discuss user persona
 -	Everything looks good
--	Debating whether we use yellow or orange (yellow is too ditracting)
+-	Debating whether we use yellow or orange (yellow is too distracting)
 
 #### Decision:
 -	Project roadmap would make sense if we do it later
