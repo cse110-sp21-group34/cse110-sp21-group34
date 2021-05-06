@@ -29,6 +29,6 @@ TBD
 
 * Good, because thereotically Hashtables have O(1) search, insert, and delete time. So it is very fast.
 * Good, because mapping date and labels together would increase the codes' readability.
-* Bad, because we cannot always trust users, and they can mess up our storage by creating tons of trush labels.
+* Bad, because we cannot always trust users, and they can mess up our app's overall performance by creating tons of trush labels.
 * … <!-- numbers of pros and cons can vary -->
 
