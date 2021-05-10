@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <h1>Hello World!</h1>
+    </head>
+    <body>
+        <button id='test_button'>Hit Me!</button>
+    </body>
+    <script>
+        document.getElementById('test_button').addEventListener('click', () => {
+            let newElem = document.createElement('p');
+            newElem.textContent = 'YEAHHHHHHHHHHH';
+            newElem.id = "test_content";
+            document.body.appendChild(newElem);
+        })
+    </script>
+</html>
