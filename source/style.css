@@ -1,0 +1,27 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidenav {
+    height: 100%;
+    width: 2cm;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightgray;
+    padding-top: 60px;
+    padding-left: 56px;
+    line-height: 5;
+  }
+  #icon {
+      font-size: 56px;
+      color: white;
+      text-shadow: 0 0 10px #000
+  }
+  
+  .team-icon {
+      content: url("/slack-icon.jpeg");
+      height: 56px;
+      width: 56px;
+  }
