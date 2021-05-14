@@ -1,27 +1,186 @@
-body {
-    font-family: "Lato", sans-serif;
+  body {
+    margin: 0;
+    font-family: "Lexend", sans-serif;
+    line-height: 100%;
   }
   
   .sidenav {
     height: 100%;
-    width: 2cm;
+    width: min-content;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: lightgray;
-    padding-top: 60px;
-    padding-left: 56px;
     line-height: 5;
+    position: fixed;
   }
+
   #icon {
-      font-size: 56px;
-      color: white;
-      text-shadow: 0 0 10px #000
+      font-size: 36px;
+      color: rgb(48, 48, 48);
+      float: left;
+      display: block;
+      height: 56px;
+      margin: 19px;
+      line-height: 100%;
+  }
+
+  #icon:hover {
+    color: rgb(18, 123, 141);
   }
   
   .team-icon {
-      content: url("/slack-icon.jpeg");
-      height: 56px;
-      width: 56px;
+      content: url("/admin/branding/slack-icon.jpg");
+      height: 74px;
+      width: 74px;
+  }
+
+  #topBar {
+    margin-top: 0;
+    margin-left: 74px;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    background-color: rgb(236, 250, 255);
+  }
+
+  #topBar > * {
+    float: left;
+  }
+
+  #topDateBlock {
+    width: max-content;
+    background-color: darkgrey;
+    line-height: 200%;
+  }
+
+  #topDateBlock > * {
+    margin: 19px 12px;
+    float: left;
+    font-size: 30px;
+  }
+
+  #topSearchBlock {
+    width: 300px;
+    margin: 0px;
+    height: 74px;
+    float: left;
+    font-size: 30px;
+    background-color: rgb(232, 234, 235);
+    position: absolute;
+    right: 0px;
+    line-height: 150%;
+  }
+
+  #topSearchBlock > * {
+    margin: 16px 0 0 0;
+    float: left;
+    font-size: 30px;
+  }
+
+  #topSearchText {
+    float:left;
+    font-family: 'Lexend', sans-serif;
+    font-size: 20px;
+    background-color: rgb(232, 234, 235);
+    border-width: 0;
+    width: 200px;
+    margin-top: 30px;
+    margin-left: 8px;
+  }
+
+  #topSearchText:focus {
+    outline: none;
+  }
+
+  #searchLabel {
+    position: absolute;
+    left: 64px;
+    top: 0;
+    pointer-events: none;
+    -moz-transition: all 0.2s; 
+    -webkit-transition: all 0.2s; 
+    -o-transition: all 0.2s; 
+    transition: all 0.2s; 
+  }
+
+  #topSearchText:hover + label {
+    font-size: 15px;
+    top: -20px;
+  }
+
+  #topSearchText:focus + label {
+    font-size: 15px;
+    top: -20px;
+  }
+
+  #topSearchText:valid + label {
+    font-size: 15px;
+    top: -20px;
+  }
+
+  .labels { 
+    width: 800px;
+    margin: 0 0 0 16px;
+    clear: both;
+    text-align: left;
+    font-size: 12px;
+  }   
+  
+  .labels a { 
+    line-height: 40px; 
+    height: 40px; 
+    display: inline-block; 
+    background: #fff; 
+    padding: 5px 20px; 
+    margin: 0px 5px; 
+    border-radius: 30px; 
+    -moz-transition: all 0.5s; 
+    -webkit-transition: all 0.5s; 
+    -o-transition: all 0.5s; 
+    transition: all 0.5s; 
+  }   
+  
+  .labels a { 
+    color: #FFF; 
+    font-family: 'Lexend', sans-serif; 
+    text-decoration: none; 
+    font-size: 35px;
+  }   
+  
+  .labels a:hover { 
+    border-radius: 10px; 
+    text-shadow: #000 2px 2px 2px;
+  }   
+  
+  .labels .pcolor a:nth-child(8n-7) { background: #093c49 }   
+  .labels .pcolor a:nth-child(8n-6) { background: #EB6841 }   
+  .labels .pcolor a:nth-child(8n-5) { background: #3FB8AF }   
+  .labels .pcolor a:nth-child(8n-4) { background: #FE4365 }   
+  .labels .pcolor a:nth-child(8n-3) { background: #FC9D9A }   
+  .labels .pcolor a:nth-child(8n-2) { background: #EDC951 }   
+  .labels .pcolor a:nth-child(8n-1) { background: #C8C8A9 }   
+  .labels .pcolor a:nth-child(8n) { background: #83AF9B }   
+  .labels .pcolor a:first-child { background: #036564 }   
+  .labels .pcolor a:last-child { background: #3299BB }
+
+  #mainPage {
+    font-family: 'Lexend', sans-serif;
+    margin-left: 74px;
+  }
+
+  .noteBlock {
+    width: 60vw;
+    background-color: rgb(232, 234, 235);
+    margin: 32px 20px;
+    padding: 1px 32px;
+  }
+
+  .dailyDate {
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .dailyNote {
+    font-size: 28px;
   }
