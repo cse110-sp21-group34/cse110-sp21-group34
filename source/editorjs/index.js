@@ -12,10 +12,49 @@ import ImageTool from '@editorjs/image';
 import DragDrop from 'editorjs-drag-drop';
 import Undo from 'editorjs-undo';
 
+import Journal from "./storage.js";
+
+if (!localStorage.getItem("journal-entry")) {
+  console.log("no entry found!")
+  localStorage.setItem("journal-entry", '{}');
+}
+
+try {
+  JSON.parse(localStorage.getItem("journal-entry"))
+}
+catch (e) {
+  console.error("journal-entry is invalid");
+  localStorage.setItem("journal-entry", '{}');
+}
+
+let date = "2021-5-11";
+
+const savingInterval = 3000;  // ms
+let saveTimer;
+
+function initSaver() {
+  document.getElementById('editorjs').addEventListener('keydown', () => {
+    // reset saveTimer
+    console.log("keydown triggered")
+    window.clearTimeout(saveTimer);
+    saveTimer = window.setTimeout(() => {editor.save().then((outputData) => {journals.save(date, outputData)})} , savingInterval);
+
+  })
+
+  document.getElementById('editorjs').addEventListener('focusout', () => {
+    // Immediately save when bullet loses focus
+    console.log("defocused")
+    editor.save().then((outputData) => journals.save(date, outputData));
+  })
+}
+
+const journals = new Journal(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
+
 const editor = new EditorJS({
     onReady: () => {
       new Undo({ editor });
       new DragDrop(editor);
+      initSaver();
     },
     tools: {
       list: {
@@ -87,5 +126,6 @@ const editor = new EditorJS({
     /**
      * Id of Element that should contain Editor instance
      */
-    holder: 'editorjs'
+    holder: 'editorjs',
+    data: journals.get(date)
   });
