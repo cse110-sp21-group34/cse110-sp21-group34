@@ -6,6 +6,4 @@
 !.vscode/extensions.json
 **/.history
 **/settings.json
-**/package.json
 .env
-**/package-lock.json
