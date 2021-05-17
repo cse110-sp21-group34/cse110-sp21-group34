@@ -6,7 +6,7 @@ describe("Test the test_button", () => {
   beforeAll(async () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
-    await page.goto("http://127.0.0.1:5000/test_index.html");
+    await page.goto("http://127.0.0.1:5000/test-index.html");
     console.log("Hey Console!");
   }, 5000);
 
@@ -19,7 +19,7 @@ describe("Test the test_button", () => {
   });
 
   it("Did I just click the button?", async () => {
-    await page.evaluate(("#test_button") => document.querySelector(#test_button).click(), selector);
+    await page.evaluate(("#test_button") => document.querySelector("#test_button").click(), "#test_button");
     await page.click("#test_button");
     const result = await page.evaluate(
       () => document.getElementById("test_content").textContent
