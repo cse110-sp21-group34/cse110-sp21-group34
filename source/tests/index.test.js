@@ -19,7 +19,11 @@ describe("Test the test_button", () => {
   });
 
   it("Did I just click the button?", async () => {
-    await page.evaluate(("#test_button") => document.querySelector("#test_button").click(), "#test_button");
+    const selector = "#test_button";
+    // await page.evaluate(
+    //   (selector) => document.querySelector(selector).click(),
+    //   selector
+    // );
     await page.click("#test_button");
     const result = await page.evaluate(
       () => document.getElementById("test_content").textContent
