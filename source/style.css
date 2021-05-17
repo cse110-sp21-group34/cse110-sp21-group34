@@ -17,23 +17,37 @@
   }
 
   #icon {
-      font-size: 36px;
-      color: rgb(48, 48, 48);
-      float: left;
-      display: block;
-      height: 56px;
-      margin: 19px;
-      line-height: 100%;
+    font-size: 36px;
+    color: rgb(48, 48, 48);
+    float: left;
+    display: block;
+    height: 56px;
+    margin: 19px;
+    line-height: 100%;
+  }
+
+  #iconInside {
+    font-size: 36px;
+    color: rgb(48, 48, 48);
+    float: left;
+    display: block;
+    height: 50px;
+    margin: 17px 19px 0 19px;
+    line-height: 100%;
   }
 
   #icon:hover {
     color: rgb(18, 123, 141);
   }
+
+  #iconInside:hover {
+    color: rgb(18, 123, 141);
+  }
   
   .team-icon {
-      content: url("/admin/branding/slack-icon.jpg");
-      height: 74px;
-      width: 74px;
+    content: url("/admin/branding/slack-icon.jpg");
+    height: 74px;
+    width: 74px;
   }
 
   #topBar {
@@ -44,7 +58,17 @@
     background-color: rgb(236, 250, 255);
   }
 
+  #editingTopBar {
+    margin-top: 0;
+    margin-left: 74px;
+    height: 74px;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    background-color: rgb(236, 250, 255);
+  }
+
   #topBar > * {
+    margin-left: 0;
     float: left;
   }
 
@@ -119,12 +143,93 @@
     top: -20px;
   }
 
+  #dateSelector {
+    margin-left: 74px;
+    width: 210px;
+    font-size: 28px;
+  }
+
+  #year {
+    height: 70px;
+    background-color: rgb(200, 200, 211);
+    line-height: 100%;
+  }
+
+  #year > * {
+    float: left;
+    margin-bottom: 0;
+  }
+
+  #yearNum {
+    margin-top: 22px;
+  }
+
+  #month {
+    height: 70px;
+    
+  }
+
+  #monthSelector {
+    font-size: 28px;
+    font-family: 'Lexend', sans-serif;
+    width: 210px;
+    height: 70px;
+    background-color: rgb(177, 177, 218);
+    border-width: 0;
+    padding: 0 0 0 60px;
+  }
+
+  #dayList {
+    width: 210px;
+    overflow-y: scroll;
+    height: calc(100vh - 214px);
+    position: relative;
+  }
+
+  #dayList::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+  }
+
+  #dayList::-webkit-scrollbar {
+	  width: 6px;
+	  background-color: #F5F5F5;
+  }
+
+  #dayList::-webkit-scrollbar-thumb {
+	  background-color: #000000;
+  }
+
+  .oneDay {
+    height: 60px;
+    background-color: #bebeb4;
+  }
+
+  .oneDay:hover {
+    background-color: #b1b191;
+  }
+
+  .oneDay > * {
+    float: left;
+    margin: 22px 20px 0 20px;
+  }
+
+  .weekday {
+    position: absolute;
+    right: 76px;
+  }
+
+  .monthday {
+    position: absolute;
+    left: 106px;
+  }
+
   .labels { 
-    width: 800px;
+    width: max-content;
     margin: 0 0 0 16px;
     clear: both;
     text-align: left;
     font-size: 12px;
+    height: 70px;
   }   
   
   .labels a { 
@@ -164,6 +269,10 @@
   .labels .pcolor a:first-child { background: #036564 }   
   .labels .pcolor a:last-child { background: #3299BB }
 
+  .pcolor {
+    margin: 10px 0;
+  }
+
   #mainPage {
     font-family: 'Lexend', sans-serif;
     margin-left: 74px;
@@ -183,4 +292,32 @@
 
   .dailyNote {
     font-size: 28px;
+  }
+
+  #editingMainPage {
+    position: absolute;
+    left: 284px;
+    top: 74px;
+  }
+
+  #editingTopBar {
+    line-height: 100%;
+    height: 74px;
+    margin-top: 0;
+    margin-left: 0;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    background-color: rgb(236, 250, 255);
+  }
+
+  #mainPageTopBar {
+    line-height: 100%;
+    height: 70px;
+    width: 100vw;
+    margin-top: 0;
+    margin-left: 0;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    background-color: rgb(218, 245, 255);
+    position: relative;
   }
