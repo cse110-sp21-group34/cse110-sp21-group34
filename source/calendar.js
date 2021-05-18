@@ -1,6 +1,6 @@
-/** 
-* @summary Updates the days and dates depending upon the year and month selected.
-*/
+/**
+ * @summary Updates the days and dates depending upon the year and month selected.
+ */
 function updateDates() {
   const currYear = Number(document.querySelector("#yearNum").innerHTML); // Obtains selected year
   const selectOption = document.querySelector("#monthSelector"); // Obtains the month selecting element.
@@ -23,7 +23,7 @@ function updateDates() {
     const currDate = i; // Obtains current date
 
     // Obtains the day of the current date in English format
-    const utcDate = new Date(Date.UTC(currYear, currMonth, currDate)); 
+    const utcDate = new Date(Date.UTC(currYear, currMonth, currDate));
     const options = { weekday: "long" };
     const currDay = new Intl.DateTimeFormat("en-US", options).format(utcDate);
 
