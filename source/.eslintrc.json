@@ -9,9 +9,12 @@
     ],
     "plugins": ["prettier"],
     "parserOptions": {
-        "ecmaVersion": 12
+        "ecmaVersion": 12,
+        "sourceType": "module",
+        "allowImportExportEverywhere": true
     },
     "rules": {
         "prettier/prettier": "warn"
-    }
+    },
+    "parser": "babel-eslint"
 }
