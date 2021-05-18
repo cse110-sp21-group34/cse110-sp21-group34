@@ -1,4 +1,4 @@
-name: GitHub pages
+name: JSDoc Generation
 
 on: [push]
 
@@ -11,7 +11,7 @@ jobs:
 
       - name: Build
         uses: andstor/jsdoc-action@v1
-        with:
+        wenv:
           source_dir: ./source
           output_dir: ./source/docs
           recurse: false
