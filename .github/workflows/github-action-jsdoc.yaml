@@ -11,7 +11,7 @@ jobs:
 
       - name: Build
         uses: andstor/jsdoc-action@v1
-        wenv:
+        env:
           source_dir: ./source
           output_dir: ./source/docs
           recurse: false
