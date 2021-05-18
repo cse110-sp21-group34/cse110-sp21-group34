@@ -3,8 +3,21 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 // const Delimiter = require('@editorjs/delimiter');
-import DragDrop from "editorjs-drag-drop";
-import Undo from "editorjs-undo";
+import EditorJS from '@editorjs/editorjs';
+
+import NestedList from '@editorjs/nested-list';
+import Checklist from '@editorjs/checklist';
+import Warning from '@editorjs/warning';
+import Quote from '@editorjs/quote';
+import AnyButton from 'editorjs-button';
+import Marker from '@editorjs/marker';
+import AlignmentBlockTune from 'editorjs-text-alignment-blocktune';
+import ImageTool from '@editorjs/image';
+import DragDrop from 'editorjs-drag-drop';
+import Undo from 'editorjs-undo';
+import Paragraph from '@editorjs/paragraph'
+import Embed from '@editorjs/embed'
+import Header from '@editorjs/header'
 
 const editor = new EditorJS({
   holderId: "editorjs",
