@@ -7,3 +7,4 @@
 **/.history
 **/settings.json
 .env
+node_modules
