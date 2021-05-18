@@ -2,7 +2,7 @@ name: Web Page Test
 on: [push]
 jobs:
   Jest:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
