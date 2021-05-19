@@ -25,7 +25,9 @@ function updateDates() {
     // Obtains the day of the current date in English format
     const utcDate = new Date(Date.UTC(currYear, currMonth, currDate));
     const options = { weekday: "long" };
-    const currDay = new Intl.DateTimeFormat("en-US", options).format(utcDate);
+    const currDay = new Intl.DateTimeFormat("en-US", options)
+      .format(utcDate)
+      .substring(0, 3);
 
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
