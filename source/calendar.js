@@ -22,12 +22,11 @@ function updateDates() {
   for (let i = 1; i <= numDays; i += 1) {
     const currDate = i; // Obtains current date
 
-    // Obtains the day of the current date in English format
+    // Obtains the day of the current date in English format with first three letters
     const utcDate = new Date(Date.UTC(currYear, currMonth, currDate));
     const options = { weekday: "long" };
-    const currDay = new Intl.DateTimeFormat("en-US", options)
-      .format(utcDate)
-      .substring(0, 3);
+    // eslint-disable-next-line prettier/prettier
+    const currDay = new Intl.DateTimeFormat("en-US", options).format(utcDate).substring(0, 3);
 
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
