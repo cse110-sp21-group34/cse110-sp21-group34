@@ -142,9 +142,5 @@ let routerDate = todayDate.getDate();
 // Instantiates the dates when page is first loaded
 updateDates();
 document
-  .getElementById(
-    `${
-      todayDate.getMonth() + 1
-    }${todayDate.getDate()}${todayDate.getFullYear()}`
-  )
+  .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`)
   .classList.add("oneDayActive");
