@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const newEditor = require("./editor_v2/index");
 
 /**
@@ -33,6 +34,7 @@ function updateDates() {
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
     oneDayDiv.classList.add("oneDay");
+    // eslint-disable-next-line no-loop-func
     oneDayDiv.addEventListener("click", (event) => {
       // eslint-disable-next-line prettier/prettier
       window.history.pushState({},
@@ -40,7 +42,10 @@ function updateDates() {
         `entry${utcDate.getMonth() + 1}${currDate}${currYear}`, 
         `/#entry${utcDate.getMonth() + 1}${currDate}${currYear}`
       );
-      document.getElementsByClassName("oneDayActive")[0].
+      const prevDate = document.getElementsByClassName("oneDayActive");
+      if (prevDate[0] !== undefined) {
+        prevDate[0].classList.remove("oneDayActive");
+      }
       oneDayDiv.classList.add("oneDayActive");
       document
         .getElementById("contentArea")
@@ -58,6 +63,9 @@ function updateDates() {
       document.getElementsByClassName("dailyDate")[0].innerHTML = 
         // eslint-disable-next-line prettier/prettier
         `${utcDate.getMonth() + 1}/${currDate}, ${currDay}`;
+      routerDate = currDate;
+      routerYear = currYear;
+      routerMonth = utcDate.getMonth();
     });
 
     // Intialize the elements that contain the day and the date
@@ -69,6 +77,7 @@ function updateDates() {
     monthdayDiv.innerHTML = currDate;
 
     // Appends day and date elements to div for one day
+    oneDayDiv.id = `${utcDate.getMonth() + 1}${currDate}${currYear}`;
     oneDayDiv.appendChild(weekdayDiv);
     oneDayDiv.appendChild(monthdayDiv);
 
@@ -79,6 +88,14 @@ function updateDates() {
   // Replaces the old list of days with the current list.
   const oldDayList = document.querySelector(".dayList");
   oldDayList?.replaceWith(newDayList); // Ignore null day list using (?.)
+
+  if (routerYear === currYear) {
+    if (routerMonth === currMonth) {
+      document
+        .getElementById(`${currMonth + 1}${routerDate}${routerYear}`)
+        .classList.add("oneDayActive");
+    }
+  }
 }
 
 // Updates year to previous year if the year is decreased and updates dates accordingly.
@@ -114,10 +131,20 @@ document.getElementsByClassName("dailyDate")[0].innerHTML =
 window.history.pushState(
   {},
   // eslint-disable-next-line prettier/prettier
-  `entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getYear()}`, 
+  `entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`, 
   // eslint-disable-next-line prettier/prettier
-  `/#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getYear()}`
+  `/#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`
 );
+let routerMonth = todayDate.getMonth();
+let routerYear = todayDate.getFullYear();
+let routerDate = todayDate.getDate();
 
 // Instantiates the dates when page is first loaded
 updateDates();
+document
+  .getElementById(
+    `${
+      todayDate.getMonth() + 1
+    }${todayDate.getDate()}${todayDate.getFullYear()}`
+  )
+  .classList.add("oneDayActive");
