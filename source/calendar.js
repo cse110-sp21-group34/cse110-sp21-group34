@@ -1,3 +1,5 @@
+const new_editor = require("./editor_v2/index.js")
+
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
  */
@@ -31,6 +33,13 @@ function updateDates() {
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
     oneDayDiv.classList.add("oneDay");
+    oneDayDiv.addEventListener('click', (event) => {
+      document.getElementById("contentArea").removeChild(document.getElementById('editor'))
+      let editor_div = document.createElement('div')
+      editor_div.id = 'editor'
+      document.getElementById("contentArea").appendChild(editor_div)
+      let editor = new_editor(utcDate.getFullYear()+'-'+(utcDate.getMonth()+1)+'-'+utcDate.getDate(), 'editor');
+    })
 
     // Intialize the elements that contain the day and the date
     const weekdayDiv = document.createElement("p");

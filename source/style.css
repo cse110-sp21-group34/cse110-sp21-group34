@@ -73,7 +73,7 @@
   }
   
   .team-icon {
-    content: url("/admin/branding/slack-icon.jpg");
+    content: url("../admin/branding/slack-icon.jpg");
     height: 74px;
     width: 74px;
   }

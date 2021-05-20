@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "dev": "parcel editing-page.html -p 8000",
     "test": "jest",
     "doc": "jsdoc -c jsdoc.json"
   },
@@ -29,6 +30,7 @@
     "jest": "*",
     "jest-puppeteer": "*",
     "puppeteer": "*",
-    "jest-dev-server": "*"
+    "jest-dev-server": "*",
+    "parcel": "^2.0.0-beta.2"
   }
 }

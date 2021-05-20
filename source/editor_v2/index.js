@@ -29,13 +29,13 @@ catch (e) {
   localStorage.setItem("journal-entry", '{"labels":{}, "journals": {}}');
 }
 
-let date = "2021-5-11";
+// let date = "2021-5-11";
 
 const savingInterval = 3000;  // ms
 let saveTimer;
 
-function initSaver() {
-  document.getElementById('editorjs').addEventListener('keydown', () => {
+function initSaver(editor, date, holderid) {
+  document.getElementById(holderid).addEventListener('keydown', () => {
     // reset saveTimer
     console.log("keydown triggered")
     window.clearTimeout(saveTimer);
@@ -43,7 +43,7 @@ function initSaver() {
 
   })
 
-  document.getElementById('editorjs').addEventListener('focusout', () => {
+  document.getElementById(holderid).addEventListener('focusout', () => {
     // Immediately save when bullet loses focus
     console.log("defocused")
     editor.save().then((outputData) => journals.save(date, outputData));
@@ -53,107 +53,111 @@ function initSaver() {
 const journals = new Journals(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
 
 
-const editor = new EditorJS({
-  holderId: "editorjs",
-  data: journals.get(date),
+function new_editor(date, holder) {
+  let editor_obj = new EditorJS({
+    holderId: holder,
+    data: journals.get(date),
 
-  onReady: () => {
-    new Undo({ editor });
-    new DragDrop(editor);
-    initSaver();
-  },
-  tools: {
-    list: {
-      class: NestedList,
-      inlineToolbar: true,
+    onReady: () => {
+      //new Undo({ editor });
+      //new DragDrop(editor);
+      initSaver(editor_obj, date, holder);
     },
-
-    paragraph: {
-      class: Paragraph,
-      inlineToolbar: true,
-      tunes: ["anyTuneName"],
-    },
-
-    header: {
-      class: Header,
-      inlineToolbar: true,
-      shortcut: "CMD+SHIFT+H",
-      tunes: ["anyTuneName"],
-    },
-
-    checklist: {
-      class: Checklist,
-      inlineToolbar: true,
-    },
-
-    warning: {
-      class: Warning,
-      inlineToolbar: true,
-      shortcut: "CMD+SHIFT+W",
-      config: {
-        titlePlaceholder: "Title",
-        messagePlaceholder: "Message",
+    tools: {
+      list: {
+        class: NestedList,
+        inlineToolbar: true,
       },
-    },
 
-    quote: {
-      class: Quote,
-      inlineToolbar: true,
-      shortcut: "CMD+SHIFT+O",
-      config: {
-        quotePlaceholder: "Enter a quote",
-        captionPlaceholder: "Quote's author",
+      paragraph: {
+        class: Paragraph,
+        inlineToolbar: true,
+        tunes: ["anyTuneName"],
       },
-    },
 
-    AnyButton: {
-      class: AnyButton,
-      inlineToolbar: false,
-      config: {
-        css: {
-          btnColor: "btn--gray",
+      header: {
+        class: Header,
+        inlineToolbar: true,
+        shortcut: "CMD+SHIFT+H",
+        tunes: ["anyTuneName"],
+      },
+
+      checklist: {
+        class: Checklist,
+        inlineToolbar: true,
+      },
+
+      warning: {
+        class: Warning,
+        inlineToolbar: true,
+        shortcut: "CMD+SHIFT+W",
+        config: {
+          titlePlaceholder: "Title",
+          messagePlaceholder: "Message",
         },
       },
-    },
 
-    Marker: {
-      class: Marker,
-      shortcut: "CMD+SHIFT+M",
-    },
-
-    anyTuneName: {
-      class: AlignmentBlockTune,
-      config: {
-        default: "right",
-        blocks: {
-          header: "center",
-          list: "right",
+      quote: {
+        class: Quote,
+        inlineToolbar: true,
+        shortcut: "CMD+SHIFT+O",
+        config: {
+          quotePlaceholder: "Enter a quote",
+          captionPlaceholder: "Quote's author",
         },
       },
-    },
 
-    image: {
-      class: ImageTool,
-      config: {
-        endpoints: {
-          byFile: "http://localhost:8000/uploadFile", // Your backend file uploader endpoint
-          byUrl: "http://localhost:8000/fetchUrl", // Your endpoint that provides uploading by Url
+      AnyButton: {
+        class: AnyButton,
+        inlineToolbar: false,
+        config: {
+          css: {
+            btnColor: "btn--gray",
+          },
         },
       },
-    },
 
-    embed: {
-      class: Embed,
-      config: {
-        services: {
-          youtube: true,
-          coub: true,
+      Marker: {
+        class: Marker,
+        shortcut: "CMD+SHIFT+M",
+      },
+
+      anyTuneName: {
+        class: AlignmentBlockTune,
+        config: {
+          default: "right",
+          blocks: {
+            header: "center",
+            list: "right",
+          },
         },
       },
-    },
-  }
-});
 
+      image: {
+        class: ImageTool,
+        config: {
+          endpoints: {
+            byFile: "http://localhost:8000/uploadFile", // Your backend file uploader endpoint
+            byUrl: "http://localhost:8000/fetchUrl", // Your endpoint that provides uploading by Url
+          },
+        },
+      },
+
+      embed: {
+        class: Embed,
+        config: {
+          services: {
+            youtube: true,
+            coub: true,
+          },
+        },
+      },
+    }
+  });
+  return editor_obj;
+}
+
+/*
 const saveBtn = document.querySelector("button");
 
 saveBtn.addEventListener("click", () => {
@@ -167,3 +171,6 @@ saveBtn.addEventListener("click", () => {
       console.log("Saving failed: ", error);
     });
 });
+*/
+
+module.exports = new_editor;
