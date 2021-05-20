@@ -354,3 +354,9 @@
     background-color: rgb(218, 245, 255);
     position: relative;
   }
+
+  #editor {
+    /* Use relative size instead of hard code */
+    max-width: 750px;
+    font-size: 32px;
+  }

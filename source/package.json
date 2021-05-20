@@ -25,12 +25,12 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "jsdoc": "^3.6.7",
-    "prettier": "^2.3.0",
     "jest": "*",
-    "jest-puppeteer": "*",
-    "puppeteer": "*",
     "jest-dev-server": "*",
-    "parcel": "^2.0.0-beta.2"
+    "jest-puppeteer": "*",
+    "jsdoc": "^3.6.7",
+    "parcel": "^2.0.0-beta.2",
+    "prettier": "^2.3.0",
+    "puppeteer": "*"
   }
 }

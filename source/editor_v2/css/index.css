@@ -1,4 +1,4 @@
-body{
+dbody{
     background: rgb(233,233,233);
     height: 100%;
     padding:3em;
@@ -7,6 +7,7 @@ body{
 
 #editorjs {
     background: white;
+    max-width: 750px;
 }
 
 button { 
