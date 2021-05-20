@@ -17,7 +17,7 @@
     "editorjs-text-alignment-blocktune": "latest",
     "editorjs-style": "latest",
     "@editorjs/editorjs": "latest",
-    "@editorjs/nested-list": "latest",
+    "@editorjs/nested-list": "https://github.com/cse110-sp21-group34/nested-list.git",
     "@editorjs/checklist": "latest",
     "@editorjs/warning": "latest",
     "@editorjs/quote": "latest",
