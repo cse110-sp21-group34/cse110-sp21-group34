@@ -236,6 +236,11 @@
     background-color: #b1b191;
   }
 
+  /* Make fixes here for the active color for selected date */
+  .oneDayActive{
+    background-color: #b1b191;
+  }
+
   .oneDay > * {
     float: left;
     margin: 22px 20px 0 20px;

@@ -34,6 +34,14 @@ function updateDates() {
     const oneDayDiv = document.createElement("div");
     oneDayDiv.classList.add("oneDay");
     oneDayDiv.addEventListener("click", (event) => {
+      // eslint-disable-next-line prettier/prettier
+      window.history.pushState({},
+        // eslint-disable-next-line prettier/prettier
+        `entry${utcDate.getMonth() + 1}${currDate}${currYear}`, 
+        `/#entry${utcDate.getMonth() + 1}${currDate}${currYear}`
+      );
+      document.getElementsByClassName("oneDayActive")[0].
+      oneDayDiv.classList.add("oneDayActive");
       document
         .getElementById("contentArea")
         .removeChild(document.getElementById("editor"));
@@ -103,6 +111,13 @@ document.querySelector("#monthSelector").value = todayDate.getMonth();
 document.getElementsByClassName("dailyDate")[0].innerHTML = 
   // eslint-disable-next-line prettier/prettier
   `${todayDate.getMonth() + 1}/${todayDate.getDate()}, ${todayDay}`;
+window.history.pushState(
+  {},
+  // eslint-disable-next-line prettier/prettier
+  `entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getYear()}`, 
+  // eslint-disable-next-line prettier/prettier
+  `/#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getYear()}`
+);
 
 // Instantiates the dates when page is first loaded
 updateDates();
