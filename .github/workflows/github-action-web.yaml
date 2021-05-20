@@ -15,4 +15,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Running test suits
-      run: "npx serve -l 5000 source/ & echo 'Waiting for web server to bring up...'; sleep 15; cd source/tests; npm install --save-dev jest puppeteer jest-puppeteer; npm test"
+      run: "npx serve -l 5000 source/ & echo 'Waiting for web server to bring up...'; sleep 15; cd source; npm install --save-dev jest puppeteer jest-puppeteer; npm test"
