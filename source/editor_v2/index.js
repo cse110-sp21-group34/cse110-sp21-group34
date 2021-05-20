@@ -21,11 +21,6 @@ const Header = require('@editorjs/header');
 
 const Journals = require('./storage');
 
-if (!localStorage.getItem("journal-entry")) {
-  console.log("no entry found!")
-  localStorage.setItem("journal-entry", '{"labels":{}, "journals": {}}');
-}
-
 try {
   JSON.parse(localStorage.getItem("journal-entry"))
 }

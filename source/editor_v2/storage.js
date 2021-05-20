@@ -1,5 +1,20 @@
-export default class Journals {
+class Journals {
     constructor(source, submit) {
+        if (!source || typeof(source) != "object" || Object.keys(source).length === 0) {
+            console.error("Source of journal is invalid. Received ", source, ". Using default")
+            source = {
+                'labels': {},
+                'journals': {}
+            }
+        }
+        else if (!'journals' in source || !'labels' in source) {
+            console.error("Invalid format. Using default")
+            source = {
+                'labels': {},
+                'journals': {}
+            }
+        }
+
         this.database = {...source};
         this.journals = this.database['journals'];
 
@@ -70,7 +85,7 @@ export default class Journals {
             this.database['labels'][label] = this.labels[label].properties;
         }
         this.submit(JSON.stringify(this.database));
-        console.log(this.database);
+        //console.log(this.database);
         return 0;
     }
 
@@ -88,6 +103,7 @@ export default class Journals {
         if (Object.keys(this.labels[label].journals).length === 0) {
             // No journal is assicoated with this label, proceed to removal
             delete this.labels[label];
+            this.push();
             return 0;
         }
         else {
@@ -96,7 +112,7 @@ export default class Journals {
         }
     }
 
-    // Leave label = null to remove a label
+    // Leave label = null to remove label from journal
     label(date, label=null) {
         if (label && !this.labels[label]) {
             console.error("Label does not exist: ", label);
@@ -110,6 +126,7 @@ export default class Journals {
         }
         if (label)
             this.labels[label].link(date, this.journals[date]);
+        this.push();
         return 0;
     }
 }
@@ -132,3 +149,5 @@ class Label {
         return temp;
     }
 }
+
+module.exports = Journals;
