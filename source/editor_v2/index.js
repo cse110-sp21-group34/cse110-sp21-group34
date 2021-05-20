@@ -3,23 +3,23 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 // const Delimiter = require('@editorjs/delimiter');
-import EditorJS from '@editorjs/editorjs';
+const EditorJS = require('@editorjs/editorjs')
 
-import NestedList from '@editorjs/nested-list';
-import Checklist from '@editorjs/checklist';
-import Warning from '@editorjs/warning';
-import Quote from '@editorjs/quote';
-import AnyButton from 'editorjs-button';
-import Marker from '@editorjs/marker';
-import AlignmentBlockTune from 'editorjs-text-alignment-blocktune';
-import ImageTool from '@editorjs/image';
-import DragDrop from 'editorjs-drag-drop';
-import Undo from 'editorjs-undo';
-import Paragraph from '@editorjs/paragraph'
-import Embed from '@editorjs/embed'
-import Header from '@editorjs/header'
+const NestedList = require('@editorjs/nested-list');
+const Checklist = require('@editorjs/checklist');
+const Warning = require('@editorjs/warning');
+const Quote = require('@editorjs/quote');
+const AnyButton = require('editorjs-button');
+const Marker = require('@editorjs/marker');
+const AlignmentBlockTune = require('editorjs-text-alignment-blocktune');
+const ImageTool = require('@editorjs/image');
+const DragDrop = require('editorjs-drag-drop');
+const Undo = require('editorjs-undo');
+const Paragraph = require('@editorjs/paragraph');
+const Embed = require('@editorjs/embed');
+const Header = require('@editorjs/header');
 
-import Journal from "./storage.js";
+const Journals = require('./storage');
 
 if (!localStorage.getItem("journal-entry")) {
   console.log("no entry found!")
@@ -55,7 +55,7 @@ function initSaver() {
   })
 }
 
-const journals = new Journal(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
+const journals = new Journals(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
 
 
 const editor = new EditorJS({
