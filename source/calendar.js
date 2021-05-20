@@ -1,4 +1,4 @@
-const new_editor = require("./editor_v2/index.js")
+const newEditor = require("./editor_v2/index");
 
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
@@ -33,13 +33,24 @@ function updateDates() {
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
     oneDayDiv.classList.add("oneDay");
-    oneDayDiv.addEventListener('click', (event) => {
-      document.getElementById("contentArea").removeChild(document.getElementById('editor'))
-      let editor_div = document.createElement('div')
-      editor_div.id = 'editor'
-      document.getElementById("contentArea").appendChild(editor_div)
-      let editor = new_editor(utcDate.getFullYear()+'-'+(utcDate.getMonth()+1)+'-'+utcDate.getDate(), 'editor');
-    })
+    oneDayDiv.addEventListener("click", (event) => {
+      document
+        .getElementById("contentArea")
+        .removeChild(document.getElementById("editor"));
+      const editorDiv = document.createElement("div");
+      editorDiv.id = "editor";
+      document.getElementById("contentArea").appendChild(editorDiv);
+      const editor = newEditor(
+        `${utcDate.getFullYear()}-${
+          utcDate.getMonth() + 1
+        }-${utcDate.getDate()}`,
+        "editor"
+      );
+      // eslint-disable-next-line prettier/prettier
+      document.getElementsByClassName("dailyDate")[0].innerHTML = 
+        // eslint-disable-next-line prettier/prettier
+        `${utcDate.getMonth() + 1}/${currDate}, ${currDay}`;
+    });
 
     // Intialize the elements that contain the day and the date
     const weekdayDiv = document.createElement("p");
@@ -82,7 +93,16 @@ document.querySelector("#monthSelector").addEventListener("change", () => {
 });
 
 // Starts up the calendar with the current month
-document.querySelector("#monthSelector").value = new Date().getMonth();
+const todayDate = new Date();
+const todayOptions = { weekday: "long" };
+const todayDay = new Intl.DateTimeFormat("en-US", todayOptions)
+  .format(todayDate)
+  .substring(0, 3);
+document.querySelector("#monthSelector").value = todayDate.getMonth();
+// eslint-disable-next-line prettier/prettier
+document.getElementsByClassName("dailyDate")[0].innerHTML = 
+  // eslint-disable-next-line prettier/prettier
+  `${todayDate.getMonth() + 1}/${todayDate.getDate()}, ${todayDay}`;
 
 // Instantiates the dates when page is first loaded
 updateDates();
