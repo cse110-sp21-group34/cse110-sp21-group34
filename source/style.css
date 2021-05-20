@@ -36,11 +36,39 @@
     line-height: 100%;
   }
 
+  #lastYear {
+    font-size: 36px;
+    color: rgb(48, 48, 48);
+    float: left;
+    display: block;
+    height: 50px;
+    margin: 17px 18px 0 18px;
+    line-height: 100%;
+  }
+
+  #nextYear {
+    font-size: 36px;
+    color: rgb(48, 48, 48);
+    float: left;
+    display: block;
+    height: 50px;
+    margin: 17px 18px 0 18px;
+    line-height: 100%;
+  }
+
   #icon:hover {
     color: rgb(18, 123, 141);
   }
 
   #iconInside:hover {
+    color: rgb(18, 123, 141);
+  }
+
+  #lastYear:hover {
+    color: rgb(18, 123, 141);
+  }
+
+  #nextYear:hover {
     color: rgb(18, 123, 141);
   }
   
@@ -145,7 +173,7 @@
 
   #dateSelector {
     margin-left: 74px;
-    width: 210px;
+    width: 220px;
     font-size: 28px;
   }
 
@@ -176,7 +204,7 @@
     height: 70px;
     background-color: rgb(177, 177, 218);
     border-width: 0;
-    padding: 0 0 0 60px;
+    padding: 0 0 0 20px;
   }
 
   .dayList {
@@ -215,12 +243,12 @@
 
   .weekday {
     position: absolute;
-    right: 76px;
+    left: 5px;
   }
 
   .monthday {
     position: absolute;
-    left: 106px;
+    right: 8px;
   }
 
   .labels { 
