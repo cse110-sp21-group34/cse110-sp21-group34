@@ -144,3 +144,9 @@ updateDates();
 document
   .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`)
   .classList.add("oneDayActive");
+newEditor(
+    `${todayDate.getFullYear()}-${
+      todayDate.getMonth() + 1
+    }-${todayDate.getDate()}`,
+    "editor"
+);
