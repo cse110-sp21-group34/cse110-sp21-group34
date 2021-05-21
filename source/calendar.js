@@ -27,9 +27,9 @@ function updateDates() {
 
     // Obtains the day of the current date in English format with first three letters
     const utcDate = new Date(Date.UTC(currYear, currMonth, currDate));
-    const options = { weekday: "long" };
+    const options = { weekday: "short" };
     // eslint-disable-next-line prettier/prettier
-    const currDay = new Intl.DateTimeFormat(lang, options).format(utcDate).substring(0, 3);
+    const currDay = new Intl.DateTimeFormat(lang, options).format(utcDate);
 
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
@@ -103,10 +103,16 @@ function updateDates() {
 
 // TODO: Placeholder check when we implement settings
 let lang;
-if(1 === 1){
+if (1 === 1) {
   lang = "en-US";
-} else {
+} else if (1 !== 1) {
   lang = "zh";
+} else if (1 !== 1) {
+  lang = "ta";
+} else if (1 !== 1) {
+  lang = "id";
+} else {
+  lang = "ar-EG";
 }
 
 // Updates year to previous year if the year is decreased and updates dates accordingly.
@@ -130,10 +136,8 @@ document.querySelector("#monthSelector").addEventListener("change", () => {
 
 // Starts up the calendar with the current month
 const todayDate = new Date();
-const todayOptions = { weekday: "long" };
-const todayDay = new Intl.DateTimeFormat(lang, todayOptions)
-  .format(todayDate)
-  .substring(0, 3);
+const todayOptions = { weekday: "short" };
+const todayDay = new Intl.DateTimeFormat(lang, todayOptions).format(todayDate);
 document.querySelector("#monthSelector").value = todayDate.getMonth();
 // eslint-disable-next-line prettier/prettier
 document.getElementsByClassName("dailyDate")[0].innerHTML = 
