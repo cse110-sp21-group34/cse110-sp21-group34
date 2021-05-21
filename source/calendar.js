@@ -27,7 +27,7 @@ function updateDates() {
 
     // Obtains the day of the current date in English format with first three letters
     const utcDate = new Date(Date.UTC(currYear, currMonth, currDate));
-    const options = { weekday: "short" };
+    const options = { weekday: length };
     // eslint-disable-next-line prettier/prettier
     const currDay = new Intl.DateTimeFormat(lang, options).format(utcDate);
 
@@ -103,6 +103,7 @@ function updateDates() {
 
 // TODO: Placeholder check when we implement settings
 let lang;
+let length = "short";
 if (1 === 1) {
   lang = "en-US";
 } else if (1 !== 1) {
@@ -111,6 +112,7 @@ if (1 === 1) {
   lang = "ta";
 } else if (1 !== 1) {
   lang = "id";
+  length = "long";
 } else {
   lang = "ar-EG";
 }
@@ -136,7 +138,7 @@ document.querySelector("#monthSelector").addEventListener("change", () => {
 
 // Starts up the calendar with the current month
 const todayDate = new Date();
-const todayOptions = { weekday: "short" };
+const todayOptions = { weekday: length };
 const todayDay = new Intl.DateTimeFormat(lang, todayOptions).format(todayDate);
 document.querySelector("#monthSelector").value = todayDate.getMonth();
 // eslint-disable-next-line prettier/prettier
