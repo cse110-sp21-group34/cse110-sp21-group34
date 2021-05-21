@@ -142,11 +142,8 @@ let routerDate = todayDate.getDate();
 // Instantiates the dates when page is first loaded
 updateDates();
 document
+  // eslint-disable-next-line prettier/prettier
   .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`)
   .classList.add("oneDayActive");
-newEditor(
-    `${todayDate.getFullYear()}-${
-      todayDate.getMonth() + 1
-    }-${todayDate.getDate()}`,
-    "editor"
-);
+// eslint-disable-next-line prettier/prettier
+newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor");
