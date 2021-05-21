@@ -91,9 +91,12 @@ function updateDates() {
 
   if (routerYear === currYear) {
     if (routerMonth === currMonth) {
-      document
-        .getElementById(`${currMonth + 1}${routerDate}${routerYear}`)
-        .classList.add("oneDayActive");
+      const routerElement = document.getElementById(
+        `${currMonth + 1}${routerDate}${routerYear}`
+      );
+      routerElement.classList.add("oneDayActive");
+      document.getElementsByClassName("dayList")[0].scrollTop =
+        routerElement.offsetTop;
     }
   }
 }
@@ -148,4 +151,5 @@ const todayElement = document
 todayElement.classList.add("oneDayActive");
 // eslint-disable-next-line prettier/prettier
 newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor");
-document.getElementsByClassName("dayList")[0].scrollTop = todayElement.offsetTop;
+document.getElementsByClassName("dayList")[0].scrollTop =
+  todayElement.offsetTop;
