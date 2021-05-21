@@ -141,9 +141,11 @@ let routerDate = todayDate.getDate();
 
 // Instantiates the dates when page is first loaded
 updateDates();
-document
+const todayElement = document
   // eslint-disable-next-line prettier/prettier
-  .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`)
-  .classList.add("oneDayActive");
+  .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`);
+
+todayElement.classList.add("oneDayActive");
 // eslint-disable-next-line prettier/prettier
 newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor");
+document.getElementsByClassName("dayList")[0].scrollTop = todayElement.offsetTop;
