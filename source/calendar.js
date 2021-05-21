@@ -29,7 +29,7 @@ function updateDates() {
     const utcDate = new Date(Date.UTC(currYear, currMonth, currDate));
     const options = { weekday: "long" };
     // eslint-disable-next-line prettier/prettier
-    const currDay = new Intl.DateTimeFormat("en-US", options).format(utcDate).substring(0, 3);
+    const currDay = new Intl.DateTimeFormat(lang, options).format(utcDate).substring(0, 3);
 
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
@@ -101,6 +101,14 @@ function updateDates() {
   }
 }
 
+// TODO: Placeholder check when we implement settings
+let lang;
+if(1 === 1){
+  lang = "en-US";
+} else {
+  lang = "zh";
+}
+
 // Updates year to previous year if the year is decreased and updates dates accordingly.
 document.querySelector("#lastYear").addEventListener("click", () => {
   const currentYear = document.querySelector("#yearNum").innerHTML;
@@ -123,7 +131,7 @@ document.querySelector("#monthSelector").addEventListener("change", () => {
 // Starts up the calendar with the current month
 const todayDate = new Date();
 const todayOptions = { weekday: "long" };
-const todayDay = new Intl.DateTimeFormat("en-US", todayOptions)
+const todayDay = new Intl.DateTimeFormat(lang, todayOptions)
   .format(todayDate)
   .substring(0, 3);
 document.querySelector("#monthSelector").value = todayDate.getMonth();
