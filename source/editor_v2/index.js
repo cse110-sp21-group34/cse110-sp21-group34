@@ -62,6 +62,7 @@ function new_editor(date, holder) {
       //new Undo({ editor });
       //new DragDrop(editor);
       initSaver(editor_obj, date, holder);
+      editor_obj.focus(true);
     },
     tools: {
       list: {
