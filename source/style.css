@@ -210,7 +210,7 @@
   .dayList {
     width: 210px;
     overflow-y: scroll;
-    height: calc(100vh - 231px);
+    height: calc(100vh - 214px);
     position: relative;
   }
 
@@ -312,7 +312,7 @@
   }
 
   .noteBlock {
-    width: 70vw;
+    width: calc(100vw - 388px);
     background-color: rgb(232, 234, 235);
     margin: 32px 20px;
     padding: 1px 32px;
@@ -346,7 +346,7 @@
   #mainPageTopBar {
     line-height: 100%;
     height: 70px;
-    width: 100vw;
+    width: calc(100vw - 284px);
     margin-top: 0;
     margin-left: 0;
     font-family: 'Lexend', sans-serif;
