@@ -32,5 +32,9 @@
     "parcel": "^2.0.0-beta.2",
     "prettier": "^2.3.0",
     "puppeteer": "*"
+  },
+  "dependencies": {
+    "mongodb": "^3.6.8",
+    "mongodb-client-encryption": "^1.2.3"
   }
 }
