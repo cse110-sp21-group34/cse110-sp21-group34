@@ -356,20 +356,20 @@
   }
 
   #editor {
-    /* Use relative size instead of hard code */
+    /* Use relative size instead of hard code and fix the position moving after the appearance of scrollbar*/
     max-width: 750px;
     font-size: 32px;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(100vh - 350px);
   }
 
   #editor::-webkit-scrollbar-track {
-    background-color: #F5F5F5;
+    background-color: #e4d9d9;
   }
 
   #editor::-webkit-scrollbar {
 	  width: 6px;
-	  background-color: #F5F5F5;
+	  background-color: #e4d9d9;
   }
 
   #editor::-webkit-scrollbar-thumb {
