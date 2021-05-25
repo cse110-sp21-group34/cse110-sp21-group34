@@ -20,15 +20,38 @@
     <i id="icon" class="bi bi-calendar-event"></i>
     <i id="icon" class="bi bi-bar-chart"></i>
     <i id="icon" class="bi bi-search"></i>
-    <i id="icon" class="bi bi-gear" style="position: absolute;bottom: 32px;" onClick="openNav()"></i>
+    <i id="icon" class="bi bi-gear" style="position: absolute;bottom: 32px;"></i>
   </div>
 
   <div id="mySidepanel" class="sidepanel">
-    <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
-    <a href="#">Language</a>
-    <a href="#">Dark Mode</a>
-    <a href="#">Auto-generated Labels</a>
-    <a href="#">About Equinox</a>
+    <a href="javascript:void(0)" class="closebtn">&times;</a>
+    <div class="settingLine">
+      <a href="#">Language</a>
+      <select id="languageSelector">
+        <option>English</option>
+        <option>Chinese</option>
+        <option>Tamil</option>
+        <option>Indonesian</option>
+        <option>Arabic</option>
+      </select>
+    </div>
+    <div class="settingLine">
+      <a href="#">Dark Mode</a>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="settingLine">
+      <a href="#">Auto-generated Labels</a>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="settingLine">
+      <a href="#">About Equinox</a>
+    </div>
   </div>
 
   <div id="editingTopBar">
