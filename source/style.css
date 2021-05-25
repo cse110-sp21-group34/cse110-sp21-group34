@@ -375,3 +375,16 @@
   #editor::-webkit-scrollbar-thumb {
 	  background-color: #000000;
   }
+
+  #voiceArea {
+      align-items: center;
+      display: grid;
+      justify-items: center;
+      /* Feel free to change if not fit (too bright or doesn't match with main theme) */
+      background-color: aquamarine;
+      height: 5cm;
+  }
+
+  #record-title {
+      font-size: x-large;
+  }
