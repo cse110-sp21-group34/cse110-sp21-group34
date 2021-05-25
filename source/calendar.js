@@ -60,9 +60,13 @@ function updateDates() {
         "editor"
       );
       // eslint-disable-next-line prettier/prettier
-      document.getElementsByClassName("dailyDate")[0].innerHTML = 
+      const editorOptions = { weekday: dayLength };
+      const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
+        utcDate
+      );
+      document.getElementsByClassName("dailyDate")[0].innerHTML =
         // eslint-disable-next-line prettier/prettier
-        `${utcDate.getMonth() + 1}/${currDate}, ${currDay}`;
+        `${utcDate.getMonth() + 1}/${currDate}, ${editorDay}`;
       routerDate = currDate;
       routerYear = currYear;
       routerMonth = utcDate.getMonth();
@@ -99,86 +103,106 @@ function updateDates() {
         routerElement.offsetTop;
     }
   }
-}
 
-let lang = "en-US";
-let length = "short";
-
-function updateLanguage() {
-
-  // Updates year to previous year if the year is decreased and updates dates accordingly.
-  document.querySelector("#lastYear").addEventListener("click", () => {
-    const currentYear = document.querySelector("#yearNum").innerHTML;
-    document.querySelector("#yearNum").innerHTML = Number(currentYear) - 1;
-    updateDates(); // Updates dates accordingly
-  });
-  
-  // Updates year to next year if the year is increased and updates dates accordingly.
-  document.querySelector("#nextYear").addEventListener("click", () => {
-    const currentYear = document.querySelector("#yearNum").innerHTML;
-    document.querySelector("#yearNum").innerHTML = Number(currentYear) + 1;
-    updateDates(); // Updates dates accordingly
-  });
-  
-  // Updates dates accordingly when the month is changed
-  document.querySelector("#monthSelector").addEventListener("change", () => {
-    updateDates();
-  });
-  
-  // Starts up the calendar with the current month
-  const todayDate = new Date();
-  const todayOptions = { weekday: length };
-  const todayDay = new Intl.DateTimeFormat(lang, todayOptions).format(todayDate);
-  document.querySelector("#monthSelector").value = todayDate.getMonth();
-  // eslint-disable-next-line prettier/prettier
-  document.getElementsByClassName("dailyDate")[0].innerHTML = 
-    // eslint-disable-next-line prettier/prettier
-    `${todayDate.getMonth() + 1}/${todayDate.getDate()}, ${todayDay}`;
-  window.history.pushState(
-    {},
-    // eslint-disable-next-line prettier/prettier
-    `entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`, 
-    // eslint-disable-next-line prettier/prettier
-    `/#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`
+  const routerFullDate = new Date(Date.UTC(routerYear, routerMonth, routerDate));
+  const editorOptions = { weekday: dayLength };
+  const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
+    routerFullDate
   );
-  let routerMonth = todayDate.getMonth();
-  let routerYear = todayDate.getFullYear();
-  let routerDate = todayDate.getDate();
-  
-  // Instantiates the dates when page is first loaded
-  updateDates();
-  const todayElement = document
+  document.getElementsByClassName("dailyDate")[0].innerHTML =
     // eslint-disable-next-line prettier/prettier
-    .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`);
-  
-  todayElement.classList.add("oneDayActive");
-  // eslint-disable-next-line prettier/prettier
-  newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor");
-  document.getElementsByClassName("dayList")[0].scrollTop =
-    todayElement.offsetTop;
-  
+        `${routerMonth + 1}/${routerDate}, ${editorDay}`;
 }
 
-document.getElementById("languageSelector").addEventListener("change", function() {
+function updateMonthLanguage() {
+  const monthOptions = { month: "long" };
+  for (let i = 0; i < 12; i += 1) {
+    const date = new Date(Date.UTC(2021, i));
+    document.getElementById(`month${i}`).innerHTML = new Intl.DateTimeFormat(
+      lang,
+      monthOptions
+    ).format(date);
+  }
+}
+
+let lang = document.getElementById("languageSelector").value;
+let length = "short";
+let dayLength = "long";
+document.getElementById("languageSelector").addEventListener("change", () => {
   // TODO: Placeholder check when we implement settings
   if (document.getElementById("languageSelector").value === "English") {
     lang = "en-US";
     length = "short";
+    dayLength = "long";
   } else if (document.getElementById("languageSelector").value === "Chinese") {
     lang = "zh";
-    length = "short";
+    length = "long";
+    dayLength = length;
   } else if (document.getElementById("languageSelector").value === "Tamil") {
     lang = "ta";
-    length = "short";
-  } else if (document.getElementById("languageSelector").value === "Indonesian") {
+    length = "long";
+    dayLength = "long";
+  } else if (
+    document.getElementById("languageSelector").value === "Bahasa Indonesia"
+  ) {
     lang = "id";
     length = "long";
+    dayLength = length;
   } else {
     lang = "ar-EG";
-    length = "short";
   }
   updateDates();
-  updateLanguage();
-})
+  updateMonthLanguage();
+  // location.reload();
+});
 
-updateLanguage();
+// Updates year to previous year if the year is decreased and updates dates accordingly.
+document.querySelector("#lastYear").addEventListener("click", () => {
+  const currentYear = document.querySelector("#yearNum").innerHTML;
+  document.querySelector("#yearNum").innerHTML = Number(currentYear) - 1;
+  updateDates(); // Updates dates accordingly
+});
+
+// Updates year to next year if the year is increased and updates dates accordingly.
+document.querySelector("#nextYear").addEventListener("click", () => {
+  const currentYear = document.querySelector("#yearNum").innerHTML;
+  document.querySelector("#yearNum").innerHTML = Number(currentYear) + 1;
+  updateDates(); // Updates dates accordingly
+});
+
+// Updates dates accordingly when the month is changed
+document.querySelector("#monthSelector").addEventListener("change", () => {
+  updateDates();
+});
+
+// Starts up the calendar with the current month
+const todayDate = new Date();
+const todayOptions = { weekday: length };
+const todayDay = new Intl.DateTimeFormat(lang, todayOptions).format(todayDate);
+document.querySelector("#monthSelector").value = todayDate.getMonth();
+// eslint-disable-next-line prettier/prettier
+document.getElementsByClassName("dailyDate")[0].innerHTML = 
+  // eslint-disable-next-line prettier/prettier
+  `${todayDate.getMonth() + 1}/${todayDate.getDate()}, ${todayDay}`;
+window.history.pushState(
+  {},
+  // eslint-disable-next-line prettier/prettier
+  `entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`, 
+  // eslint-disable-next-line prettier/prettier
+  `/#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`
+);
+let routerMonth = todayDate.getMonth();
+let routerYear = todayDate.getFullYear();
+let routerDate = todayDate.getDate();
+
+// Instantiates the dates when page is first loaded
+updateDates();
+const todayElement = document
+  // eslint-disable-next-line prettier/prettier
+  .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`);
+
+todayElement.classList.add("oneDayActive");
+// eslint-disable-next-line prettier/prettier
+newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor");
+document.getElementsByClassName("dayList")[0].scrollTop =
+  todayElement.offsetTop;

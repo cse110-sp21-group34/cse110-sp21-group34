@@ -492,7 +492,7 @@ input:checked + .slider:before {
 #languageSelector {
   font-size: 25px;
   font-family: 'Lexend', sans-serif;
-  width: 150px;
+  width: 250px;
   height: 40px;
   background-color: rgb(94, 94, 94);
   border-width: 0;
