@@ -14,7 +14,11 @@ const DragDrop = require('editorjs-drag-drop');
 const Paragraph = require('@editorjs/paragraph');
 const Embed = require('@editorjs/embed');
 const Header = require('@editorjs/header');
-const Journals = require('./storage');
+const Dexie = require('dexie')
+const {Journals, Assets, AssetsDexieWrapper} = require('./storage');
+const { resolveConfig } = require('prettier');
+
+const iid = 1; // instanceid
 
 try {
   JSON.parse(localStorage.getItem("journal-entry"))
@@ -44,10 +48,28 @@ function initSaver(editor, date, holderid) {
   })
 }
 
-const journals = new Journals(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
+const journal_db = new Dexie("journal-entry")
+journal_db.version(1).stores({
+  instance: "++instanceid"
+});
+let journals;
 
+let init = new Promise((resolve, reject) => {
+    journal_db.instance.get(iid).then(result => {
+      if (result == undefined) {
+        console.error("no journal found!");
+        journal_db.instance.put({instanceid: iid, data: '{"labels":{}, "journals": {}}'});
+      }
+      return journal_db.instance.get(iid);
+    }).then(obj => {
+      journals = new Journals(JSON.parse(obj.data), (data) => journal_db.instance.put({instanceid: iid, data: data}));
+      resolve(journals);
+    });
+});
 
-function new_editor(date, holder) {
+const assets = new Assets(new AssetsDexieWrapper('journal-assets'))
+
+function newEditor(date, holder) {
   let editor_obj = new EditorJS({
     holderId: holder,
     data: journals.get(date),
@@ -132,4 +154,7 @@ saveBtn.addEventListener("click", () => {
 });
 */
 
-module.exports = new_editor;
+module.exports = {
+  newEditor: newEditor,
+  init: init
+}

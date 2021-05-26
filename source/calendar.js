@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-const newEditor = require("./editor_v2/index");
+const {init, newEditor} = require("./editor_v2/index");
 
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
@@ -203,6 +203,6 @@ const todayElement = document
 
 todayElement.classList.add("oneDayActive");
 // eslint-disable-next-line prettier/prettier
-newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor");
+init.then(() => newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor"));
 document.getElementsByClassName("dayList")[0].scrollTop =
   todayElement.offsetTop;
