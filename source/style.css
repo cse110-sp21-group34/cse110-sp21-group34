@@ -364,15 +364,18 @@
     height: calc(100vh - 350px);
   }
 
-  
+  /* Style for image content */
   .cdx-simple-image__picture {
     max-width:calc(70% - 80px)
   }
   
+  /* Style for the every editor block content */
   .ce-block__content, .ce-toolbar__content { 
     /* z-index: -1; */
     font-size: 50px;
     max-width:calc(90% - 80px) !important; }
+    
+    /* Setting the block width to 100% */
      .cdx-block { max-width: 100% !important; }
 
 
