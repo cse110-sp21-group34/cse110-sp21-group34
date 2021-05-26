@@ -125,7 +125,7 @@ function updateMonthLanguage() {
   }
 }
 
-let lang = document.getElementById("languageSelector").value;
+let lang = "en-US";
 let length = "short";
 let dayLength = "long";
 document.getElementById("languageSelector").addEventListener("change", () => {

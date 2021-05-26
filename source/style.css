@@ -4,9 +4,6 @@
     line-height: 100%;
   }
   
-  .cdx-block {
-    /* background-color: #000; */
-  }
   .sidenav {
     height: 100%;
     width: min-content;
@@ -359,12 +356,25 @@
   }
 
   #editor {
+    z-index: -1;
     /* Use relative size instead of hard code and fix the position moving after the appearance of scrollbar*/
-    max-width: 750px;
-    font-size: 32px;
+    max-width: 100%;
+    /* font-size: 32px; */
     overflow-y: auto;
     height: calc(100vh - 350px);
   }
+
+  
+  .cdx-simple-image__picture {
+    max-width:calc(70% - 80px)
+  }
+  
+  .ce-block__content, .ce-toolbar__content { 
+    z-index: -1;
+    font-size: 50px;
+    max-width:calc(90% - 80px) !important; }
+     .cdx-block { max-width: 100% !important; }
+
 
   #editor::-webkit-scrollbar-track {
     background-color: #e4d9d9;
