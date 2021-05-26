@@ -134,7 +134,7 @@
   }
 
   #topSearchText {
-    float:left;
+    float: left;
     font-family: 'Lexend', sans-serif;
     font-size: 20px;
     background-color: rgb(232, 234, 235);
@@ -315,7 +315,7 @@
   }
 
   .noteBlock {
-    width: 60vw;
+    width: calc(100vw - 388px);
     background-color: rgb(232, 234, 235);
     margin: 32px 20px;
     padding: 1px 32px;
@@ -349,7 +349,7 @@
   #mainPageTopBar {
     line-height: 100%;
     height: 70px;
-    width: 100vw;
+    width: calc(100vw - 284px);
     margin-top: 0;
     margin-left: 0;
     font-family: 'Lexend', sans-serif;
@@ -359,7 +359,146 @@
   }
 
   #editor {
-    /* Use relative size instead of hard code */
+    /* Use relative size instead of hard code and fix the position moving after the appearance of scrollbar*/
     max-width: 750px;
     font-size: 32px;
+    overflow-y: auto;
+    height: calc(100vh - 350px);
   }
+
+  #editor::-webkit-scrollbar-track {
+    background-color: #e4d9d9;
+  }
+
+  #editor::-webkit-scrollbar {
+	  width: 6px;
+	  background-color: #e4d9d9;
+  }
+
+  #editor::-webkit-scrollbar-thumb {
+	  background-color: #000000;
+  }
+
+  /* The sidepanel menu */
+.sidepanel {
+  height: 260px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  bottom: 0;
+  left: 74px;
+  background-color: rgb(158, 158, 158); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 90px; /* Place content 60px from the top */
+  padding-bottom: 60px;
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.settingLine {
+  display: block;
+  height: 60px;
+}
+
+.settingLine > * {
+  float: left;
+  clear: left;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  right: 50px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #7ac3ff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #7ac3ff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#languageSelector {
+  font-size: 25px;
+  font-family: 'Lexend', sans-serif;
+  width: 250px;
+  height: 40px;
+  background-color: rgb(94, 94, 94);
+  border-width: 0;
+  position: absolute;
+  right: 50px;
+}
