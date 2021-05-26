@@ -4,6 +4,9 @@
     line-height: 100%;
   }
   
+  .cdx-block {
+    /* background-color: #000; */
+  }
   .sidenav {
     height: 100%;
     width: min-content;
