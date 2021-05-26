@@ -370,7 +370,7 @@
   }
   
   .ce-block__content, .ce-toolbar__content { 
-    z-index: -1;
+    /* z-index: -1; */
     font-size: 50px;
     max-width:calc(90% - 80px) !important; }
      .cdx-block { max-width: 100% !important; }
