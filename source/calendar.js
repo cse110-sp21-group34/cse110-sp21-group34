@@ -60,9 +60,13 @@ function updateDates() {
         "editor"
       );
       // eslint-disable-next-line prettier/prettier
-      document.getElementsByClassName("dailyDate")[0].innerHTML = 
+      const editorOptions = { weekday: dayLength };
+      const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
+        utcDate
+      );
+      document.getElementsByClassName("dailyDate")[0].innerHTML =
         // eslint-disable-next-line prettier/prettier
-        `${utcDate.getMonth() + 1}/${currDate}, ${currDay}`;
+        `${utcDate.getMonth() + 1}/${currDate}, ${editorDay}`;
       routerDate = currDate;
       routerYear = currYear;
       routerMonth = utcDate.getMonth();
@@ -99,23 +103,58 @@ function updateDates() {
         routerElement.offsetTop;
     }
   }
+
+  const routerFullDate = new Date(Date.UTC(routerYear, routerMonth, routerDate));
+  const editorOptions = { weekday: dayLength };
+  const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
+    routerFullDate
+  );
+  document.getElementsByClassName("dailyDate")[0].innerHTML =
+    // eslint-disable-next-line prettier/prettier
+        `${routerMonth + 1}/${routerDate}, ${editorDay}`;
 }
 
-// TODO: Placeholder check when we implement settings
-let lang;
-let length = "short";
-if (1 === 1) {
-  lang = "en-US";
-} else if (1 !== 1) {
-  lang = "zh";
-} else if (1 !== 1) {
-  lang = "ta";
-} else if (1 !== 1) {
-  lang = "id";
-  length = "long";
-} else {
-  lang = "ar-EG";
+function updateMonthLanguage() {
+  const monthOptions = { month: "long" };
+  for (let i = 0; i < 12; i += 1) {
+    const date = new Date(Date.UTC(2021, i));
+    document.getElementById(`month${i}`).innerHTML = new Intl.DateTimeFormat(
+      lang,
+      monthOptions
+    ).format(date);
+  }
 }
+
+let lang = "en-US";
+let length = "short";
+let dayLength = "long";
+document.getElementById("languageSelector").addEventListener("change", () => {
+  // TODO: Placeholder check when we implement settings
+  if (document.getElementById("languageSelector").value === "English") {
+    lang = "en-US";
+    length = "short";
+    dayLength = "long";
+  } else if (document.getElementById("languageSelector").value === "Chinese") {
+    lang = "zh";
+    length = "long";
+    dayLength = length;
+  } else if (document.getElementById("languageSelector").value === "Tamil") {
+    lang = "ta";
+    length = "long";
+    dayLength = "long";
+  } else if (
+    document.getElementById("languageSelector").value === "Bahasa Indonesia"
+  ) {
+    lang = "id";
+    length = "long";
+    dayLength = length;
+  } else {
+    lang = "ar-EG";
+  }
+  updateDates();
+  updateMonthLanguage();
+  // location.reload();
+});
 
 // Updates year to previous year if the year is decreased and updates dates accordingly.
 document.querySelector("#lastYear").addEventListener("click", () => {

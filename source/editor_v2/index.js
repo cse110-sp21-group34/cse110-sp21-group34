@@ -4,21 +4,16 @@
 /* eslint-disable no-console */
 // const Delimiter = require('@editorjs/delimiter');
 const EditorJS = require('@editorjs/editorjs')
-
+const SimpleImage = require('simple-image-editorjs');
+const Alert = require('editorjs-alert');
 const NestedList = require('@editorjs/nested-list');
 const Checklist = require('@editorjs/checklist');
-const Warning = require('@editorjs/warning');
-const Quote = require('@editorjs/quote');
-const AnyButton = require('editorjs-button');
 const Marker = require('@editorjs/marker');
 const AlignmentBlockTune = require('editorjs-text-alignment-blocktune');
-const ImageTool = require('@editorjs/image');
 const DragDrop = require('editorjs-drag-drop');
-const Undo = require('editorjs-undo');
 const Paragraph = require('@editorjs/paragraph');
 const Embed = require('@editorjs/embed');
 const Header = require('@editorjs/header');
-
 const Journals = require('./storage');
 
 try {
@@ -42,7 +37,6 @@ function initSaver(editor, date, holderid) {
     saveTimer = window.setTimeout(() => {editor.save().then((outputData) => {journals.save(date, outputData)})} , savingInterval);
 
   })
-
   document.getElementById(holderid).addEventListener('focusout', () => {
     // Immediately save when bullet loses focus
     console.log("defocused")
@@ -57,14 +51,15 @@ function new_editor(date, holder) {
   let editor_obj = new EditorJS({
     holderId: holder,
     data: journals.get(date),
-
+    defaultBlock: "list",
     onReady: () => {
-      //new Undo({ editor });
-      //new DragDrop(editor);
+      // new Undo({ editor_obj});
+      new DragDrop(editor_obj);
       initSaver(editor_obj, date, holder);
       editor_obj.focus(true);
     },
     tools: {
+      alert: Alert,
       list: {
         class: NestedList,
         inlineToolbar: true,
@@ -88,36 +83,6 @@ function new_editor(date, holder) {
         inlineToolbar: true,
       },
 
-      warning: {
-        class: Warning,
-        inlineToolbar: true,
-        shortcut: "CMD+SHIFT+W",
-        config: {
-          titlePlaceholder: "Title",
-          messagePlaceholder: "Message",
-        },
-      },
-
-      quote: {
-        class: Quote,
-        inlineToolbar: true,
-        shortcut: "CMD+SHIFT+O",
-        config: {
-          quotePlaceholder: "Enter a quote",
-          captionPlaceholder: "Quote's author",
-        },
-      },
-
-      AnyButton: {
-        class: AnyButton,
-        inlineToolbar: false,
-        config: {
-          css: {
-            btnColor: "btn--gray",
-          },
-        },
-      },
-
       Marker: {
         class: Marker,
         shortcut: "CMD+SHIFT+M",
@@ -126,7 +91,7 @@ function new_editor(date, holder) {
       anyTuneName: {
         class: AlignmentBlockTune,
         config: {
-          default: "right",
+          default: "left",
           blocks: {
             header: "center",
             list: "right",
@@ -134,15 +99,7 @@ function new_editor(date, holder) {
         },
       },
 
-      image: {
-        class: ImageTool,
-        config: {
-          endpoints: {
-            byFile: "http://localhost:8000/uploadFile", // Your backend file uploader endpoint
-            byUrl: "http://localhost:8000/fetchUrl", // Your endpoint that provides uploading by Url
-          },
-        },
-      },
+      image: SimpleImage,
 
       embed: {
         class: Embed,
@@ -153,7 +110,8 @@ function new_editor(date, holder) {
           },
         },
       },
-    }
+    },
+
   });
   return editor_obj;
 }
