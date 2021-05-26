@@ -356,7 +356,8 @@
   }
 
   #editor {
-    z-index: -1;
+    position: relative;
+    z-index: 1;
     /* Use relative size instead of hard code and fix the position moving after the appearance of scrollbar*/
     max-width: 100%;
     /* font-size: 32px; */
@@ -371,10 +372,11 @@
   
   /* Style for the every editor block content */
   .ce-block__content, .ce-toolbar__content { 
+
     /* z-index: -1; */
     font-size: 50px;
     max-width:calc(90% - 80px) !important; }
-    
+
     /* Setting the block width to 100% */
      .cdx-block { max-width: 100% !important; }
 
@@ -397,7 +399,7 @@
   height: 260px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 10; /* Stay on top */
   bottom: 0;
   left: 74px;
   background-color: rgb(158, 158, 158); /* Black*/
