@@ -134,6 +134,7 @@ document.getElementById("languageSelector").addEventListener("change", () => {
     lang = "en-US";
     length = "short";
     dayLength = "long";
+    //document.getElementById
   } else if (document.getElementById("languageSelector").value === "Chinese") {
     lang = "zh";
     length = "long";
