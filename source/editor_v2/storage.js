@@ -212,14 +212,19 @@ class Assets {
    * @return {Promise<Blob>} promise object resolving to a blob object
    */
   get(uid) {
-    if (uid in map) {
-      return new Promise(resolve => resolve(map[uid]));
+    console.log("get() called: " + uid);
+    if (this.map.uid) {
+      return new Promise(resolve => resolve(this.map[uid]));
     }
 
     return this.db.retrieve(uid).then(obj => {
-      map[uid] = new Blob(obj.data, obj.type);
-      return map[uid];
-    })
+      return fetch(obj.data);
+    }).then(response => {
+      return response.blob().then(blob => {
+        this.map[uid] = blob;
+        return blob;
+      });
+    });
   }
 
   /**
@@ -228,17 +233,25 @@ class Assets {
    * @returns {Promise<String>} promise object resolving to the key of that object
    */
   save(blob) {
-    return blob.text().then(plain_text => {
-      return this.db.submit({uid: Md5(plain_text), type: blob.type, data: plain_text});
+    console.log("save() called");
+    const reader = new FileReader();
+
+    reader.readAsDataURL(blob)
+
+    return new Promise(resolve => {
+      reader.onload = (event) => {
+        resolve(this.db.submit({uid: Md5(event.target.result), type: blob.type, data: event.target.result}))
+      }
     }).then(uid => {
+      console.log("saved: " + uid)
       this.map[uid] = blob;
       return uid;
-    })
+    });
   }
 
   del(uid) {
     this.db.remove(uid);
-    if (uid in this.map) delete this.map[uid];
+    if (this.map.uid) delete this.map[uid];
     return 0;
   }
 }
@@ -257,7 +270,8 @@ class AssetsDexieWrapper {
 
   submit(data) {
     return this.db.assets.put(data).then(obj => {
-      Promise.resolve(obj.uid);
+      console.log("submit() => obj: ", obj)
+      return Promise.resolve(obj);
     })
   }
 
