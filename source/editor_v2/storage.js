@@ -1,4 +1,5 @@
-const Dexie = require("dexie")
+const Dexie = require("dexie");
+const Md5 = require("md5");
 
 class Journals {
   /**
@@ -74,7 +75,7 @@ class Journals {
 
   /**
    * Retrieve the journal object of a given date
-   * @param {string} date
+   * @param {String} date
    * @return {object} journal object 
    */
   get(date) {
@@ -87,7 +88,7 @@ class Journals {
 
   /**
    * Store journal of the given date
-   * @param {string} date date
+   * @param {String} date date
    * @param {object} data journal object
    */
   save(date, data) {
@@ -117,9 +118,9 @@ class Journals {
 
   /**
    * Create new label
-   * @param {string} label label name
+   * @param {String} label label name
    * @param {Object} properties properties of the label
-   * @returns {string} label name
+   * @returns {String} label name
    */
   newlabel(label, properties = {}) {
     if (this.labels[label]) {
@@ -132,7 +133,7 @@ class Journals {
 
   /**
    * Remove label
-   * @param {string} label label name
+   * @param {String} label label name
    * @returns {int} return code
    */
   removelabel(label) {
@@ -155,8 +156,8 @@ class Journals {
 
   /**
    * Label a journal
-   * @param {string} date date
-   * @param {string} label label = null to remove label from a journal
+   * @param {String} date date
+   * @param {String} label label = null to remove label from a journal
    */
   label(date, label = null) {
     if (label && !this.labels[label]) {
@@ -178,7 +179,7 @@ class Label {
   /**
    * Lookup journals for reverse lookup (label -> dates)
    * Read-only. Do NOT modify directly. Maintained by Journal interface
-   * @param {string} name 
+   * @param {String} name 
    * @param {Object} properties 
    */
   constructor(name, properties) {
@@ -205,46 +206,39 @@ class Assets {
     this.map = {};
   }
 
+  /**
+   * Retrieve an asset from database
+   * @param {String} uid asset unique id
+   * @return {Promise<Blob>} promise object resolving to a blob object
+   */
   get(uid) {
     if (uid in map) {
-      return map[uid];
+      return new Promise(resolve => resolve(map[uid]));
     }
 
-    let blob_url;
-    (async () => await this.db.retrieve(uid).then(obj => {
-      let type = obj.type;
-      let raw_data = obj.data;
-      let blob = new Blob(raw_data, type);
-      map[uid] = URL.createObjectURL(blob);
-      blob_url = map[uid];
-    }).catch(error => {
-      console.error("Failed to retrieve asset " + uid + " : " + error);
-      blob_url = undefined;
-    }))()
-
-    return blob_url;
+    return this.db.retrieve(uid).then(obj => {
+      map[uid] = new Blob(obj.data, obj.type);
+      return map[uid];
+    })
   }
 
+  /**
+   * Saving an blob object to database
+   * @param {Blob} blob blob object
+   * @returns {Promise<String>} promise object resolving to the key of that object
+   */
   save(blob) {
-    let plain_text = (async() => await blob.text())();
-    let uid;
-    (async() => await this.db.submit({type: blob.type, data: plain_text}).then(key => {
-      uid = key;
-      this.map[key] = blob;
-    }).catch(error => {
-      console.error("Error with saving asset " + blob + " : " + error);
-      uid = undefined;
-    }))();
-    
-    return uid;
+    return blob.text().then(plain_text => {
+      return this.db.submit({uid: Md5(plain_text), type: blob.type, data: plain_text});
+    }).then(uid => {
+      this.map[uid] = blob;
+      return uid;
+    })
   }
 
   del(uid) {
-    if (!uid in asset_uids) {
-      return 0;
-    }
     this.db.remove(uid);
-    delete this.map[uid];
+    if (uid in this.map) delete this.map[uid];
     return 0;
   }
 }
@@ -253,7 +247,7 @@ class AssetsDexieWrapper {
   constructor(table) {
     this.db = new Dexie(table);
     this.db.version(1).stores({
-      assets: '++uid,type',
+      assets: 'uid,type',
     })
   }
 
