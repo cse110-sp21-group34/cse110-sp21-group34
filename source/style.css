@@ -372,7 +372,7 @@
   
   /* Style for the every editor block content */
   .ce-block__content, .ce-toolbar__content { 
-
+    line-height: 100%;
     /* z-index: -1; */
     font-size: 50px;
     max-width:calc(90% - 80px) !important; }
@@ -383,6 +383,10 @@
   .cdx-input.cdx-simple-image__caption {
       line-height: 100%;
   }
+
+  .cdx-alert__message {
+    /* line-height: 100%; */
+}
   #editor::-webkit-scrollbar-track {
     background-color: #e4d9d9;
   }

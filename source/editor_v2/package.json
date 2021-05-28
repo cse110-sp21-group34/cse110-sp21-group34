@@ -13,13 +13,13 @@
   "dependencies": {
     "@bomdi/codebox": "^1.0.12",
     "@editorjs/checklist": "latest",
-    "@editorjs/editorjs": "latest",
+    "@editorjs/editorjs": "^2.22.0",
     "@editorjs/embed": "latest",
     "@editorjs/header": "latest",
     "@editorjs/image": "latest",
     "@editorjs/marker": "latest",
-    "@editorjs/nested-list": "https://github.com/cse110-sp21-group34/nested-list.git",
-    "@editorjs/paragraph": "2.8.0",
+    "@editorjs/nested-list": "git+https://github.com/cse110-sp21-group34/nested-list.git",
+    "@editorjs/paragraph": "git+https://github.com/cse110-sp21-group34/paragraph.git",
     "@editorjs/quote": "latest",
     "@editorjs/warning": "latest",
     "cors": "^2.8.5",
@@ -30,12 +30,12 @@
     "editorjs-style": "^3.0.2",
     "editorjs-text-alignment-blocktune": "latest",
     "editorjs-undo": "^0.1.6",
-    "mongodb": "^3.6.8",
+    "mongodb": "^3.6.9",
     "parcel": "^2.0.0-beta.2"
   },
   "devDependencies": {
     "@editorjs/code": "^2.7.0",
     "editorjs-inline-image": "^0.1.2",
-    "simple-image-editorjs": "^1.4.0"
+    "simple-image-editorjs": "git+https://github.com/cse110-sp21-group34/simple-image.git"
   }
 }

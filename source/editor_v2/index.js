@@ -28,6 +28,14 @@ catch (e) {
 
 const savingInterval = 3000;  // ms
 let saveTimer;
+// document.onkeydown = function onkeydown(e) {
+//   if (e.which === 13 && e.shiftKey==false) {
+//     e.preventDefault(); 
+//     document.execCommand("insertLineBreak");    
+//       console.log('enter pressed without shift');
+//     return false;
+//   } 
+// }
 
 function initSaver(editor, date, holderid) {
   document.getElementById(holderid).addEventListener('keydown', () => {
@@ -42,6 +50,9 @@ function initSaver(editor, date, holderid) {
     console.log("defocused")
     editor.save().then((outputData) => journals.save(date, outputData));
   })
+
+
+
 }
 
 const journals = new Journals(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
@@ -51,7 +62,7 @@ function new_editor(date, holder) {
   let editor_obj = new EditorJS({
     holderId: holder,
     data: journals.get(date),
-    defaultBlock: "list",
+    // defaultBlock: "list",
     onReady: () => {
       // new Undo({ editor_obj});
       new DragDrop(editor_obj);
@@ -59,23 +70,21 @@ function new_editor(date, holder) {
       editor_obj.focus(true);
     },
     tools: {
-      alert: Alert,
       list: {
         class: NestedList,
         inlineToolbar: true,
       },
-
+      alert: Alert,
       paragraph: {
         class: Paragraph,
         inlineToolbar: true,
-        tunes: ["anyTuneName"],
+        placeholder: "Type your content here"
       },
 
       header: {
         class: Header,
         inlineToolbar: true,
         shortcut: "CMD+SHIFT+H",
-        tunes: ["anyTuneName"],
       },
 
       checklist: {
@@ -100,7 +109,7 @@ function new_editor(date, holder) {
       },
 
       image: SimpleImage,
-
+      
       embed: {
         class: Embed,
         config: {
