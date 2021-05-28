@@ -370,6 +370,13 @@
   .cdx-simple-image__picture {
     max-width:calc(70% - 80px);
   }
+
+  /* Style for checklist  */
+  .cdx-checklist__item {
+    display: flex;
+    box-sizing: content-box;
+    align-items: baseline;
+}
   
   /* Style for the every editor block content */
   .ce-block__content, .ce-toolbar__content { 
