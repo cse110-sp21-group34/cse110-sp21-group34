@@ -1,4 +1,12 @@
+const Dexie = require("dexie");
+const Md5 = require("md5");
+
 class Journals {
+  /**
+   * Constructor
+   * @param {object} source journal database
+   * @param {function} submit callback for saving data
+   */
   constructor(source, submit) {
     if (
       !source ||
@@ -22,17 +30,23 @@ class Journals {
       };
     }
 
+    /*
+      database = {
+        "labels": {},
+        "journals": {}
+      }
+    */
     this.database = { ...source };
     this.journals = this.database.journals;
 
     this.labels = new Object();
     /*
-            labels_prop = {
-                "label1": {
-                    color: blue
-                }
-            }
-        */
+      labels_prop = {
+          "label1": {
+              color: blue
+          }
+      }
+    */
     let labels_prop = this.database.labels;
 
     this.submit = submit;
@@ -59,6 +73,11 @@ class Journals {
     }
   }
 
+  /**
+   * Retrieve the journal object of a given date
+   * @param {String} date
+   * @return {object} journal object 
+   */
   get(date) {
     if (!this.journals[date]) {
       console.log("no such date");
@@ -67,32 +86,42 @@ class Journals {
     return this.journals[date];
   }
 
+  /**
+   * Store journal of the given date
+   * @param {String} date date
+   * @param {object} data journal object
+   */
   save(date, data) {
     if (data) {
-      try {
-        if (!this.journals[date]) this.journals[date] = {};
-        for (const key in data) {
-          this.journals[date][key] = data[key];
-        }
-        this.push();
-        console.log("data saved");
-        return 0;
-      } catch (e) {
-        console.error(`Error when saving journal on ${date}: ${e}`);
-        return 1;
+      if (!this.journals[date]) this.journals[date] = {};
+      for (const key in data) {
+        this.journals[date][key] = data[key];
       }
+      this.push().then(() => {
+        console.log("data saved")
+      }).catch(error => {
+        console.error(`Error when saving journal on ${date}: ${error}`);
+      })
     }
   }
 
+  /**
+   * Pushing data to backend asynchronously
+   */
   push() {
     for (const label in this.labels) {
       this.database.labels[label] = this.labels[label].properties;
     }
-    this.submit(JSON.stringify(this.database));
+    return this.submit(JSON.stringify(this.database));
     // console.log(this.database);
-    return 0;
   }
 
+  /**
+   * Create new label
+   * @param {String} label label name
+   * @param {Object} properties properties of the label
+   * @returns {String} label name
+   */
   newlabel(label, properties = {}) {
     if (this.labels[label]) {
       console.warn("Attempting to create duplicated label: ", label);
@@ -102,6 +131,11 @@ class Journals {
     return label;
   }
 
+  /**
+   * Remove label
+   * @param {String} label label name
+   * @returns {int} return code
+   */
   removelabel(label) {
     if (!this.labels[label]) return;
     if (Object.keys(this.labels[label].journals).length === 0) {
@@ -120,7 +154,11 @@ class Journals {
     return 1;
   }
 
-  // Leave label = null to remove label from journal
+  /**
+   * Label a journal
+   * @param {String} date date
+   * @param {String} label label = null to remove label from a journal
+   */
   label(date, label = null) {
     if (label && !this.labels[label]) {
       console.error("Label does not exist: ", label);
@@ -138,6 +176,12 @@ class Journals {
 }
 
 class Label {
+  /**
+   * Lookup journals for reverse lookup (label -> dates)
+   * Read-only. Do NOT modify directly. Maintained by Journal interface
+   * @param {String} name 
+   * @param {Object} properties 
+   */
   constructor(name, properties) {
     this.name = name;
     this.properties = { ...properties };
@@ -156,4 +200,88 @@ class Label {
   }
 }
 
-module.exports = Journals;
+class Assets {
+  constructor(db) {
+    this.db = db;
+    this.map = {};
+  }
+
+  /**
+   * Retrieve an asset from database
+   * @param {String} uid asset unique id
+   * @return {Promise<Blob>} promise object resolving to a blob object
+   */
+  get(uid) {
+    console.log("get() called: " + uid);
+    if (this.map.uid) {
+      return new Promise(resolve => resolve(this.map[uid]));
+    }
+
+    return this.db.retrieve(uid).then(obj => {
+      return fetch(obj.data);
+    }).then(response => {
+      return response.blob().then(blob => {
+        this.map[uid] = blob;
+        return blob;
+      });
+    });
+  }
+
+  /**
+   * Saving an blob object to database
+   * @param {Blob} blob blob object
+   * @returns {Promise<String>} promise object resolving to the key of that object
+   */
+  save(blob) {
+    console.log("save() called");
+    const reader = new FileReader();
+
+    reader.readAsDataURL(blob)
+
+    return new Promise(resolve => {
+      reader.onload = (event) => {
+        resolve(this.db.submit({uid: Md5(event.target.result), type: blob.type, data: event.target.result}))
+      }
+    }).then(uid => {
+      console.log("saved: " + uid)
+      this.map[uid] = blob;
+      return uid;
+    });
+  }
+
+  del(uid) {
+    this.db.remove(uid);
+    if (this.map.uid) delete this.map[uid];
+    return 0;
+  }
+}
+
+class AssetsDexieWrapper {
+  constructor(table) {
+    this.db = new Dexie(table);
+    this.db.version(1).stores({
+      assets: 'uid,type',
+    })
+  }
+
+  retrieve(uid) {
+    return this.db.assets.get(uid);
+  }
+
+  submit(data) {
+    return this.db.assets.put(data).then(obj => {
+      console.log("submit() => obj: ", obj)
+      return Promise.resolve(obj);
+    })
+  }
+
+  remove(uid) {
+    return this.db.assets.delete(uid)
+  }
+}
+
+module.exports = {
+  Journals: Journals,
+  AssetsDexieWrapper: AssetsDexieWrapper,
+  Assets: Assets
+}

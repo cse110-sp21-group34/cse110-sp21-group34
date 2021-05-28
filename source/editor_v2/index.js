@@ -14,18 +14,16 @@ const DragDrop = require('editorjs-drag-drop');
 const Paragraph = require('@editorjs/paragraph');
 const Embed = require('@editorjs/embed');
 const Header = require('@editorjs/header');
-const Journals = require('./storage');
+const Dexie = require('dexie')
 
-try {
-  JSON.parse(localStorage.getItem("journal-entry"))
-}
-catch (e) {
-  console.error("journal-entry is invalid");
-  localStorage.setItem("journal-entry", '{"labels":{}, "journals": {}}');
-}
+const NotSoSimpleImage = require('./not-so-simple-image/src/index')
+const {Journals, Assets, AssetsDexieWrapper} = require('./storage');
+const { resolveConfig } = require('prettier');
 
-// let date = "2021-5-11";
+const iid = 1; // instanceid
 
+
+// Set up saving triggers after finishing initializing editor
 const savingInterval = 3000;  // ms
 let saveTimer;
 // document.onkeydown = function onkeydown(e) {
@@ -44,22 +42,42 @@ function initSaver(editor, date, holderid) {
     window.clearTimeout(saveTimer);
     saveTimer = window.setTimeout(() => {editor.save().then((outputData) => {journals.save(date, outputData)})} , savingInterval);
 
-  })
+  });
   document.getElementById(holderid).addEventListener('focusout', () => {
     // Immediately save when bullet loses focus
     console.log("defocused")
     editor.save().then((outputData) => journals.save(date, outputData));
-  })
-
-
+  });
+  // document.getElementById(holderid).addEventListener('change', () => console.log("changed!"));
 
 }
 
-const journals = new Journals(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
+// Loading journals from database
+const journal_db = new Dexie("journal-entry")
+journal_db.version(1).stores({
+  instance: "++instanceid"
+});
+let journals;
 
+// Promise for loading journals
+let init = new Promise((resolve, reject) => {
+    journal_db.instance.get(iid).then(result => {
+      if (result == undefined) {
+        console.error("no journal found!");
+        return journal_db.instance.put({instanceid: iid, data: '{"labels":{}, "journals": {}}'}).then(() => {
+          return journal_db.instance.get(iid)
+        });
+      }
+      else return journal_db.instance.get(iid);
+    }).then(obj => {
+      journals = new Journals(JSON.parse(obj.data), (data) => journal_db.instance.put({instanceid: iid, data: data}));
+      resolve(journals);
+    });
+});
 
-function new_editor(date, holder) {
+function newEditor(date, holder) {
   let editor_obj = new EditorJS({
+    logLevel: 'VERBOSE',
     holderId: holder,
     data: journals.get(date),
     // defaultBlock: "list",
@@ -107,9 +125,10 @@ function new_editor(date, holder) {
           },
         },
       },
+      image: {
+        class: NotSoSimpleImage,
+      },
 
-      image: SimpleImage,
-      
       embed: {
         class: Embed,
         config: {
@@ -120,7 +139,6 @@ function new_editor(date, holder) {
         },
       },
     },
-
   });
   return editor_obj;
 }
@@ -141,4 +159,7 @@ saveBtn.addEventListener("click", () => {
 });
 */
 
-module.exports = new_editor;
+module.exports = {
+  newEditor: newEditor,
+  init: init
+}
