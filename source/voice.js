@@ -16,15 +16,10 @@ function createRecorder() {
 
     var controls = document.createElement("div");
     controls.id = "recording-controls";
-    var recordBtn = document.createElement("button");
-    recordBtn.id = "record";
-    recordBtn.innerText = "Record";
-    controls.appendChild(recordBtn);
-    var stopBtn = document.createElement("button");
-    stopBtn.id = "stop";
-    stopBtn.innerText = "Stop";
+    var recordBtn = document.getElementsByClassName("bi bi-record-circle")[0];
+    var stopBtn = document.getElementsByClassName("bi bi-stop-circle")[0];
     stopBtn.disabled = true;
-    controls.appendChild(stopBtn);
+    controls.style.height = "0";
     voiceArea.appendChild(controls);
 
     var audioElem = document.createElement("audio");
@@ -45,25 +40,23 @@ But there were problems because those 4 variables will have null assigned to the
 since they were run before I click the button and create vioce-recording. 
 There shouldn't have been these many things like variable declaring, inner function,
 etc. inside an EventListener.*/
-document.querySelector("#voiceCreator").addEventListener("click", () => {
+document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => {
     createRecorder();
 
-    let recordBtn = document.getElementById('record');
-    let stopBtn = document.getElementById('stop');
+    let recordBtn = document.getElementsByClassName("bi bi-record-circle")[0];
+    let stopBtn = document.getElementsByClassName("bi bi-stop-circle")[0];
     let message = document.getElementById('message');
     let audioElem = document.getElementById('audio-element');
 
     function toggleButtons() {
     if (recordBtn.disabled) {
         recordBtn.removeAttribute('disabled');
-        recordBtn.style.backgroundColor = 'white';
         stopBtn.setAttribute('disabled', 'true');
         message.innerText = 'Not Recording';
         message.classList.remove('recording');
     } else {
         stopBtn.removeAttribute('disabled');
         recordBtn.setAttribute('disabled', 'true');
-        recordBtn.style.backgroundColor = 'red';
         message.innerText = 'Recording';
         message.classList.add('recording');
     }
@@ -78,13 +71,15 @@ document.querySelector("#voiceCreator").addEventListener("click", () => {
     let chunks = [];
 
     let onSuccess = function(stream) {
-        const mediaRecorder = new MediaRecorder(stream);
+        let mediaRecorder = new MediaRecorder(stream);
 
         recordBtn.addEventListener('click', () => {
         mediaRecorder.start();
         console.log(mediaRecorder.state);
         console.log("recorder started");
         toggleButtons();
+        document.getElementById("additionMicrophone").style.opacity = "0";
+        document.getElementById("additionMicrophoneClose").style.opacity = "1";
         });
 
         stopBtn.addEventListener('click', () => {
@@ -93,6 +88,8 @@ document.querySelector("#voiceCreator").addEventListener("click", () => {
         console.log("recorder stopped");
         // mediaRecorder.requestData();
         toggleButtons();
+        document.getElementById("additionMicrophone").style.opacity = "1";
+        document.getElementById("additionMicrophoneClose").style.opacity = "0";
         });
 
         mediaRecorder.onstop = function(e) {
@@ -110,6 +107,11 @@ document.querySelector("#voiceCreator").addEventListener("click", () => {
         }
 
         message.innerText = "Ready to record";
+
+        document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => {
+            mediaRecorder = new MediaRecorder(stream);
+            console.log("validating");
+        });
     }
 
     let onError = function(err) {
@@ -123,4 +125,3 @@ document.querySelector("#voiceCreator").addEventListener("click", () => {
     console.log('getUserMedia not supported on your browser!');
     }
 })
-
