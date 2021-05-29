@@ -16,7 +16,6 @@
     "@editorjs/editorjs": "latest",
     "@editorjs/embed": "latest",
     "@editorjs/header": "latest",
-    "@editorjs/image": "latest",
     "@editorjs/marker": "latest",
     "@editorjs/nested-list": "https://github.com/cse110-sp21-group34/nested-list.git",
     "@editorjs/paragraph": "2.8.0",
@@ -37,7 +36,6 @@
   },
   "devDependencies": {
     "@editorjs/code": "^2.7.0",
-    "editorjs-inline-image": "^0.1.2",
-    "simple-image-editorjs": "^1.4.0"
+    "editorjs-inline-image": "^0.1.2"
   }
 }

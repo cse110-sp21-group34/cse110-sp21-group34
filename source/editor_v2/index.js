@@ -4,7 +4,6 @@
 /* eslint-disable no-console */
 // const Delimiter = require('@editorjs/delimiter');
 const EditorJS = require('@editorjs/editorjs')
-const SimpleImage = require('simple-image-editorjs');
 const Alert = require('editorjs-alert');
 const NestedList = require('@editorjs/nested-list');
 const Checklist = require('@editorjs/checklist');
@@ -17,6 +16,7 @@ const Header = require('@editorjs/header');
 const Dexie = require('dexie')
 
 const NotSoSimpleImage = require('./not-so-simple-image/src/index')
+const NotSoSimpleAudio = require('./not-so-simple-audio/src/index')
 const {Journals, Assets, AssetsDexieWrapper} = require('./storage');
 const { resolveConfig } = require('prettier');
 
@@ -121,6 +121,10 @@ function newEditor(date, holder) {
 
       image: {
         class: NotSoSimpleImage,
+      },
+
+      audio: {
+        class: NotSoSimpleAudio,
       },
 
       embed: {
