@@ -36,7 +36,15 @@ let saveTimer;
 // }
 
 function initSaver(editor, date, holderid) {
-  document.getElementById(holderid).addEventListener('keydown', () => {
+  document.getElementById(holderid).addEventListener('keydown', (e) => {
+    // Map the behavior of 'enter' into 'shift + enter' for paragrah
+    if (e.target.className === 'ce-paragraph cdx-block' || e.target.className === 'cdx-input embed-tool__caption') {
+      if (e.key === 'Enter' && e.shiftKey==false) {
+        e.preventDefault(); 
+        document.execCommand("insertLineBreak"); 
+      }
+    }
+    
     // reset saveTimer
     console.log("keydown triggered")
     window.clearTimeout(saveTimer);
@@ -80,7 +88,7 @@ function newEditor(date, holder) {
     logLevel: 'VERBOSE',
     holderId: holder,
     data: journals.get(date),
-    // defaultBlock: "list",
+    defaultBlock: "list",
     onReady: () => {
       // new Undo({ editor_obj});
       new DragDrop(editor_obj);
