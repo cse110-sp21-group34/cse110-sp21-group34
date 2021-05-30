@@ -3,7 +3,7 @@
  */
 require('./index.css').toString();
 
-const {Assets, AssetsDexieWrapper} = require('../../storage')
+const storage = require("storage");
 
 /**
  * SimpleImage Tool for the Editor.js
@@ -33,7 +33,7 @@ class NotSoSimpleAudio {
      */
     this.api = api;
     this.readOnly = readOnly;
-    this.asset_api = new Assets(new AssetsDexieWrapper('journal-assets'));
+    this.asset_api = storage.assets;
 
     /**
      * When block is only constructing,

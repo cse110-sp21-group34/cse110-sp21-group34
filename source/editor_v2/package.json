@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@editorjs/code": "^2.7.0",
     "@bomdi/codebox": "^1.0.12",
     "@editorjs/checklist": "latest",
     "@editorjs/editorjs": "latest",
@@ -29,13 +30,10 @@
     "editorjs-style": "^3.0.2",
     "editorjs-text-alignment-blocktune": "latest",
     "editorjs-undo": "^0.1.6",
-    "mongodb": "^3.6.8",
-    "parcel": "^2.0.0-beta.2",
-    "dexie": "3.0.3",
-    "md5": "2.3.0"
-  },
-  "devDependencies": {
-    "@editorjs/code": "^2.7.0",
     "editorjs-inline-image": "^0.1.2"
-  }
+  },
+  "exports": {
+    ".": "./index.js"
+  },
+  "devDependencies": {}
 }

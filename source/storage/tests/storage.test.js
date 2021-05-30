@@ -1,4 +1,4 @@
-const Journals = require('../storage')
+const Journals = require('../journals')
 
 describe("Storage Interface", () => {
 

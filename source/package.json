@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "parcel editing-page.html -p 8000",
     "test": "jest",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json",
+    "prep": "npm install && npm link ./storage && npm link ./editor_v2"
   },
   "author": "",
   "license": "ISC",
@@ -34,7 +35,6 @@
     "puppeteer": "*"
   },
   "dependencies": {
-    "mongodb": "^3.6.8",
-    "mongodb-client-encryption": "^1.2.3"
+    "dexie": "3.0.3"
   }
 }
