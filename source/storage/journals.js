@@ -79,7 +79,6 @@ class Journals {
         resolve(this);
       });
     });
-    Promise.resolve(this.isReady);
   }
 
   /**
