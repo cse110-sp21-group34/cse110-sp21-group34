@@ -187,8 +187,8 @@ document.getElementById("languageSelector").addEventListener("change", () => {
     document.getElementById("about").innerText = "Tentang Equinox";
   } else {
     lang = "ar-EG";
-    document.getElementById("language").innerText = "Language";
-    document.getElementById("darkMode").innerText = "Dark Mode";
+    document.getElementById("language").innerText = "اللغة";
+    document.getElementById("darkMode").innerText = "اللون الظالم";
     document.getElementById("autoLabel").innerText = "Auto-Generated Labels";
     document.getElementById("about").innerText = "About Equinox";
   }
