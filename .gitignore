@@ -127,3 +127,4 @@ dist
 source/package-lock.json
 source/editor_v2/package-lock.json
 source/editor_v2/package-lock.json
+source/storage/package-lock.json
