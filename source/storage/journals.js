@@ -1,5 +1,3 @@
-const newEditor = require("editor");
-
 class Journals {
   /**
    * Constructor
