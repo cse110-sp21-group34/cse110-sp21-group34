@@ -4,7 +4,7 @@
 /* eslint-disable no-console */
 // const Delimiter = require('@editorjs/delimiter');
 const EditorJS = require('@editorjs/editorjs')
-const Alert = require('editorjs-alert');
+const Alert = require("editorjs-alert");
 const NestedList = require('@editorjs/nested-list');
 const Checklist = require('@editorjs/checklist');
 const Marker = require("@editorjs/marker");
