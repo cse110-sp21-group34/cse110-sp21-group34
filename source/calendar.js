@@ -134,27 +134,44 @@ document.getElementById("languageSelector").addEventListener("change", () => {
     lang = "en-US";
     length = "short";
     dayLength = "long";
-    //document.getElementById
+    document.getElementById("language").innerText = "Language";
+    document.getElementById("darkMode").innerText = "Dark Mode";
+    document.getElementById("autoLabel").innerText = "Auto-Generated Labels";
+    document.getElementById("about").innerText = "About Equinox";
   } else if (document.getElementById("languageSelector").value === "Chinese") {
     lang = "zh";
     length = "long";
     dayLength = length;
+    document.getElementById("language").innerText = "语言";
+    document.getElementById("darkMode").innerText = "暗色模式";
+    document.getElementById("autoLabel").innerText = "自动生成标签";
+    document.getElementById("about").innerText = "关于Equinox";
   } else if (document.getElementById("languageSelector").value === "Tamil") {
     lang = "ta";
     length = "long";
     dayLength = "long";
+    document.getElementById("language").innerText = "மொழி";
+    document.getElementById("darkMode").innerText = "இருண்ட பயன்முறை";
+    document.getElementById("autoLabel").innerText = "தானியங்கி விவரங்கள்";
+    document.getElementById("about").innerText = "எக்வினாக்சு பற்றி";
   } else if (
-    document.getElementById("languageSelector").value === "Bahasa Indonesia"
-  ) {
+    document.getElementById("languageSelector").value === "Bahasa Indonesia") {
     lang = "id";
     length = "long";
     dayLength = length;
+    document.getElementById("language").innerText = "Bahasa";
+    document.getElementById("darkMode").innerText = "Mode Gelap";
+    document.getElementById("autoLabel").innerText = "Label Otomatis";
+    document.getElementById("about").innerText = "Tentang Equinox";
   } else {
     lang = "ar-EG";
+    document.getElementById("language").innerText = "Language";
+    document.getElementById("darkMode").innerText = "Dark Mode";
+    document.getElementById("autoLabel").innerText = "Auto-Generated Labels";
+    document.getElementById("about").innerText = "About Equinox";
   }
   updateDates();
   updateMonthLanguage();
-  // location.reload();
 });
 
 // Updates year to previous year if the year is decreased and updates dates accordingly.
