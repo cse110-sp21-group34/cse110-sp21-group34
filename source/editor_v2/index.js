@@ -23,9 +23,25 @@ const storage = require('storage');
 // Set up saving triggers after finishing initializing editor
 const savingInterval = 1000;  // ms
 let saveTimer;
+// document.onkeydown = function onkeydown(e) {
+//   if (e.which === 13 && e.shiftKey==false) {
+//     e.preventDefault(); 
+//     document.execCommand("insertLineBreak");    
+//       console.log('enter pressed without shift');
+//     return false;
+//   } 
+// }
 
 function initSaver(editor, date, holderid) {
-  document.getElementById(holderid).addEventListener('keydown', () => {
+  document.getElementById(holderid).addEventListener('keydown', (e) => {
+    // Map the behavior of 'enter' into 'shift + enter' for paragrah
+    if (e.target.className === 'ce-paragraph cdx-block' || e.target.className === 'cdx-input embed-tool__caption') {
+      if (e.key === 'Enter' && e.shiftKey==false) {
+        e.preventDefault(); 
+        document.execCommand("insertLineBreak"); 
+      }
+    }
+    
     // reset saveTimer
     console.log("keydown triggered")
     window.clearTimeout(saveTimer);
@@ -38,6 +54,7 @@ function initSaver(editor, date, holderid) {
     editor.save().then((outputData) => storage.journals.save(date, outputData));
   });
   // document.getElementById(holderid).addEventListener('change', () => console.log("changed!"));
+
 }
 
 function newEditor(date, holder) {
@@ -53,23 +70,21 @@ function newEditor(date, holder) {
       editor_obj.focus(true);
     },
     tools: {
-      alert: Alert,
       list: {
         class: NestedList,
         inlineToolbar: true,
       },
-
+      alert: Alert,
       paragraph: {
         class: Paragraph,
         inlineToolbar: true,
-        tunes: ["anyTuneName"],
+        placeholder: "Type your content here"
       },
 
       header: {
         class: Header,
         inlineToolbar: true,
         shortcut: "CMD+SHIFT+H",
-        tunes: ["anyTuneName"],
       },
 
       checklist: {
@@ -92,7 +107,6 @@ function newEditor(date, holder) {
           },
         },
       },
-
       image: {
         class: NotSoSimpleImage,
       },

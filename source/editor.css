@@ -1,0 +1,87 @@
+#editor {
+    position: relative;
+    z-index: 1;
+    /* Use relative size instead of hard code and fix the position moving after the appearance of scrollbar*/
+    max-width: 100%;
+    /* font-size: 32px; */
+    overflow-y: auto;
+    height: calc(100vh - 350px);
+  }
+  
+  /* Style for image content */
+  .cdx-simple-image__picture {
+    max-width:calc(50%)
+  }
+  
+  /* Style for the every editor block content */
+  .ce-block__content, .ce-toolbar__content { 
+      line-height: 100%;
+  
+    /* z-index: -1; */
+    font-size: 50px;
+    max-width:calc(90% - 80px);
+ }
+  
+    /* Setting the block width to 100%
+     .cdx-block { max-width: 100%; } */
+.cdx-block.embed-tool {
+    max-width: 640px;
+    max-height: 360px;
+}
+
+.ce-toolbar--opened {
+    display: block;
+    padding-left: 100px;
+}
+/* .cdx-settings-button {
+    position: relative;
+    padding-right: 1100px;
+} */
+  /* .ce-toolbar__actions {
+      position:absolute;
+    left: -calc(90% - 80px);
+    right: 0%;
+  } */
+  .ce-settings.ce-settings--opened {
+      padding-right: 0%;
+  }
+
+  .cdx-checklist__item-checkbox {
+    display: inline-block;
+    flex-shrink: 0;
+    position: relative;
+    width: 32px !important;
+    height: 32px !important;
+
+}
+
+  .cdx-checklist__item-checkbox::after {
+    position: absolute;
+    top: 25% !important;
+    left: 24% !important;
+    width: 16px !important;
+    height: 8px !important;
+    border: 3px solid #fff !important;
+    border-top-color: initial !important;
+    border-top-style: none !important;
+    border-top-width: initial !important;
+    border-right-color: initial !important;
+    border-right-style: none !important;
+    border-right-width: initial !important;
+    border-bottom-color: rgb(255, 255, 255);
+    border-bottom-style: solid !important;
+    border-bottom-width: 3px;
+    border-left-color: rgb(255, 255, 255);
+    border-left-style: solid !important;
+    border-left-width: 3px;
+    border-image-source: initial !important;
+    border-image-slice: initial !important;
+    border-image-width: initial !important;
+    border-image-outset: initial !important;
+    border-image-repeat: initial !important;
+}
+
+.ce-toolbox__button {
+    width: 40px;
+    height: 40px;
+}
