@@ -22,13 +22,14 @@
     max-width:calc(90% - 80px);
  }
   
-    /* Setting the block width to 100%
-     .cdx-block { max-width: 100%; } */
+/* Style for the embed medias */
 .cdx-block.embed-tool {
     max-width: 640px;
     max-height: 360px;
 }
 
+
+/* Style for the tool bar */
 .ce-toolbar--opened {
     display: block;
     padding-left: 100px;
@@ -42,19 +43,23 @@
     left: -calc(90% - 80px);
     right: 0%;
   } */
+
   .ce-settings.ce-settings--opened {
       padding-right: 0%;
   }
 
+  /* Style for checklist's checkbox */
   .cdx-checklist__item-checkbox {
     display: inline-block;
     flex-shrink: 0;
     position: relative;
     width: 32px !important;
     height: 32px !important;
+    
 
 }
 
+/* Style for checklist's checkbox when checked */
   .cdx-checklist__item-checkbox::after {
     position: absolute;
     top: 25% !important;
@@ -81,7 +86,7 @@
     border-image-repeat: initial !important;
 }
 
-.ce-toolbox__button {
+/* .ce-toolbox__button {
     width: 40px;
     height: 40px;
-}
+} */

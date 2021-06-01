@@ -60,7 +60,7 @@ class NotSoSimpleAudio {
        */
       wrapper: 'cdx-simple-audio',
       audioHolder: 'cdx-simple-audio__player',
-      caption: 'cdx-simple-image__caption',
+      // caption: 'cdx-simple-image__caption',
     };
 
     /**
@@ -70,14 +70,14 @@ class NotSoSimpleAudio {
       wrapper: null,
       audioHolder: null,
       audio: null,
-      caption: null,
+      // caption: null,
     };
 
     /**
      * Tool's initial data
      */
     this.data = {
-      caption: data.caption || '',
+      // caption: data.caption || '',
       withBorder: data.withBorder !== undefined ? data.withBorder : false,
       withBackground: data.withBackground !== undefined ? data.withBackground : false,
       stretched: data.stretched !== undefined ? data.stretched : false,
@@ -132,11 +132,11 @@ class NotSoSimpleAudio {
     const wrapper = this._make('div', [this.CSS.baseClass, this.CSS.wrapper]),
           loader = this._make('div', this.CSS.loading),
           audioHolder = this._make('div', this.CSS.audioHolder),
-          audio = this._make('audio'),
-          caption = this._make('div', [this.CSS.input, this.CSS.caption], {
-            contentEditable: !this.readOnly,
-            innerHTML: this.data.caption || '',
-          });
+          audio = this._make('audio');
+          // caption = this._make('div', [this.CSS.input, this.CSS.caption], {
+          //   contentEditable: !this.readOnly,
+          //   innerHTML: this.data.caption || '',
+          // });
 
     let loadButton = this._make('input', [], {
       type: 'file'
@@ -147,10 +147,10 @@ class NotSoSimpleAudio {
     this.nodes.audioHolder = audioHolder;
     this.nodes.wrapper = wrapper;
     this.nodes.audio = audio;
-    this.nodes.caption = caption;
+    // this.nodes.caption = caption;
     this.nodes.loader = loader;
 
-    caption.dataset.placeholder = 'Enter a caption';
+    // caption.dataset.placeholder = 'Enter a caption';
 
     let isAudioSaved = false;
 
@@ -177,7 +177,7 @@ class NotSoSimpleAudio {
 
         this.data = {
           url: url,
-          caption: file.name
+          // caption: file.name
         };
 
         loadButton.remove();
@@ -189,7 +189,7 @@ class NotSoSimpleAudio {
       wrapper.classList.remove(this.CSS.loading);
       audioHolder.appendChild(audio);
       wrapper.appendChild(audioHolder);
-      wrapper.appendChild(caption);
+      // wrapper.appendChild(caption);
       loader.remove();
       if (loadButton !== null) {
         loadButton.remove();
@@ -230,8 +230,8 @@ class NotSoSimpleAudio {
    * @returns {SimpleAudioData}
    */
   save(blockContent) {
-    const audio = blockContent.querySelector('audio'),
-        caption = blockContent.querySelector('.' + this.CSS.input);
+    const audio = blockContent.querySelector('audio');
+        // caption = blockContent.querySelector('.' + this.CSS.input);
 
     if (!audio) {
       return this.data;
@@ -241,13 +241,13 @@ class NotSoSimpleAudio {
       // Image is loaded by external url (non blob)
       return Object.assign(this.data, {
         url: audio.src,
-        caption: caption.innerHTML,
+        // caption: caption.innerHTML,
       });
     }
     else {
       // Asset is already stored in database
       let tmp =  Object.assign(this.data, {
-        caption: caption.innerHTML
+        // caption: caption.innerHTML
       });
       delete tmp.url;
       return tmp;
@@ -264,9 +264,9 @@ class NotSoSimpleAudio {
       withBorder: {},
       withBackground: {},
       stretched: {},
-      caption: {
-        br: true,
-      },
+      // caption: {
+      //   br: true,
+      // },
     };
   }
 
@@ -377,9 +377,9 @@ class NotSoSimpleAudio {
       if (this.data.asset_id) this.nodes.audio.asset_id = this.data.asset_id;
     }
 
-    if (this.nodes.caption) {
-      this.nodes.caption.innerHTML = this.data.caption;
-    }
+    // if (this.nodes.caption) {
+    //   this.nodes.caption.innerHTML = this.data.caption;
+    // }
   }
 
   /**
