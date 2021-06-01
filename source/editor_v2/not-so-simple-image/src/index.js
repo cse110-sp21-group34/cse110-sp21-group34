@@ -60,7 +60,6 @@ class NotSoSimpleImage {
        */
       wrapper: 'cdx-simple-image',
       imageHolder: 'cdx-simple-image__picture',
-      caption: 'cdx-simple-image__caption',
     };
 
     /**
@@ -70,14 +69,12 @@ class NotSoSimpleImage {
       wrapper: null,
       imageHolder: null,
       image: null,
-      caption: null,
     };
 
     /**
      * Tool's initial data
      */
     this.data = {
-      caption: data.caption || '',
       withBorder: data.withBorder !== undefined ? data.withBorder : false,
       withBackground: data.withBackground !== undefined ? data.withBackground : false,
       stretched: data.stretched !== undefined ? data.stretched : false,
@@ -132,11 +129,7 @@ class NotSoSimpleImage {
     const wrapper = this._make('div', [this.CSS.baseClass, this.CSS.wrapper]),
           loader = this._make('div', this.CSS.loading),
           imageHolder = this._make('div', this.CSS.imageHolder),
-          image = this._make('img'),
-          caption = this._make('div', [this.CSS.input, this.CSS.caption], {
-            contentEditable: !this.readOnly,
-            innerHTML: this.data.caption || '',
-          });
+          image = this._make('img');
 
     let loadButton = this._make('input', [], {
       type: 'file'
@@ -145,10 +138,8 @@ class NotSoSimpleImage {
     this.nodes.imageHolder = imageHolder;
     this.nodes.wrapper = wrapper;
     this.nodes.image = image;
-    this.nodes.caption = caption;
     this.nodes.loader = loader;
 
-    caption.dataset.placeholder = 'Enter a caption';
 
     let isImageSaved = false;
 
@@ -175,7 +166,6 @@ class NotSoSimpleImage {
 
         this.data = {
           url: url,
-          caption: file.name
         };
 
         loadButton.remove();
@@ -187,7 +177,6 @@ class NotSoSimpleImage {
       wrapper.classList.remove(this.CSS.loading);
       imageHolder.appendChild(image);
       wrapper.appendChild(imageHolder);
-      wrapper.appendChild(caption);
       loader.remove();
       if (loadButton !== null) {
         loadButton.remove();
@@ -228,8 +217,7 @@ class NotSoSimpleImage {
    * @returns {SimpleImageData}
    */
   save(blockContent) {
-    const image = blockContent.querySelector('img'),
-        caption = blockContent.querySelector('.' + this.CSS.input);
+    const image = blockContent.querySelector('img');
 
     if (!image) {
       return this.data;
@@ -239,13 +227,11 @@ class NotSoSimpleImage {
       // Image is loaded by external url (non blob)
       return Object.assign(this.data, {
         url: image.src,
-        caption: caption.innerHTML,
       });
     }
     else {
       // Asset is already stored in database
       let tmp =  Object.assign(this.data, {
-        caption: caption.innerHTML
       });
       delete tmp.url;
       return tmp;
@@ -262,9 +248,6 @@ class NotSoSimpleImage {
       withBorder: {},
       withBackground: {},
       stretched: {},
-      caption: {
-        br: true,
-      },
     };
   }
 
@@ -288,7 +271,6 @@ class NotSoSimpleImage {
     return new Promise(resolve => {
       resolve({
         url: URL.createObjectURL(file),
-        caption: file.name
       })
     })
 
@@ -376,9 +358,6 @@ class NotSoSimpleImage {
       if (this.data.asset_id) this.nodes.image.asset_id = this.data.asset_id;
     }
 
-    if (this.nodes.caption) {
-      this.nodes.caption.innerHTML = this.data.caption;
-    }
   }
 
   /**

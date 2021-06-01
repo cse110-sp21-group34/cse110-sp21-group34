@@ -14,7 +14,12 @@ journal_db.version(1).stores({
   instance: "++instanceid"
 });
 
-const journals = new Journals(journal_db.instance.get(iid).then(d => {return JSON.parse(d.data)}), (data) => journal_db.instance.put({instanceid: iid, data: data}));
+const journals = new Journals(
+    journal_db.instance.get(iid).then(d => {
+        if (d == undefined) return undefined;
+        else return JSON.parse(d.data);
+    }), 
+    (data) => journal_db.instance.put({instanceid: iid, data: data}));
 
 const storage = {
   journals: journals,
