@@ -110,7 +110,7 @@ function newEditor(date, holder) {
           },
         },
       },
-    },
+  },
   });
   return editor_obj;
 }
