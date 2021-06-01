@@ -4,7 +4,6 @@
 /* eslint-disable no-console */
 // const Delimiter = require('@editorjs/delimiter');
 const EditorJS = require('@editorjs/editorjs')
-const SimpleImage = require('simple-image-editorjs');
 const Alert = require('editorjs-alert');
 const NestedList = require('@editorjs/nested-list');
 const Checklist = require('@editorjs/checklist');
@@ -14,19 +13,15 @@ const DragDrop = require('editorjs-drag-drop');
 const Paragraph = require('@editorjs/paragraph');
 const Embed = require('@editorjs/embed');
 const Header = require('@editorjs/header');
-const Journals = require('./storage');
 
-try {
-  JSON.parse(localStorage.getItem("journal-entry"))
-}
-catch (e) {
-  console.error("journal-entry is invalid");
-  localStorage.setItem("journal-entry", '{"labels":{}, "journals": {}}');
-}
+const NotSoSimpleImage = require('./not-so-simple-image/src/index')
+const NotSoSimpleAudio = require('./not-so-simple-audio/src/index')
+const { resolveConfig } = require('prettier');
 
-// let date = "2021-5-11";
+const storage = require('storage');
 
-const savingInterval = 3000;  // ms
+// Set up saving triggers after finishing initializing editor
+const savingInterval = 1000;  // ms
 let saveTimer;
 
 function initSaver(editor, date, holderid) {
@@ -34,28 +29,27 @@ function initSaver(editor, date, holderid) {
     // reset saveTimer
     console.log("keydown triggered")
     window.clearTimeout(saveTimer);
-    saveTimer = window.setTimeout(() => {editor.save().then((outputData) => {journals.save(date, outputData)})} , savingInterval);
+    saveTimer = window.setTimeout(() => {editor.save().then((outputData) => {storage.journals.save(date, outputData)})} , savingInterval);
 
-  })
+  });
   document.getElementById(holderid).addEventListener('focusout', () => {
     // Immediately save when bullet loses focus
     console.log("defocused")
-    editor.save().then((outputData) => journals.save(date, outputData));
-  })
+    editor.save().then((outputData) => storage.journals.save(date, outputData));
+  });
+  // document.getElementById(holderid).addEventListener('change', () => console.log("changed!"));
 }
 
-const journals = new Journals(JSON.parse(localStorage.getItem("journal-entry")), (data) => {localStorage.setItem("journal-entry", data)})
-
-
-function new_editor(date, holder) {
+function newEditor(date, holder) {
   let editor_obj = new EditorJS({
+    logLevel: 'VERBOSE',
     holderId: holder,
-    data: journals.get(date),
+    data: storage.journals.get(date),
     defaultBlock: "list",
     onReady: () => {
       // new Undo({ editor_obj});
       new DragDrop(editor_obj);
-      initSaver(editor_obj, date, holder);
+      initSaver(editor_obj, date, holder, storage);
       editor_obj.focus(true);
     },
     tools: {
@@ -99,7 +93,13 @@ function new_editor(date, holder) {
         },
       },
 
-      image: SimpleImage,
+      image: {
+        class: NotSoSimpleImage,
+      },
+
+      audio: {
+        class: NotSoSimpleAudio,
+      },
 
       embed: {
         class: Embed,
@@ -111,7 +111,6 @@ function new_editor(date, holder) {
         },
       },
     },
-
   });
   return editor_obj;
 }
@@ -132,4 +131,5 @@ saveBtn.addEventListener("click", () => {
 });
 */
 
-module.exports = new_editor;
+module.exports = newEditor;
+exports.newEditor = newEditor;

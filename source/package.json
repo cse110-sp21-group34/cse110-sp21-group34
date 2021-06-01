@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "parcel editing-page.html -p 8000",
     "test": "jest",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json",
+    "prep": "npm install && npm link ./storage && npm link ./editor_v2"
   },
   "author": "",
   "license": "ISC",
