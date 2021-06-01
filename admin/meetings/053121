@@ -13,21 +13,17 @@ Taorui Wang
 Haoxuan Wang
 What we did:
 Go over progree in week 9.
-Haoxuan Wang and Steven Youseff implemented label system.
-Jinghao Miao and  made the real page.
-Gaurav Kaliaperumal Kalidasan
+Haoxuan and Steven implemented label system.
+Jinghao made the real page.
+Gaurav:
 Joseph: 
-Zhuoliang Pu: 
-Taorui Wang and Yang Yue implemented several tests.
+Zhuoliang: 
+Taorui and Yang implemented several tests.
 
-Decisions:
-Image support could be merged to the editor branch (only few fixes needed).
-Setting as well.
+Review and Evaluations on Retrium:
+Things that went well:
+
+Things that didn't Go Well?
+
 Future Tasks:
-Yang and Taorui will implement unit tests.
-We need 70% coverage at least for the entire app.
-Jinghao and Haoxuan will work to fix Label formatting and, styling and such.
-Joseph will improve webcam.
-Steven and Zhouliang will work on voice memos to save it as a blob.
-Zhouliang will implement fixes for images
-Gaurav will handle documentation and other miscellanous tasks.
+
