@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./utils/webcamStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   
 </head>
 
@@ -109,7 +111,16 @@
                   </p> -->
       </div>
       <div id='editor'>
-        
+              <!-- Camera -->
+      <div id="webcam">
+        <button id="test">Test</button>
+        <div id="append"></div>
+       
+          <!-- <ul id="photos-container"></ul> -->
+          <a id="save-file" href="" download=""></a>
+          <!-- <script src="/main.js"></script> -->
+          <script src="./utils/webcam.js"></script>
+    </div>
       </div>
 
       
@@ -131,10 +142,13 @@
     </div>
   </div>
 
+
+
 </body>
 
 <script src="./calendar.js"></script>
 <script src="./utils/voice.js"></script>
 <script src="./setting.js"></script>
+
 
 </html>

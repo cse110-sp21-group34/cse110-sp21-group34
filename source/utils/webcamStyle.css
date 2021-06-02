@@ -1,0 +1,182 @@
+/* styles.css */
+
+* {
+  font-family: sans-serif;
+}
+
+.webcam {
+  align-items: center;
+  display: grid;
+  height: 98.5vh;
+  justify-items: center;
+  width: 99%;
+}
+
+.gallery-image:hover {
+  filter: opacity(50%);
+  cursor: pointer;
+}
+
+.mirror {
+  transform: scaleX(-1);
+}
+
+.recording {
+  color: red;
+  font-weight: bold;
+}
+
+#camera-container {
+  align-items: center;
+  background-color: lightgray;
+  border-radius: 20px;
+  display: grid;
+  grid-template-areas:
+  'video'
+  'controls';
+  height: auto;
+  justify-items: center;
+  text-align: center;
+  padding: 20px;
+  width: auto;
+}
+
+#camera-select-container {
+  display: flex;
+}
+
+#message {
+  font-size: 1.1em;
+}
+
+#modal {
+  align-items: center;
+  background-color: gray;
+  display: grid;
+  grid-template-rows: 8fr 1fr;
+  height: 500px;
+  justify-items: center;
+  width: 700px;
+}
+
+#modal-container {
+  align-items: center;
+  background-color: rgb(255,255,255,0.7);
+  display: none;
+  height: 98vh;
+  justify-items: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 3;
+}
+
+#modal:hover,
+#modal-container:hover {
+  cursor: pointer;
+}
+
+#photo-capture {
+  grid-area: video;
+}
+
+#photos-container {
+  background-color: lightgray;
+  border-radius: 20px;
+  display: flex;
+  height: 111px;
+  list-style-type: none;
+  max-width: 680px;
+  padding: 20px 0;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+#photos-container li {
+  margin-right: 20px;
+  padding: none;
+}
+
+#photos-container li:first-of-type {
+  margin-left: 20px;
+}
+
+#photos-container > li > canvas {
+  height: 90px;
+  width: 160px;
+}
+
+#recording-controls {
+  display: grid;
+  
+  column-gap: 10px;
+  grid-template-areas: 
+  /* 'stop mirrorVideo picture delete'; */
+  'capture';
+  width: 25%;
+  padding: 20px;
+}
+
+#recording-controls button {
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: auto;
+  border-radius: 50px;
+  height: 40px;
+  font-size: 1.5em;
+}
+
+#recording-controls button:hover {
+  cursor: pointer;
+}
+
+#recording-controls button:disabled {
+  background-color: rgb(235, 235, 235);
+  color: rgb(201, 201, 201);
+  cursor: not-allowed;
+}
+
+#save-delete {
+  align-self: flex-start;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+#save-delete button {
+  height: 30px;
+  width: 120px;
+}
+
+#save-delete button:hover {
+  cursor: pointer;
+}
+
+#select-camera {
+  align-self: center;
+  height: 20px;
+  justify-self: center;
+  margin-right: 20px;
+  width: 50px;
+}
+
+#save-file {
+  display: none;
+}
+
+#video-element {
+  background-color: gray;
+  grid-area: video;
+  position: relative;
+  z-index: 1;
+}
+
+#video-snapshot-overlay {
+  background-color: transparent;
+  height: 360px;
+  grid-area: video;
+  position: relative;
+  transition: 0.2s ease all;
+  width: 640px;
+  z-index: 2;
+}

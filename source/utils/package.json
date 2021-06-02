@@ -1,0 +1,12 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "voice.js",
+  "scripts": {
+    "dev": "parcel index.html -p 8002"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
