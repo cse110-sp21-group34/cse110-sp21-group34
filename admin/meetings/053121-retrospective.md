@@ -1,6 +1,6 @@
 ### 5/31/2021 – Group 34
-#### Meeting type: Zoom - Sprint 2 review
-#### Time start: 9pm PST
+#### Meeting type: Zoom - Retrospective for Sprint 2
+#### Time start: 10pm PST
 
 #### Attendance:
 - Gaurav Dheeraj Kaliaperumal Kalidasan
@@ -13,16 +13,10 @@
 - Haoxuan Wang
 
 #### What we did:
-- Go over our progress in week 9.
-- Review and Evaluations on Retrium.
-
-#### Progress in Week 9:
-- Haoxuan and Steven implemented label system.
-- Jinghao made the real page.
-- Gaurav:
-- Joseph: 
-- Zhuoliang: 
-- Taorui and Yang implemented several tests.
+- Retrospective and Evaluations on Retrium.
+- Delineated how we should spend Week 10 and 11.
+- Understood extensive testing is required.
+- Most of the documentation needs to be completed.
 
 #### Retrium Meeting Note
 #### Things that went well:
