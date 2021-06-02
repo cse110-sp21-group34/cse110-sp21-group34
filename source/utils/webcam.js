@@ -68,7 +68,7 @@ function showWebcam(){
 
     cameraContainer.appendChild(cameraSelectContainer);
     cameraSelectContainer.appendChild(selectCamera);
-    selectCamera.appendChild(option);
+    // selectCamera.appendChild(option);
     
     cameraContainer.appendChild(videoSnapshot);
     cameraContainer.appendChild(video);
@@ -96,16 +96,16 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
     let picturesTaken = parseInt(localStorage.getItem('picturesTaken')) || 0;
     let modalContainer = document.getElementById('modal-container');
     
-    select.addEventListener('change', () =>{
-        //Disable picture button if no webcam is selected.
-        if(select.selectedIndex == 0){
-          pictureBtn.setAttribute('disabled', 'true');
-          videoElem.srcObject = null;
-        }
-        else{
-          pictureBtn.removeAttribute('disabled');
-        }
-      });
+    // select.addEventListener('change', () =>{
+    //     //Disable picture button if no webcam is selected.
+    //     if(select.selectedIndex == 0){
+    //       pictureBtn.setAttribute('disabled', 'true');
+    //       videoElem.srcObject = null;
+    //     }
+    //     else{
+    //       pictureBtn.removeAttribute('disabled');
+    //     }
+    //   });
       
       // When the picture button is clicked, capture a frame from the video
       pictureBtn.addEventListener('click', () => {
@@ -263,8 +263,29 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
           });
         });
 
+        const videoConstraints = {};
+          if (select.value == '' || select.value == 'Select Camera:') {
+            videoConstraints.facingMode = 'environment';
+          } else {
+            videoConstraints.deviceId = { exact: select.value };
+          }
+          const constraints = {
+            video: videoConstraints,
+            audio: false
+          };
       
-        select.addEventListener('change', () => {
+          navigator.mediaDevices
+            .getUserMedia(constraints)
+            .then(stream => {
+              currStream = stream;
+              videoElem.srcObject = stream;
+              // if (videoOff.disabled) {
+              //   toggleButtons();
+              // }
+              return navigator.mediaDevices.enumerateDevices();
+            })
+            
+        select.addEventListener('click', () => {
           const videoConstraints = {};
           if (select.value == '' || select.value == 'Select Camera:') {
             videoConstraints.facingMode = 'environment';
