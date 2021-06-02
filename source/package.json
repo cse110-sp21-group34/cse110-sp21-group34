@@ -25,10 +25,6 @@
     "puppeteer": "*"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "dexie": "^3.0.3",
-=======
->>>>>>> editor
     "editor": "file:editor_v2",
     "storage": "file:storage"
   }
