@@ -10,7 +10,7 @@
     "dev": "parcel editing-page.html -p 8000",
     "test": "jest",
     "doc": "jsdoc -c jsdoc.json",
-    "prep": "npm install && npm link ./storage && npm link ./editor_v2"
+    "prep": "npm install && npm install ./storage ./editor_v2"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +35,8 @@
     "puppeteer": "*"
   },
   "dependencies": {
-    "dexie": "^3.0.3"
+    "dexie": "^3.0.3",
+    "editor": "file:editor_v2",
+    "storage": "file:storage"
   }
 }

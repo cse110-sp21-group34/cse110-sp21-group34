@@ -108,7 +108,7 @@ document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => 
 
         message.innerText = "Ready to record";
 
-        document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => {
+        document.getElementsByClassName("Hey")[0].addEventListener("click", () => {
             mediaRecorder = new MediaRecorder(stream);
             console.log("validating");
         });

@@ -1,4 +1,5 @@
 const Dexie = require('dexie');
+
 function showWebcam(){
 
     let photosContainer = document.createElement("ul");
@@ -33,10 +34,9 @@ function showWebcam(){
     let pictureBtn = document.createElement("button");
     pictureBtn.id = "picture";
 
-    let icon = document.createElement("i");
-    icon.id = "icon";
-    icon.setAttribute("class", "fas fa-camera");
-    pictureBtn.appendChild(icon);
+    let cameraIcon = document.createElement("i");
+    cameraIcon.id = "cameraIcon";
+    cameraIcon.setAttribute("class", "fas fa-camera");
     
     let cameraSelectContainer = document.createElement("div");
     cameraSelectContainer.id = "camera-select-container";
@@ -75,11 +75,11 @@ function showWebcam(){
 
     cameraContainer.appendChild(recordingControls);
     recordingControls.appendChild(pictureBtn);
+    pictureBtn.appendChild(cameraIcon);
     
-
-    let append = document.getElementById('append');
-    append.appendChild(cameraContainer);
-    append.appendChild(photosContainer);
+    let editor = document.getElementById('editor');
+    editor.appendChild(cameraContainer);
+    cameraContainer.appendChild(photosContainer);
 }
 
 // Show the webcam feature after the button has been clicked.
@@ -96,7 +96,7 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
     let picturesTaken = parseInt(localStorage.getItem('picturesTaken')) || 0;
     let modalContainer = document.getElementById('modal-container');
     
-    select.addEventListener('click', () =>{
+    select.addEventListener('change', () =>{
         //Disable picture button if no webcam is selected.
         if(select.selectedIndex == 0){
           pictureBtn.setAttribute('disabled', 'true');
@@ -262,6 +262,7 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
             }
           });
         });
+
       
         select.addEventListener('change', () => {
           const videoConstraints = {};

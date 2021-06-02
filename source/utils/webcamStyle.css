@@ -1,9 +1,5 @@
 /* styles.css */
 
-* {
-  font-family: sans-serif;
-}
-
 .webcam {
   align-items: center;
   display: grid;
@@ -27,6 +23,8 @@
 }
 
 #camera-container {
+  position: fixed;
+  z-index: 7;
   align-items: center;
   background-color: lightgray;
   border-radius: 20px;
@@ -34,11 +32,13 @@
   grid-template-areas:
   'video'
   'controls';
-  height: auto;
+  width: 650px;
+  height: 400px;
   justify-items: center;
   text-align: center;
   padding: 20px;
-  width: auto;
+  right: 120px;
+  bottom: 275px;
 }
 
 #camera-select-container {
@@ -47,6 +47,11 @@
 
 #message {
   font-size: 1.1em;
+}
+
+#cameraIcon{
+  align-self: center;
+
 }
 
 #modal {
@@ -107,25 +112,16 @@
   width: 160px;
 }
 
-#recording-controls {
-  display: grid;
-  
-  column-gap: 10px;
-  grid-template-areas: 
-  /* 'stop mirrorVideo picture delete'; */
-  'capture';
-  width: 25%;
-  padding: 20px;
-}
-
 #recording-controls button {
   background-color: rgb(255, 255, 255);
-  border: none;
-  width: auto;
+  border: black;
+  width: 50px;
   border-radius: 50px;
   height: 40px;
   font-size: 1.5em;
+  align-items: center;
 }
+
 
 #recording-controls button:hover {
   cursor: pointer;
