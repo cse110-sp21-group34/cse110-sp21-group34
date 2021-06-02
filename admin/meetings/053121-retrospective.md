@@ -32,7 +32,7 @@
 ##### Functionality
 - Functionality and features almost complete.
 - Functions and Integrations worked well.
-- 
+
 #### Things that didn't Go Well?
 - Not enough tests
 - Inconsisteny of Github repo: branches, commit styles, etc.
