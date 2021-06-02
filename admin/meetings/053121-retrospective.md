@@ -1,5 +1,5 @@
 ### 5/31/2021 – Group 34
-#### Meeting type: Zoom - Review Meeting
+#### Meeting type: Zoom - Sprint 2 review
 #### Time start: 9pm PST
 
 #### Attendance:
@@ -13,7 +13,10 @@
 - Haoxuan Wang
 
 #### What we did:
-Go over progree in week 9.
+- Go over our progress in week 9.
+- Review and Evaluations on Retrium.
+
+#### Progress in Week 9:
 - Haoxuan and Steven implemented label system.
 - Jinghao made the real page.
 - Gaurav:
@@ -21,7 +24,7 @@ Go over progree in week 9.
 - Zhuoliang: 
 - Taorui and Yang implemented several tests.
 
-Review and Evaluations on Retrium:
+#### Retrium Meeting Note
 #### Things that went well:
 ##### Communication
 - More frequent communications
@@ -29,11 +32,11 @@ Review and Evaluations on Retrium:
 ##### Functionality
 - Functionality and features almost complete.
 - Functions and Integrations worked well.
+- 
 #### Things that didn't Go Well?
 - Not enough tests
 - Inconsisteny of Github repo: branches, commit styles, etc.
 - Coding style: missing comment, inconsistent comment styles, etc.
-
 
 #### Future Tasks:
 - Wrap up what already done
