@@ -1,7 +1,7 @@
 /**
  * Build styles
  */
-require('./index.css').toString();
+//require('./index.css').toString();
 
 const storage = require("storage");
 
