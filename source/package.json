@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "parcel editing-page.html -p 8000",
-    "test": "jest",
+    "test": "jest --env=jsdom",
     "doc": "jsdoc -c jsdoc.json",
     "prep": "npm install && npm link ./storage && npm link ./editor_v2"
   },
@@ -16,22 +16,27 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.26.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-node": "^4.1.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "jest": "*",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.3",
     "jest-dev-server": "*",
     "jest-puppeteer": "*",
     "jsdoc": "^3.6.7",
     "parcel": "^2.0.0-beta.2",
     "prettier": "^2.3.0",
     "puppeteer": "*"
+  },
+  "dependencies": {
+    "dexie": "^3.0.3",
+    "editor": "file:editor_v2",
+    "jest-transform-css": "^2.1.0",
+    "md5": "^2.3.0",
+    "storage": "file:storage"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "identity-obj-proxy",
+      "\\.(gif|ttf|eot|svg)$": "./__mocks__/fileMock.js"
+    }
   }
 }
