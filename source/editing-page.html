@@ -16,7 +16,7 @@
 <body>
 
   <div id="mySidenav" class="sidenav">
-    <i class="team-icon"></i> <br>
+    <div id="spacer"></div>
     <i id="icon" class="bi bi-house"></i>
     <i id="icon" class="bi bi-stickies"></i>
     <i id="icon" class="bi bi-calendar-event"></i>
@@ -57,10 +57,10 @@
   </div>
 
   <div id="editingTopBar">
-    <!--Top bar for text-editor-->
+    <i class="team-icon"></i>
   </div>
 
-  <div id="dateSelector">
+  <div id="dateSelector" style="margin-left: -210px;">
     <div id="year">
       <i id="lastYear" class="bi bi-arrow-left-short"></i>
       <p id="yearNum">
@@ -86,6 +86,9 @@
     </div>
     <div class="dayList">
     </div>
+    <div id="selectorExpBlock">
+      <i id="selectorExp" class="bi bi-caret-right-fill"></i>
+    </div>
   </div>
 
   <div id="editingMainPage">
@@ -99,7 +102,7 @@
       </div>
       <i id="iconInside" class="bi bi-plus-square"></i>
     </div>
-    <div id="contentArea">
+    <div id="contentArea" style="width: cal(100vw - 74px);">
       <div class="noteBlock">
         <p class="dailyDate">
         </p>
