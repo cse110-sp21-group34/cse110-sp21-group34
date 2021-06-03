@@ -14,6 +14,12 @@ body {
   background-color: lightgray;
   line-height: 5;
   position: fixed;
+  z-index: 28;
+}
+
+#spacer {
+  height: 20px;
+  width: 74px;
 }
 
 #icon {
@@ -24,15 +30,16 @@ body {
   height: 56px;
   margin: 19px;
   line-height: 100%;
+  z-index: 28;
 }
 
 #iconInside {
-  font-size: 36px;
+  font-size: 20px;
   color: rgb(48, 48, 48);
   float: left;
   display: block;
   height: 50px;
-  margin: 17px 19px 0 19px;
+  margin: 16px 19px 0 19px;
   line-height: 100%;
 }
 
@@ -73,9 +80,10 @@ body {
 }
 
 .team-icon {
-  content: url("../admin/branding/slack-icon.jpg");
+  content: url("../admin/branding/team-icon-removebg.png");
+  margin: 0 auto;
   height: 74px;
-  width: 74px;
+  width: 267.86458333px;
 }
 
 #topBar {
@@ -172,15 +180,65 @@ body {
 }
 
 #dateSelector {
-  margin-left: 74px;
-  width: 220px;
+  width: 210px;
   font-size: 28px;
+  position: fixed;
+  left: 74px;
+  top: 74px; 
+  -moz-transition: all 0.5s; 
+  -webkit-transition: all 0.5s; 
+  -o-transition: all 0.5s; 
+  transition: all 0.5s; 
+  margin-left: -210px;
+  z-index: 18;
+}
+
+#selectorExp {
+  position: relative;
+  top: 42px;
+  left: 220px;
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  display: block;
+  height: 16px;
+  width: 16px;
+  line-height: 100%;
+  z-index: 28;
+  transform: rotate(0deg);
+  -moz-transition: all 0.5s; 
+  -webkit-transition: all 0.5s; 
+  -o-transition: all 0.5s; 
+  transition: all 0.5s; 
+  margin-left: -220px;
+}
+
+#selectorExpBlock {
+  height: 100px;
+  width: 16px;
+  background-color: #b8e2d5;
+  position: relative;
+  left: 210px;
+  top: -50vh;
+  -moz-transition: all 0.5s; 
+  -webkit-transition: all 0.5s; 
+  -o-transition: all 0.5s; 
+  transition: all 0.5s; 
+}
+
+#selectorExpBlock:hover {
+  background-color: #4a7064;
+}
+
+#selectorExpBlock:hover i {
+  color: #ffffff;
 }
 
 #year {
   height: 70px;
   background-color: rgb(200, 200, 211);
   line-height: 100%;
+  width: 210px;
 }
 
 #year > * {
@@ -194,7 +252,6 @@ body {
 
 #month {
   height: 70px;
-  
 }
 
 #monthSelector {
@@ -261,13 +318,13 @@ body {
   margin: 0 0 0 16px;
   clear: both;
   text-align: left;
-  font-size: 12px;
-  height: 70px;
+  font-size: 8px;
+  height: 50px;
 }   
 
 .labels a { 
-  line-height: 40px; 
-  height: 40px; 
+  line-height: 20px; 
+  height: 20px; 
   display: inline-block; 
   background: #fff; 
   padding: 5px 20px; 
@@ -283,7 +340,7 @@ body {
   color: #FFF; 
   font-family: 'Lexend', sans-serif; 
   text-decoration: none; 
-  font-size: 35px;
+  font-size: 24px;
 }   
 
 .labels a:hover { 
@@ -291,16 +348,16 @@ body {
   text-shadow: #000 2px 2px 2px;
 }   
 
-.labels .pcolor a:nth-child(8n-7) { background: #093c49 }   
-.labels .pcolor a:nth-child(8n-6) { background: #EB6841 }   
-.labels .pcolor a:nth-child(8n-5) { background: #3FB8AF }   
-.labels .pcolor a:nth-child(8n-4) { background: #FE4365 }   
-.labels .pcolor a:nth-child(8n-3) { background: #FC9D9A }   
-.labels .pcolor a:nth-child(8n-2) { background: #EDC951 }   
+.labels .pcolor a:nth-child(8n-7) { background: #44a2b9 }   
+.labels .pcolor a:nth-child(8n-6) { background: #cc826b }   
+.labels .pcolor a:nth-child(8n-5) { background: #6cd8d1 }   
+.labels .pcolor a:nth-child(8n-4) { background: #d47889 }   
+.labels .pcolor a:nth-child(8n-3) { background: #866766 }   
+.labels .pcolor a:nth-child(8n-2) { background: #c7b373 }   
 .labels .pcolor a:nth-child(8n-1) { background: #C8C8A9 }   
-.labels .pcolor a:nth-child(8n) { background: #83AF9B }   
-.labels .pcolor a:first-child { background: #036564 }   
-.labels .pcolor a:last-child { background: #3299BB }
+.labels .pcolor a:nth-child(8n) { background: #a2dfc3 }   
+.labels .pcolor a:first-child { background: #6db6b5 }   
+.labels .pcolor a:last-child { background: #7cbed4 }
 
 .pcolor {
   margin: 10px 0;
@@ -328,9 +385,10 @@ body {
 }
 
 #editingMainPage {
-  position: absolute;
-  left: 284px;
-  top: 74px;
+  position: relative;
+  left: 74px;
+  top: 0px;
+  width: cal(100vw - 74px);
 }
 
 #editingTopBar {
@@ -345,8 +403,8 @@ body {
 
 #mainPageTopBar {
   line-height: 100%;
-  height: 70px;
-  width: calc(100vw - 284px);
+  height: 50px;
+  width: calc(100vw - 74px);
   margin-top: 0;
   margin-left: 0;
   font-family: 'Lexend', sans-serif;
@@ -355,6 +413,9 @@ body {
   position: relative;
 }
 
+#editor {
+  width: cal(100vw - 74px);
+}
 
 #editor::-webkit-scrollbar-track {
   background-color: #e4d9d9;
@@ -404,11 +465,6 @@ font-size: 25px;
 color: #000000;
 display: block;
 transition: 0.3s;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidepanel a:hover {
-color: #f1f1f1;
 }
 
 /* Position and style the close button (top right corner) */

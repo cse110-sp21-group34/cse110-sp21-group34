@@ -103,7 +103,7 @@ class Journals {
       for (const key in data) {
         this.journals[date][key] = data[key];
       }
-      this.push().then(() => {
+      return this.push().then(() => {
         console.log("data saved")
       }).catch(error => {
         console.error(`Error when saving journal on ${date}: ${error}`);
