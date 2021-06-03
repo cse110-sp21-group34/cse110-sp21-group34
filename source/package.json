@@ -31,6 +31,10 @@
     "storage": "file:storage"
   },  
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "moduleNameMapper":{
+             "\\.(css|less|sass|scss)$": "./__mocks__/styleMock.js",
+             "\\.(gif|ttf|eot|svg)$": "./__mocks__/fileMock.js"
+    }
   }
 }
