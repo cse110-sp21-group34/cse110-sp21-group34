@@ -15,7 +15,7 @@
   
   /* Style for the every editor block content */
   .ce-block__content, .ce-toolbar__content { 
-      line-height: 100%;
+    line-height: 100%;
   
     /* z-index: -1; */
     font-size: 50px;

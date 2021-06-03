@@ -83,7 +83,15 @@ body {
   content: url("../admin/branding/team-icon-removebg.png");
   margin: 0 auto;
   height: 74px;
-  width: 267.86458333px;
+  width: 74px;
+}
+
+#equinox {
+  margin: 28px auto;
+  font-size: 50px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color:rgb(45, 63, 65);
 }
 
 #topBar {
@@ -369,7 +377,7 @@ body {
 }
 
 .noteBlock {
-  width: calc(100vw - 388px);
+  width: calc(100vw - 178px);
   background-color: rgb(232, 234, 235);
   margin: 32px 20px;
   padding: 1px 32px;
@@ -388,7 +396,7 @@ body {
   position: relative;
   left: 74px;
   top: 0px;
-  width: cal(100vw - 74px);
+  width: calc(100vw - 74px);
 }
 
 #editingTopBar {
