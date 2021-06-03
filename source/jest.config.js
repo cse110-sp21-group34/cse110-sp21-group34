@@ -3,9 +3,10 @@ module.exports = {
  // "silent": true,
  // "preset": "jest-puppeteer",
   preset: 'ts-jest',
-  transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest',
-    "^.+\\.(js|jsx)$": "babel-jest",
+  "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
   }
+
 
 }
