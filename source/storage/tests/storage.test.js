@@ -9,19 +9,20 @@ describe("Storage Interface", () => {
                 'journals': {}
             };
             
-            (new Journals(undefined, data => expect(JSON.parse(data)).toEqual(ref))).push();
-            (new Journals(null, data => expect(JSON.parse(data)).toEqual(ref))).push();
-            (new Journals({}, data => expect(JSON.parse(data)).toEqual(ref))).push();
-            (new Journals("", data => expect(JSON.parse(data)).toEqual(ref))).push();
+            (new Journals(() => undefined, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
+            (new Journals(() => null, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
+            (new Journals(() => {}, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
+            (new Journals(() => "", data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
         });
 
-        it('Adding journals', () => {
+        it('Adding journals', async () => {
             let ref = {
                 'labels': {},
                 'journals': {}
             };
             
-            let obj = new Journals(ref, data => expect(JSON.parse(data)).toEqual(ref));
+            let obj = new Journals(ref, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
+            await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
             for (let count = 0; count < 50; count++) {
@@ -47,7 +48,8 @@ describe("Storage Interface", () => {
             };
             
             let saved_data;
-            let obj = new Journals(ref, data => {saved_data = data});
+            let obj = new Journals(ref, data => Promise.resolve(() => {saved_data = data}));
+            await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
             for (let count = 0; count < 50; count++) {
@@ -65,7 +67,8 @@ describe("Storage Interface", () => {
                 obj.save(date + count, random_dict)
             }
 
-            obj = new Journals(JSON.parse(saved_data), data => expect(JSON.parse(data)).toEqual(ref));
+            obj = new Journals(JSON.parse(saved_data), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
+            await obj.isReady;
             expect(obj.journals).toEqual(ref.journals)
         });
     })
@@ -112,7 +115,7 @@ describe("Storage Interface", () => {
             };
             
             // Preparing the journals
-            let obj = new Journals(ref, data => expect(JSON.parse(data)).toEqual(ref));
+            let obj = new Journals(ref, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
             for (let count = 0; count < 50; count++) {
@@ -209,7 +212,7 @@ describe("Storage Interface", () => {
             let saved_data;
 
             // Preparing the journals
-            let obj = new Journals(ref, data => {saved_data = data});
+            let obj = new Journals(ref, data => Promise.resolve(() => {saved_data = data}));
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
             for (let count = 0; count < 50; count++) {
@@ -255,7 +258,7 @@ describe("Storage Interface", () => {
             }
 
             // Actual load test
-            obj = new Journals(JSON.parse(saved_data), data => expect(JSON.parse(data)).toEqual(ref))
+            obj = new Journals(JSON.parse(saved_data), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))
 
             for (let l in label_ref) {
                 expect(Object.keys(obj.labels[l].journals).sort()).toEqual(label_ref[l].sort())
