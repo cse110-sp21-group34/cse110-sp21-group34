@@ -51,7 +51,7 @@ describe("Storage Interface", () => {
             };
             
             let saved_data;
-            let obj = new Journals(ref, data => Promise.resolve(() => {saved_data = data}));
+            let obj = new Journals(ref, data => {return new Promise((resolve) => {saved_data = data; resolve();})});
             await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -67,7 +67,7 @@ describe("Storage Interface", () => {
                     random_dict.blocks.push(temp)
                 }
                 ref.journals[date + count] = random_dict
-                obj.save(date + count, random_dict)
+                await obj.save(date + count, random_dict)
             }
 
             obj = new Journals(JSON.parse(saved_data), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
@@ -218,7 +218,7 @@ describe("Storage Interface", () => {
             let saved_data;
 
             // Preparing the journals
-            let obj = new Journals(ref, data => Promise.resolve(() => {saved_data = data}));
+            let obj = new Journals(ref, data => {return new Promise((resolve) => {saved_data = data; resolve();})});
             await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
