@@ -1,20 +1,21 @@
 const Dexie = require('dexie');
+const { doc } = require('prettier');
 
 function showWebcam(){
 
     let photosContainer = document.createElement("ul");
     photosContainer.id = "photos-container";
 
-    let modalContainer = document.createElement("div");
-    modalContainer.id = "modal-container";
+    let modelContainer = document.createElement("div");
+    modelContainer.id = "model-container";
 
-    let modal = document.createElement("modal");
-    modal.id = "modal";
+    let model = document.createElement("model");
+    model.id = "model";
 
-    let modalImage = document.createElement("canvas");
-    modalImage.id = "modal-image"
-    modalImage.setAttribute("width", "640");
-    modalImage.setAttribute("height", "360");
+    let modelImage = document.createElement("canvas");
+    modelImage.id = "model-image"
+    modelImage.setAttribute("width", "640");
+    modelImage.setAttribute("height", "360");
 
     let saveDelete = document.createElement("div");
     saveDelete.id = "save-delete";
@@ -58,11 +59,13 @@ function showWebcam(){
     video.setAttribute("width", "640");
     video.setAttribute("height", "360");
 
-    modalContainer.appendChild(modal);
-
-    modal.appendChild(modalImage);
+    let editor = document.getElementById('editor');
+    editor.appendChild(cameraContainer);
+    editor.appendChild(modelContainer);
+    modelContainer.appendChild(model);
+    model.appendChild(modelImage);
     
-    modal.appendChild(saveDelete);
+    model.appendChild(saveDelete);
     saveDelete.appendChild(saveBtn);
     saveDelete.appendChild(deleteBtn);
 
@@ -77,25 +80,21 @@ function showWebcam(){
     recordingControls.appendChild(pictureBtn);
     pictureBtn.appendChild(cameraIcon);
     
-    let editor = document.getElementById('editor');
-    editor.appendChild(cameraContainer);
+
     cameraContainer.appendChild(photosContainer);
 }
 
 // Show the webcam feature after the button has been clicked.
 window.addEventListener('DOMContentLoaded', () => {
-document.getElementById("additionCamera").addEventListener("click", ()=> {
-
-    showWebcam(); 
-
+  showWebcam(); 
     let pictureBtn = document.getElementById("picture");
     let select = document.getElementById('select-camera');
     let videoElem = document.getElementById("video-element");
     let videoOverlay = document.getElementById('video-snapshot-overlay');
     let photosContainer = document.getElementById('photos-container');
     let picturesTaken = parseInt(localStorage.getItem('picturesTaken')) || 0;
-    let modalContainer = document.getElementById('modal-container');
-    
+    let modelContainer = document.getElementById('model-container');
+    let modelImage = document.getElementById("model-image");
     // select.addEventListener('change', () =>{
     //     //Disable picture button if no webcam is selected.
     //     if(select.selectedIndex == 0){
@@ -107,6 +106,8 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
     //     }
     //   });
       
+
+
       // When the picture button is clicked, capture a frame from the video
       pictureBtn.addEventListener('click', () => {
         picturesTaken += 1;
@@ -127,9 +128,9 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
       
         // Bring up the enlargened version if photo is clicked
         canvas.addEventListener('click', () => {
-          modalContainer.style.display = 'grid';
-          modalImage.getContext('2d').drawImage(canvas, 0, 0);
-          modal.prepend(modalImage);
+          modelContainer.style.display = 'grid';
+          modelImage.getContext('2d').drawImage(canvas, 0, 0);
+          model.prepend(modelImage);
           saveBtn.setAttribute('data-canvas-id', newListItem.id);
           deleteBtn.setAttribute('data-canvas-id', newListItem.id);
         });
@@ -185,13 +186,14 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
         // Pull images from IndexedDB and insert them in the DOM
         populateImageContainer();
       
-        // If the modal is clicked, close it
-        modalContainer.addEventListener('click', () => {
-          modalContainer.style.display = 'none';
+        // If the model is clicked, close it
+        modelContainer.addEventListener('click', () => {
+          modelContainer.style.display = 'none';
         });
       
         // Save the image to IndexedDB
-        saveBtn.addEventListener('click', () => {
+        let saveBtn = document.getElementById("save-btn");
+        document.getElementById("save-btn").addEventListener('click', () => {
           let listItem = document.getElementById(saveBtn.getAttribute('data-canvas-id'));
           let canvas = listItem.childNodes[0];
           canvas.toBlob(blob => {
@@ -226,9 +228,10 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
               }
             });
           });
-        
+        });
       
         // Delete the image from IndexedDB and from the DOM
+        let deleteBtn = document.getElementById('delete-btn');
         deleteBtn.addEventListener('click', () => {
           let canvas = document.getElementById(deleteBtn.getAttribute('data-canvas-id')).childNodes[0];
           let imgTimestamp = canvas.getAttribute('data-timestamp');
@@ -243,9 +246,7 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
             console.log(`Error deleting from IndexedDB: ${error}`);
           });
         });
-      
 
-      });
       // Find all Camera devices and let the user choose
       function populateCameraChoices() {
       
@@ -341,9 +342,9 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
       
           // Bring up the enlargened version if photo is clicked
           canvas.addEventListener('click', () => {
-            modalContainer.style.display = 'grid';
-            modalImage.getContext('2d').drawImage(canvas, 0, 0);
-            modal.prepend(modalImage);
+            modelContainer.style.display = 'grid';
+            modelImage.getContext('2d').drawImage(canvas, 0, 0);
+            model.prepend(modelImage);
             saveBtn.setAttribute('data-canvas-id', newListItem.id);
             deleteBtn.setAttribute('data-canvas-id', newListItem.id);
           });
@@ -351,8 +352,15 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
           newListItem.appendChild(canvas);
           photosContainer.prepend(newListItem);
         });
+        
       }
+      document.getElementById('camera-container').style.display= "none";
+      document.getElementById('model-container').style.display = "none";
+document.getElementById("additionCamera").addEventListener("click", ()=> {
+  document.getElementById('camera-container').style.display= document.getElementById('camera-container').style.display === "none" ? "grid" : "none";
+  // document.getElementById('camera-container').style.display = "grid";    
   });
+
 });
 
 module.exports = webcam;

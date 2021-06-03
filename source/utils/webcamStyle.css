@@ -54,7 +54,7 @@
 
 }
 
-#modal {
+#model {
   align-items: center;
   background-color: gray;
   display: grid;
@@ -64,21 +64,22 @@
   width: 700px;
 }
 
-#modal-container {
+#model-container {
   align-items: center;
   background-color: rgb(255,255,255,0.7);
   display: none;
   height: 98vh;
   justify-items: center;
-  left: 0;
-  position: absolute;
-  top: 0;
+
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
   width: 100vw;
-  z-index: 3;
+  z-index: 15;
 }
 
-#modal:hover,
-#modal-container:hover {
+#model:hover,
+#model-container:hover {
   cursor: pointer;
 }
 
