@@ -28,9 +28,13 @@ body {
   float: left;
   display: block;
   height: 56px;
-  margin: 19px;
+  margin: 10px 19px 28px 19px;
   line-height: 100%;
   z-index: 28;
+  -moz-transition: all 0.2s; 
+  -webkit-transition: all 0.2s; 
+  -o-transition: all 0.2s; 
+  transition: all 0.2s; 
 }
 
 #iconInside {
@@ -41,6 +45,10 @@ body {
   height: 50px;
   margin: 16px 19px 0 19px;
   line-height: 100%;
+  -moz-transition: all 0.2s; 
+  -webkit-transition: all 0.2s; 
+  -o-transition: all 0.2s; 
+  transition: all 0.2s; 
 }
 
 #lastYear {
@@ -80,15 +88,16 @@ body {
 }
 
 .team-icon {
-  content: url("../admin/branding/team-icon-removebg.png");
-  margin: 0 auto;
-  height: 74px;
-  width: 74px;
+  content: url("../admin/branding/slack-icon-removebg-ver2.png");
+  height: 64px;
+  width: 64px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 #equinox {
   margin: 28px auto;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 900;
   letter-spacing: 4px;
   color:rgb(45, 63, 65);
@@ -452,16 +461,16 @@ body {
 }
 /* The sidepanel menu */
 .sidepanel {
-height: 260px; /* Specify a height */
+height: 120px; /* Specify a height */
 width: 0; /* 0 width - change this with JavaScript */
 position: fixed; /* Stay in place */
-z-index: 10; /* Stay on top */
+z-index: 30; /* Stay on top */
 bottom: 0;
 left: 74px;
 background-color: rgb(158, 158, 158); /* Black*/
 overflow-x: hidden; /* Disable horizontal scroll */
-padding-top: 90px; /* Place content 60px from the top */
-padding-bottom: 60px;
+padding-top: 85px; /* Place content 60px from the top */
+padding-bottom: 30px;
 transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
 }
 
@@ -563,7 +572,7 @@ font-size: 25px;
 font-family: 'Lexend', sans-serif;
 width: 250px;
 height: 40px;
-background-color: rgb(94, 94, 94);
+background-color: rgb(196, 196, 196);
 border-width: 0;
 position: absolute;
 right: 50px;
