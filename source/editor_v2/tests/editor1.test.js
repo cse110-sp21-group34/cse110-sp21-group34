@@ -1,5 +1,7 @@
 // constructs journal and editor
-const Journal = require('storage');
+// Duplicate file
+
+/*const Journal = require('storage');
 const Editor = require('editor');
 
 import {expect, jest, test} from '@jest/globals';
@@ -26,4 +28,4 @@ describe('Basic user flow for SPA ', () => {
     });
         
 
-});
+});*/
