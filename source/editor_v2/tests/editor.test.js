@@ -7,7 +7,7 @@ const Editor = require('editor');
 const Journals = require('../../storage/journals');
 
 
-describe("Editor", () => {
+describe("Editor", async() => {
     it('Test 1', () => {
         let ref = {
             'labels': {},
@@ -15,7 +15,7 @@ describe("Editor", () => {
         };
 
         const newJournal = new Journals(ref, data => expect(JSON.parse(data)).toEqual(ref));
-        newJournal.push();
+        await newJournal.isReady;
         
 
         let date = "2021-5-31";
