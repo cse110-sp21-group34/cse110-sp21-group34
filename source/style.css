@@ -11,20 +11,15 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: lightgray;
+  background-color: rgb(233, 233, 233);
   line-height: 5;
   position: fixed;
   z-index: 28;
 }
 
-#spacer {
-  height: 20px;
-  width: 74px;
-}
-
 #icon {
   font-size: 36px;
-  color: rgb(48, 48, 48);
+  color: rgb(15, 25, 36);
   float: left;
   display: block;
   height: 56px;
@@ -62,6 +57,8 @@ body {
 }
 
 #nextYear {
+  position: absolute;
+  right: 0px;
   font-size: 36px;
   color: rgb(48, 48, 48);
   float: left;
@@ -72,19 +69,19 @@ body {
 }
 
 #icon:hover {
-  color: rgb(18, 123, 141);
+  color: rgb(11, 110, 134);
 }
 
 #iconInside:hover {
-  color: rgb(18, 123, 141);
+  color: rgb(11, 110, 134);
 }
 
 #lastYear:hover {
-  color: rgb(18, 123, 141);
+  color: rgb(11, 110, 134);
 }
 
 #nextYear:hover {
-  color: rgb(18, 123, 141);
+  color: rgb(11, 110, 134);
 }
 
 .team-icon {
@@ -101,6 +98,7 @@ body {
   font-weight: 900;
   letter-spacing: 4px;
   color:rgb(45, 63, 65);
+  text-shadow: rgb(167, 187, 189) 3px 3px 3px;
 }
 
 #topBar {
@@ -108,7 +106,7 @@ body {
   margin-left: 74px;
   font-family: 'Lexend', sans-serif;
   display: flex;
-  background-color: rgb(236, 250, 255);
+  background-color: rgb(242, 253, 255);
 }
 
 #editingTopBar {
@@ -117,7 +115,7 @@ body {
   height: 74px;
   font-family: 'Lexend', sans-serif;
   display: flex;
-  background-color: rgb(236, 250, 255);
+  background-color: rgb(242, 253, 255);
 }
 
 #topBar > * {
@@ -233,7 +231,7 @@ body {
 #selectorExpBlock {
   height: 100px;
   width: 16px;
-  background-color: #b8e2d5;
+  background-color: #b8d8e2;
   position: relative;
   left: 210px;
   top: -50vh;
@@ -244,7 +242,7 @@ body {
 }
 
 #selectorExpBlock:hover {
-  background-color: #4a7064;
+  background-color: #4a6d70;
 }
 
 #selectorExpBlock:hover i {
@@ -253,7 +251,7 @@ body {
 
 #year {
   height: 70px;
-  background-color: rgb(200, 200, 211);
+  background-color: rgb(229, 241, 240);
   line-height: 100%;
   width: 210px;
 }
@@ -264,6 +262,8 @@ body {
 }
 
 #yearNum {
+  position: absolute;
+  left: 74px;
   margin-top: 22px;
 }
 
@@ -276,7 +276,7 @@ body {
   font-family: 'Lexend', sans-serif;
   width: 210px;
   height: 70px;
-  background-color: rgb(177, 177, 218);
+  background-color: rgb(201, 218, 216);
   border-width: 0;
   padding: 0 0 0 20px;
 }
@@ -303,22 +303,31 @@ body {
 
 .oneDay {
   height: 60px;
-  background-color: #bebeb4;
+  background-color: rgb(229, 241, 240);
+  -moz-transition: all 0.2s; 
+  -webkit-transition: all 0.2s; 
+  -o-transition: all 0.2s; 
+  transition: all 0.2s; 
 }
 
 .oneDay:hover {
-  background-color: #b1b191;
+  background-color: #b9c9c4;
 }
 
 /* Make fixes here for the active color for selected date */
 .oneDayActive{
-  background-color: #b1b191;
+  background-color: #9dacaf;
+  text-shadow: rgb(255, 255, 255) 2.5px 2.5px 2.5px;
 }
 
 .oneDay > * {
   float: left;
   margin: 22px 20px 0 20px;
 }
+
+.oneDay:hover { 
+  text-shadow: rgb(255, 255, 255) 1.5px 1.5px 1.5px;
+}   
 
 .weekday {
   position: absolute;
@@ -387,7 +396,7 @@ body {
 
 .noteBlock {
   width: calc(100vw - 178px);
-  background-color: rgb(232, 234, 235);
+  background-color: rgb(225, 238, 243);
   margin: 32px 20px;
   padding: 1px 32px;
 }
@@ -415,7 +424,7 @@ body {
   margin-left: 0;
   font-family: 'Lexend', sans-serif;
   display: flex;
-  background-color: rgb(236, 250, 255);
+  background-color: rgb(244, 252, 255);
 }
 
 #mainPageTopBar {
@@ -426,7 +435,7 @@ body {
   margin-left: 0;
   font-family: 'Lexend', sans-serif;
   display: flex;
-  background-color: rgb(218, 245, 255);
+  background-color: rgb(225, 238, 243);
   position: relative;
 }
 
@@ -451,8 +460,6 @@ body {
     align-items: center;
     display: grid;
     justify-items: center;
-    /* Feel free to change if not fit (too bright or doesn't match with main theme) */
-    background-color: aquamarine;
     height: 5cm;
 }
 
@@ -461,17 +468,17 @@ body {
 }
 /* The sidepanel menu */
 .sidepanel {
-height: 120px; /* Specify a height */
-width: 0; /* 0 width - change this with JavaScript */
-position: fixed; /* Stay in place */
-z-index: 30; /* Stay on top */
-bottom: 0;
-left: 74px;
-background-color: rgb(158, 158, 158); /* Black*/
-overflow-x: hidden; /* Disable horizontal scroll */
-padding-top: 85px; /* Place content 60px from the top */
-padding-bottom: 30px;
-transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+  height: 120px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 30; /* Stay on top */
+  bottom: 0;
+  left: 74px;
+  background-color: rgb(146, 163, 162); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 85px; /* Place content 60px from the top */
+  padding-bottom: 30px;
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
 }
 
 /* The sidepanel links */
@@ -527,7 +534,7 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background-color: #ccc;
+background-color: rgb(189, 189, 189);
 -webkit-transition: .4s;
 transition: .4s;
 }
@@ -572,10 +579,11 @@ font-size: 25px;
 font-family: 'Lexend', sans-serif;
 width: 250px;
 height: 40px;
-background-color: rgb(196, 196, 196);
+background-color: rgb(204, 204, 204);
 border-width: 0;
 position: absolute;
 right: 50px;
+border-radius: 10px;
 }
 
 #addition {
