@@ -34,7 +34,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "\\.(css|less|sass|scss)$": ".identity-obj-proxy",
+      "\\.(css|less|sass|scss)$": "identity-obj-proxy",
       "\\.(gif|ttf|eot|svg)$": "./__mocks__/fileMock.js"
     }
   }
