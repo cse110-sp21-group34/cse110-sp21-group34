@@ -24,7 +24,7 @@
 
 #camera-container {
   position: fixed;
-  z-index: 7;
+  z-index: -3;
   align-items: center;
   background-color: lightgray;
   border-radius: 20px;
@@ -38,7 +38,7 @@
   text-align: center;
   padding: 20px;
   right: 120px;
-  bottom: 275px;
+  bottom: 225px;
 }
 
 #camera-select-container {
@@ -56,25 +56,25 @@
 
 #modal {
   align-items: center;
-  background-color: gray;
+  /* background-color: rgb(255, 11, 11); */
   display: grid;
   grid-template-rows: 8fr 1fr;
-  height: 500px;
+  
   justify-items: center;
-  width: 700px;
+  
 }
 
 #modal-container {
   align-items: center;
-  background-color: rgb(255,255,255,0.7);
+  background-color: rgba(243, 0, 0, 0);
   display: none;
-  height: 98vh;
+  
   justify-items: center;
-  left: 0;
+  
   position: absolute;
-  top: 0;
+  
   width: 100vw;
-  z-index: 3;
+  z-index: 10;
 }
 
 #modal:hover,

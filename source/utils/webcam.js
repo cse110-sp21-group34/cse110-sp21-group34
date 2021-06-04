@@ -1,5 +1,9 @@
 const Dexie = require('dexie');
 
+function showPreview(){
+
+}
+
 function showWebcam(){
 
     let photosContainer = document.createElement("ul");
@@ -61,10 +65,9 @@ function showWebcam(){
     modalContainer.appendChild(modal);
 
     modal.appendChild(modalImage);
-    
-    modal.appendChild(saveDelete);
-    saveDelete.appendChild(saveBtn);
-    saveDelete.appendChild(deleteBtn);
+    // modal.appendChild(saveDelete);
+    // saveDelete.appendChild(saveBtn);
+    // saveDelete.appendChild(deleteBtn);
 
     cameraContainer.appendChild(cameraSelectContainer);
     cameraSelectContainer.appendChild(selectCamera);
@@ -80,14 +83,49 @@ function showWebcam(){
     let editor = document.getElementById('editor');
     editor.appendChild(cameraContainer);
     cameraContainer.appendChild(photosContainer);
+    cameraContainer.appendChild(modalContainer);
 }
 
+
+let cameraActivated = false;
+
 // Show the webcam feature after the button has been clicked.
-window.addEventListener('DOMContentLoaded', () => {
+document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click", ()=> {
+  
+  if(cameraActivated == true){
+    let videoElem = document.getElementById("video-element");
+    let photosContainer = document.getElementById('photos-container');
+    let cameraContainer = document.getElementById('camera-container');
+
+    videoElem.srcObject = null;
+    document.getElementById('editor').removeChild(cameraContainer);
+    cameraContainer.removeChild(photosContainer);
+    cameraActivated = false;
+  }
+  
+})
+
 document.getElementById("additionCamera").addEventListener("click", ()=> {
 
+  if(cameraActivated == true){
+
+    let videoElem = document.getElementById("video-element");
+    let photosContainer = document.getElementById('photos-container');
+    let cameraContainer = document.getElementById('camera-container');
+
+    videoElem.srcObject = null;
+    document.getElementById('editor').removeChild(cameraContainer);
+    cameraContainer.removeChild(photosContainer);
+    cameraActivated = false;
+  }
+  else{
+    
+    cameraActivated = true;
     showWebcam(); 
 
+    let modalImage = document.getElementById('modal-image');
+    let saveBtn = document.getElementById('save-btn');
+    let deleteBtn = document.getElementById('delete-btn');
     let pictureBtn = document.getElementById("picture");
     let select = document.getElementById('select-camera');
     let videoElem = document.getElementById("video-element");
@@ -95,7 +133,15 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
     let photosContainer = document.getElementById('photos-container');
     let picturesTaken = parseInt(localStorage.getItem('picturesTaken')) || 0;
     let modalContainer = document.getElementById('modal-container');
+    let cameraContainer = document.getElementById('camera-container');
+    let canvas = document.getElementById('modal-image');
     
+    
+    
+    
+
+
+
     // select.addEventListener('change', () =>{
     //     //Disable picture button if no webcam is selected.
     //     if(select.selectedIndex == 0){
@@ -107,6 +153,32 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
     //     }
     //   });
       
+    // function toggleButtons() {
+    //   // If the video is on
+    //   if (!videoOff.disabled) {
+    //     videoOff.setAttribute('disabled', 'true');
+    //     pictureBtn.setAttribute('disabled', 'true');
+    //     pictureBtn.style.backgroundColor = 'rgb(235, 235, 235)';
+    //     message.innerText = 'Not Recording';
+    //     message.classList.remove('recording');
+    //     document.getElementById('select-camera').selectedIndex = 0;
+    //     mirrorVideo.disabled = true;
+    //     mirrorVideo.style.backgroundColor = 'rgb(235, 235, 235)';;
+    //     mirrorVideo.style.color = 'rgb(201, 201, 201)';
+    //     videoElem.classList.remove('mirror');
+    //   // If the video is off
+    //   } else {
+    //     videoOff.removeAttribute('disabled');
+    //     pictureBtn.removeAttribute('disabled');
+    //     pictureBtn.style.backgroundColor = 'white';
+    //     message.innerText = 'Recording';
+    //     message.classList.add('recording');
+    //     mirrorVideo.style.backgroundColor = 'white';
+    //     mirrorVideo.style.color = 'black';
+    //     mirrorVideo.disabled = false;
+    //   }
+    // }
+
       // When the picture button is clicked, capture a frame from the video
       pictureBtn.addEventListener('click', () => {
         picturesTaken += 1;
@@ -243,9 +315,8 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
             console.log(`Error deleting from IndexedDB: ${error}`);
           });
         });
-      
-
       });
+
       // Find all Camera devices and let the user choose
       function populateCameraChoices() {
       
@@ -262,7 +333,8 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
             }
           });
         });
-
+        
+        // Default camera will run
         const videoConstraints = {};
           if (select.value == '' || select.value == 'Select Camera:') {
             videoConstraints.facingMode = 'environment';
@@ -283,9 +355,9 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
               //   toggleButtons();
               // }
               return navigator.mediaDevices.enumerateDevices();
-            })
-            
-        select.addEventListener('click', () => {
+          })
+
+        select.addEventListener('change', () => {
           const videoConstraints = {};
           if (select.value == '' || select.value == 'Select Camera:') {
             videoConstraints.facingMode = 'environment';
@@ -342,7 +414,7 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
           // Bring up the enlargened version if photo is clicked
           canvas.addEventListener('click', () => {
             modalContainer.style.display = 'grid';
-            modalImage.getContext('2d').drawImage(canvas, 0, 0);
+            modalImage.getContext('2d').drawImage(canvas, 0, 0, 100,100);
             modal.prepend(modalImage);
             saveBtn.setAttribute('data-canvas-id', newListItem.id);
             deleteBtn.setAttribute('data-canvas-id', newListItem.id);
@@ -352,8 +424,9 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
           photosContainer.prepend(newListItem);
         });
       }
+    }
   });
-});
+
 
 module.exports = webcam;
 exports.webcam = webcam;
