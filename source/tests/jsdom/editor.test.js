@@ -2,13 +2,12 @@
  * @jest-environment jsdom
  */
 
-const Storage = require('../../storage/storage');
 const Editor = require('editor');
-const Journals = require('../../storage/journals');
+const Journals = require('storage/journals');
 
 
-describe("Editor", async() => {
-    it('Test 1', () => {
+describe("Editor", () => {
+    it('Test 1', async() => {
         let ref = {
             'labels': {},
             'journals': {}
