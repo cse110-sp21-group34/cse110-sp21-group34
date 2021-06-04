@@ -70,20 +70,12 @@
   display: none;
   
   justify-items: center;
-<<<<<<< HEAD
-  
-  position: absolute;
-  
-  width: 100vw;
-  z-index: 10;
-=======
 
   position: fixed;
   right: 0px;
   bottom: 0px;
   width: 100vw;
   z-index: 15;
->>>>>>> 42d252c20725a1038b7b86aa3a5d7c47e201a5fe
 }
 
 #model:hover,
