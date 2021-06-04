@@ -11,19 +11,30 @@
 
 /* Set the width of the sidebar to 250px (show it) */
 document.getElementsByClassName("bi bi-gear")[0].addEventListener("click", () => {
-  document.getElementById("mySidepanel").style.width = "500px";
-  document.getElementById("contentArea").style.pointerEvents = "none";
-  document.getElementById("editor").style.pointerEvents = "none";
-  document.getElementById("settingIcon").style.transform = "rotate(180deg)";
-  console.log("Executing action");
+  if(document.getElementById("mySidepanel").style.width === "0px") {
+    document.getElementById("mySidepanel").style.width = "500px";
+    document.getElementById("contentArea").style.pointerEvents = "none";
+    document.getElementById("editor").style.pointerEvents = "none";
+    document.getElementById("settingIcon").style.transform = "rotate(180deg)";
+    document.getElementById("blocker").style.pointerEvents = "all";
+  document.getElementById("blocker").style.zIndex = "29";
+    console.log("Executing action");
+  }else if(document.getElementById("mySidepanel").style.width !== "0px") {
+    document.getElementById("mySidepanel").style.width = "0";
+    document.getElementById("contentArea").style.pointerEvents = "all";
+    document.getElementById("editor").style.pointerEvents = "all";
+    document.getElementById("settingIcon").style.transform = "rotate(0deg)";
+    console.log("Executing action");
+  }
 });
 
-/* Set the width of the sidebar to 0 (hide it) */
-document.getElementsByClassName("closebtn")[0].addEventListener("click", () => {
+document.getElementById("blocker").addEventListener("click", () => {
   document.getElementById("mySidepanel").style.width = "0";
   document.getElementById("contentArea").style.pointerEvents = "all";
   document.getElementById("editor").style.pointerEvents = "all";
   document.getElementById("settingIcon").style.transform = "rotate(0deg)";
+  document.getElementById("blocker").style.pointerEvents = "none";
+  document.getElementById("blocker").style.zIndex = "-2";
   console.log("Executing action");
 });
 
