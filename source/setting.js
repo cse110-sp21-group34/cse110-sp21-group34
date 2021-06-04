@@ -95,3 +95,21 @@ document.getElementsByClassName("bi bi-stop-circle")[0].addEventListener("click"
   document.getElementById("audio-element").style.zIndex = "15";
   console.log("Executing action");
 });
+
+document.getElementById("selectorExpBlock").addEventListener("click", () => {
+  if(document.getElementById("dateSelector").style.marginLeft === "-210px") {
+    document.getElementById("dateSelector").style.marginLeft = "0px";
+    document.getElementById("selectorExpBlock").style.left = "210px";
+    document.getElementById("selectorExp").style.transform = "rotate(180deg)";
+  }else {
+    document.getElementById("dateSelector").style.marginLeft = "-210px";
+    document.getElementById("selectorExpBlock").style.left = "210px";
+    document.getElementById("selectorExp").style.transform = "rotate(0deg)";
+  }
+});
+
+document.getElementById("dateSelector").style.marginLeft = "0px";
+
+setTimeout(function() {
+  document.getElementById("dateSelector").style.marginLeft = "-210px";
+}, 750);
