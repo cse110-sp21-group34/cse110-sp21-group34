@@ -16,13 +16,15 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.26.0",
-    "jest": "*",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.3",
     "jest-dev-server": "*",
     "jest-puppeteer": "*",
     "jsdoc": "^3.6.7",
     "parcel": "^2.0.0-beta.2",
     "prettier": "^2.3.0",
-    "puppeteer": "*"
+    "puppeteer": "*",
+    "jest-transform-css": "^2.1.0"
   },
   "dependencies": {
     "editor": "file:editor_v2",

@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 const newEditor = require('editor');
 const storage = require('storage');
+const voice = require('./utils/voice');
 
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
@@ -157,24 +158,18 @@ document.getElementById("languageSelector").addEventListener("change", () => {
     length = "short";
     dayLength = "long";
     document.getElementById("language").innerText = "Language";
-    document.getElementById("darkMode").innerText = "Dark Mode";
-    document.getElementById("autoLabel").innerText = "Auto-Generated Labels";
     document.getElementById("about").innerText = "About Equinox";
   } else if (document.getElementById("languageSelector").value === "Chinese") {
     lang = "zh";
     length = "long";
     dayLength = length;
     document.getElementById("language").innerText = "语言";
-    document.getElementById("darkMode").innerText = "暗色模式";
-    document.getElementById("autoLabel").innerText = "自动生成标签";
     document.getElementById("about").innerText = "关于Equinox";
   } else if (document.getElementById("languageSelector").value === "Tamil") {
     lang = "ta";
     length = "long";
     dayLength = "long";
     document.getElementById("language").innerText = "மொழி";
-    document.getElementById("darkMode").innerText = "இருண்ட பயன்முறை";
-    document.getElementById("autoLabel").innerText = "தானியங்கி விவரங்கள்";
     document.getElementById("about").innerText = "எக்வினாக்சு பற்றி";
   } else if (
     document.getElementById("languageSelector").value === "Bahasa Indonesia") {
@@ -182,15 +177,11 @@ document.getElementById("languageSelector").addEventListener("change", () => {
     length = "long";
     dayLength = length;
     document.getElementById("language").innerText = "Bahasa";
-    document.getElementById("darkMode").innerText = "Mode Gelap";
-    document.getElementById("autoLabel").innerText = "Label Otomatis";
     document.getElementById("about").innerText = "Tentang Equinox";
   } else {
     lang = "ar-EG";
     document.getElementById("language").innerText = "اللغة";
-    document.getElementById("darkMode").innerText = "اللون الظالم";
-    document.getElementById("autoLabel").innerText = "Auto-Generated Labels";
-    document.getElementById("about").innerText = "About Equinox";
+    document.getElementById("about").innerText = "عن اقوينوكس";
   }
   updateDates();
   updateMonthLanguage();
@@ -223,6 +214,8 @@ const todayElement = document
 
 todayElement.classList.add("oneDayActive");
 // eslint-disable-next-line prettier/prettier
-storage.journals.isReady.then(() => newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor"));
+storage.journals.isReady
+  .then(() => {return newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor")})
+  .then(editorObj => {voice.createButton(editorObj)});
 document.getElementsByClassName("dayList")[0].scrollTop =
   todayElement.offsetTop;
