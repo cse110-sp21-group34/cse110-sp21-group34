@@ -14,6 +14,7 @@ document.getElementsByClassName("bi bi-gear")[0].addEventListener("click", () =>
   document.getElementById("mySidepanel").style.width = "500px";
   document.getElementById("contentArea").style.pointerEvents = "none";
   document.getElementById("editor").style.pointerEvents = "none";
+  document.getElementById("settingIcon").style.transform = "rotate(180deg)";
   console.log("Executing action");
 });
 
@@ -22,6 +23,7 @@ document.getElementsByClassName("closebtn")[0].addEventListener("click", () => {
   document.getElementById("mySidepanel").style.width = "0";
   document.getElementById("contentArea").style.pointerEvents = "all";
   document.getElementById("editor").style.pointerEvents = "all";
+  document.getElementById("settingIcon").style.transform = "rotate(0deg)";
   console.log("Executing action");
 });
 
