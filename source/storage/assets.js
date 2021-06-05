@@ -81,10 +81,32 @@ class AssetsDexieWrapper {
   }
 }
 
+class AssetsMockWrapper {
+  constructor() {
+    this.db = {};
+  }
+
+  retrieve(uid) {
+    return Promise.resolve({data:this.db[uid]});
+  }
+
+  submit(data) {
+    this.db[data.uid] = data
+    return Promise.resolve(data.uid);
+  }
+
+  remove(uid) {
+    delete this.db[uid];
+    return Promise.resolve(uid);
+  }
+}
+
 module.exports = {
     Assets: Assets,
-    AssetsDexieWrapper: AssetsDexieWrapper
+    AssetsDexieWrapper: AssetsDexieWrapper,
+    AssetsMockWrapper: AssetsMockWrapper
 }
 
 exports.Assets = Assets;
 exports.AssetsDexieWrapper = AssetsDexieWrapper;
+exports.AssetsMockWrapper = AssetsMockWrapper;

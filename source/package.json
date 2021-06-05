@@ -33,10 +33,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "dexie": "^3.0.3",
     "editor": "file:editor_v2",
-    "jest-transform-css": "^2.1.0",
-    "md5": "^2.3.0",
     "storage": "file:storage"
   },
   "jest": {
