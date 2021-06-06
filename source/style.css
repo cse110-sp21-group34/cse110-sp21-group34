@@ -715,7 +715,7 @@ border-radius: 10px;
 }
 
 #voiceArea {
-  z-index: 7;
+  z-index: -5;
   position: fixed;
   height: 150px;
   width: 350px;
@@ -725,24 +725,26 @@ border-radius: 10px;
   opacity: 0;
   -webkit-transition: .4s;
   transition: .4s;
+  pointer-events: none;
 }
 
-#record-title {
-  position: absolute;
-  right: 60px;
-  bottom: 130px;
+#timer {
+  position: fixed;
+  right: 188px;
+  bottom: 55px;
+  z-index: -3;
+  font-size: 24px;
+  width: max-content;
+  height: 100px;
+  margin: 0;
+  display: block;
 }
 
-#message {
-  position: absolute;
-  right: 60px;
-  bottom: 85px;
-  font-weight: 800;
-}
-
-#audio-element {
-  position: absolute;
-  right: 0;
-  bottom: 30px;
-  z-index: 15;
+#sec {
+  position: fixed;
+  right: 160px;
+  bottom: 128px;
+  color: #6db6b5;
+  opacity: 0;
+  z-index: -3;
 }

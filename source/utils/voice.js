@@ -50,22 +50,6 @@ function createButton(editorObj) {
         let stopBtn = document.getElementsByClassName("bi bi-stop-circle")[0];
         let message = document.getElementById('message');
         let audioElem = document.getElementById('audio-element');
-
-        if(document.getElementById("additionSecondExp").style.width === "0px") {
-          document.getElementById("additionSecondExp").style.width = "56px";
-          document.getElementById("additionRecordStart").style.opacity = "100%";
-          document.getElementById("additionCamera").style.opacity = "0";
-          document.getElementById("additionCamera").style.pointerEvents = "none";
-          if(document.getElementById("voiceArea")){
-            document.getElementById("voiceArea").style.opacity = "100%";
-            document.getElementById("voiceArea").style.pointerEvents = "all";
-          }
-          document.getElementById("additionRecordStart").style.pointerEvents = "all";
-          if(document.getElementById("audio-element")){
-            document.getElementById("audio-element").style.zIndex = "15";
-            document.getElementById("audio-element").style.pointerEvents = "all";
-          }
-        }
       
         function toggleButtons() {
         if (recordBtn.disabled) {
@@ -127,11 +111,6 @@ function createButton(editorObj) {
             }
 
             message.innerText = "Ready to record";
-
-            document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => {
-                mediaRecorder = new MediaRecorder(stream);
-                console.log("validating");
-            });
         }
 
         let onError = function(err) {

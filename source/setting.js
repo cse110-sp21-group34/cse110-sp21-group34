@@ -60,9 +60,6 @@ document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click"
     document.getElementById("additionSecondExp").style.width = "0";
     document.getElementById("additionRecordStart").style.opacity = "0";
     document.getElementById("additionRecordStop").style.opacity = "0";
-    if(document.getElementById("voiceArea")){
-      document.getElementById("voiceArea").style.opacity = "0";
-    }
     document.getElementById("additionMicrophoneClose").style.opacity = "0";
     document.getElementById("additionRecordStart").style.pointerEvents = "none";
     document.getElementById("additionRecordStop").style.pointerEvents = "none";
@@ -80,8 +77,12 @@ document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => 
     document.getElementById("additionRecordStop").style.opacity = "0";
     document.getElementById("additionCamera").style.opacity = "100%";
     document.getElementById("additionCamera").style.pointerEvents = "all";
-    document.getElementById("voiceArea").style.opacity = "0";
-    document.getElementById("audio-element").style.zIndex = "15";
+  }else if(document.getElementById("additionSecondExp").style.width === "0px") {
+    document.getElementById("additionSecondExp").style.width = "56px";
+    document.getElementById("additionRecordStart").style.opacity = "100%";
+    document.getElementById("additionCamera").style.opacity = "0";
+    document.getElementById("additionCamera").style.pointerEvents = "none";
+    document.getElementById("additionRecordStart").style.pointerEvents = "all";
   }
   console.log("Executing action");
 });
@@ -91,7 +92,11 @@ document.getElementsByClassName("bi bi-record-circle")[0].addEventListener("clic
   document.getElementById("additionRecordStop").style.opacity = "100%";
   document.getElementById("additionRecordStop").style.pointerEvents = "all";
   document.getElementById("additionRecordStart").style.pointerEvents = "none";
-  document.getElementById("audio-element").style.zIndex = "15";
+  document.getElementById("additionMicrophoneClose").style.pointerEvents = "none";
+  document.getElementById("additionMicrophone").style.pointerEvents = "none";
+  document.getElementById("additionThreeDots").style.pointerEvents = "none";
+  document.getElementById("sec").style.opacity = "100";
+  timer();
   console.log("Executing action");
 });
 
@@ -100,7 +105,10 @@ document.getElementsByClassName("bi bi-stop-circle")[0].addEventListener("click"
   document.getElementById("additionRecordStart").style.opacity = "100%";
   document.getElementById("additionRecordStart").style.pointerEvents = "all";
   document.getElementById("additionRecordStop").style.pointerEvents = "none";
-  document.getElementById("audio-element").style.zIndex = "15";
+  document.getElementById("additionMicrophoneClose").style.pointerEvents = "all";
+  document.getElementById("additionMicrophone").style.pointerEvents = "all";
+  document.getElementById("additionThreeDots").style.pointerEvents = "all";
+  document.getElementById("sec").style.opacity = "0";
   console.log("Executing action");
 });
 
@@ -121,3 +129,35 @@ document.getElementById("dateSelector").style.marginLeft = "0px";
 setTimeout(function() {
   document.getElementById("dateSelector").style.marginLeft = "-210px";
 }, 750);
+
+function timer() {
+  console.log("start timing");
+  createTimerText(0);
+  var start = Date.now();
+  var myTimer = setInterval(function oneTimer() {
+    var delta = Date.now() - start; // milliseconds elapsed since start
+    createTimerText(Math.floor(delta / 1000)); // in seconds
+  }, 1000);
+  document.getElementsByClassName("bi bi-stop-circle")[0].addEventListener("click", () => {
+    clearInterval(myTimer);
+    console.log("stop timing");
+    deleteTimerText();
+  });
+}
+
+var timerBlock = document.getElementById("timerBlock");
+
+function createTimerText(time) {
+  if(document.getElementById("timer")) {
+    deleteTimerText();
+  }
+  var timerText = document.createElement("p");
+  timerText.id = "timer";
+  timerText.innerText = time.toString();
+  timerBlock.appendChild(timerText);
+}
+
+function deleteTimerText() {
+  var timerText = document.getElementById("timer");
+  timerBlock.removeChild(timerText);
+}
