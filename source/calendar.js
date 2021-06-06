@@ -2,6 +2,7 @@
 const newEditor = require('editor');
 const storage = require('storage');
 const voice = require('./utils/voice');
+const webcam = require('./utils/webcam');
 
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
@@ -216,6 +217,7 @@ todayElement.classList.add("oneDayActive");
 // eslint-disable-next-line prettier/prettier
 storage.journals.isReady
   .then(() => {return newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor")})
-  .then(editorObj => {voice.createButton(editorObj)});
+  .then(editorObj => {voice.createButton(editorObj); return editorObj})
+  .then(editorObj => {webcam(editorObj)});
 document.getElementsByClassName("dayList")[0].scrollTop =
   todayElement.offsetTop;

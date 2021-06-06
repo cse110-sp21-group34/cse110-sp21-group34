@@ -1,210 +1,219 @@
-const Dexie = require('dexie');
+import styles from './webcamStyle.css';
 
-function showPreview(){
-
-}
+const storage = require('storage');
 
 function showWebcam(){
+  // Camera holder
+  let cameraContainer = document.createElement("div");
+  cameraContainer.id = "camera-container";
 
-    let photosContainer = document.createElement("ul");
-    photosContainer.id = "photos-container";
+  // Control Bar
+  let recordingControls = document.createElement("div");
+  recordingControls.id = "recording-controls";
 
-    let modalContainer = document.createElement("div");
-    modalContainer.id = "modal-container";
+  let pictureBtn = document.createElement("button");
+  pictureBtn.id = "picture";
+  pictureBtn.setAttribute('disabled', true);
+  let cameraIcon = document.createElement("i");
+  cameraIcon.id = "cameraIcon";
+  recordingControls.appendChild(pictureBtn);
+  pictureBtn.appendChild(cameraIcon);
 
-    let modal = document.createElement("modal");
-    modal.id = "modal";
+  let cameraOptionBtn = document.createElement("button");
+  cameraOptionBtn.id = "cameraOption";
+  cameraOptionBtn.setAttribute('disabled', true);
+  let cameraOptionIcon = document.createElement("i");
+  cameraOptionIcon.id = "cameraOptionIcon";
+  recordingControls.appendChild(cameraOptionBtn);
+  cameraOptionBtn.appendChild(cameraOptionIcon);
 
-    let modalImage = document.createElement("canvas");
-    modalImage.id = "modal-image"
-    modalImage.setAttribute("width", "640");
-    modalImage.setAttribute("height", "360");
+  // Preview Overlay
+  let videoSnapshot = document.createElement("div");
+  videoSnapshot.id = "video-snapshot-overlay";
 
-    let saveDelete = document.createElement("div");
-    saveDelete.id = "save-delete";
+  let video = document.createElement("video");
+  video.id = "video-element";
+  video.setAttribute("autoplay", "true");
+  video.setAttribute("width", "640");
+  video.setAttribute("height", "360");
+  
+  cameraContainer.appendChild(videoSnapshot);
+  cameraContainer.appendChild(video);
 
-    let saveBtn = document.createElement("button");
-    saveBtn.id = "save-btn";
+  cameraContainer.appendChild(recordingControls);
+  
+  document.getElementById('editor').appendChild(cameraContainer);
+}
 
-    let deleteBtn = document.createElement("button");
-    deleteBtn.id = "delete-btn";
+function toggleScene(scene, canvas, editor) {
+  const recordingControls = document.getElementById('recording-controls'),
+        captureBtn = document.getElementById('picture'),
+        cameraOptionBtn = document.getElementById('cameraOption');
+  let pictureAcceptBtn = document.getElementById('pictureAccept'),
+      pictureDeclineBtn = document.getElementById('pictureDecline');
 
-    let cameraContainer = document.createElement("div");
-    cameraContainer.id = "camera-container";
+  switch (scene) {
+    case 'live':
+      if (pictureAcceptBtn) pictureAcceptBtn.remove();
+      if (pictureDeclineBtn) pictureDeclineBtn.remove();
+      captureBtn.removeAttribute('hidden');
+      cameraOptionBtn.removeAttribute('hidden');
+      document.getElementById('camera_preview_img').remove();
+      break;
+    case 'preview':
+      captureBtn.setAttribute('hidden', true);
+      cameraOptionBtn.setAttribute('hidden', true);
 
-    let recordingControls = document.createElement("div");
-    recordingControls.id = "recording-controls";
-
-    let pictureBtn = document.createElement("button");
-    pictureBtn.id = "picture";
-
-    let cameraIcon = document.createElement("i");
-    cameraIcon.id = "cameraIcon";
-    cameraIcon.setAttribute("class", "fas fa-camera");
+      pictureAcceptBtn = document.createElement("button");
+      pictureAcceptBtn.id = "pictureAccept";
+      let pictureAcceptIcon = document.createElement("i");
+      pictureAcceptIcon.id = "pictureAcceptIcon";
+      recordingControls.appendChild(pictureAcceptBtn);
+      pictureAcceptBtn.appendChild(pictureAcceptIcon);
     
-    let cameraSelectContainer = document.createElement("div");
-    cameraSelectContainer.id = "camera-select-container";
+      pictureDeclineBtn = document.createElement("button");
+      pictureDeclineBtn.id = "pictureDecline";
+      let pictureDeclineIcon = document.createElement("i");
+      pictureDeclineIcon.id = "pictureDeclineIcon";
+      recordingControls.appendChild(pictureDeclineBtn);
+      pictureDeclineBtn.appendChild(pictureDeclineIcon);
 
-    let selectCamera = document.createElement("select");
-    selectCamera.id = "select-camera";
-    selectCamera.setAttribute("placeholder", "Select Camera:");
+      pictureAcceptBtn.addEventListener('click', () => {
+        // transport to editor
+        canvas.toBlob(blob => 
+          storage.assets.save(blob).then(uid => editor.blocks.insert("image", {asset_id: uid}, {}, editor.blocks.getBlocksCount()))
+        );
+        toggleScene('live');
+      });
 
-    let option = document.createElement("option");
-    option.id = "option";
-    option.innerText = "Select Camera:"
+      pictureDeclineBtn.addEventListener('click', () => {
+        toggleScene('live');
+      });
+      break;
+  }
+}
 
-    let videoSnapshot = document.createElement("div");
-    videoSnapshot.id = "video-snapshot-overlay";
+let cameraChoices = [];
 
-    let video = document.createElement("video");
-    video.id = "video-element";
-    video.setAttribute("autoplay", "true");
-    video.setAttribute("width", "640");
-    video.setAttribute("height", "360");
+function populateCameraChoices() {
+  let videoElem = document.getElementById("video-element");
+  cameraChoices = [];
+  navigator.mediaDevices.enumerateDevices().then(mediaDevices => {
+    mediaDevices.forEach(mediaDevice => {
+      if (mediaDevice.kind === 'videoinput') {
+        cameraChoices.push(mediaDevice);
+      }
+    });
+  
+    if (cameraChoices.length == 0) {
+      console.error('No webcam found!');
+      return;
+    }
+    // Default camera will run
+    const cameraOptionBtn = document.getElementById('cameraOption'),
+          pictureBtn = document.getElementById('picture');
 
-    modalContainer.appendChild(modal);
+    const constraints = {
+      video: {
+        exact: cameraChoices[0].deviceId
+      },
+      audio: false
+    };
 
-    modal.appendChild(modalImage);
-    // modal.appendChild(saveDelete);
-    // saveDelete.appendChild(saveBtn);
-    // saveDelete.appendChild(deleteBtn);
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(stream => {
+        videoElem.srcObject = stream;
+        // if (videoOff.disabled) {
+        //   toggleButtons();
+        // }
+        return navigator.mediaDevices.enumerateDevices();
+    })
 
-    cameraContainer.appendChild(cameraSelectContainer);
-    cameraSelectContainer.appendChild(selectCamera);
-    // selectCamera.appendChild(option);
-    
-    cameraContainer.appendChild(videoSnapshot);
-    cameraContainer.appendChild(video);
+    cameraOptionBtn.setAttribute('camid', 0);
+    cameraOptionBtn.setAttribute('cam_name', cameraChoices[0].label);
 
-    cameraContainer.appendChild(recordingControls);
-    recordingControls.appendChild(pictureBtn);
-    pictureBtn.appendChild(cameraIcon);
-    
-    let editor = document.getElementById('editor');
-    editor.appendChild(cameraContainer);
-    cameraContainer.appendChild(photosContainer);
-    cameraContainer.appendChild(modalContainer);
+    cameraOptionBtn.addEventListener('click', () => {
+      let nextCamid = cameraOptionBtn.getAttribute('camid') + 1;
+      if (nextCamid >= cameraChoices.length) {
+        nextCamid = 0;
+      }
+      const constraints = {
+        video: {
+          exact: cameraChoices[nextCamid].deviceId
+        },
+        audio: false
+      };
+
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(stream => {
+          videoElem.srcObject = stream;
+          // if (videoOff.disabled) {
+          //   toggleButtons();
+          // }
+          return navigator.mediaDevices.enumerateDevices();
+        });
+        // .catch(error => {
+        //   if (videoOff.disabled) {
+        //     toggleButtons();
+        //   }
+        //   videoElem.srcObject = null;
+        //   console.error(error);
+        // });
+      this.setAttribute('camid', nextCamid);
+      this.setAttribute('cam_name', cameraChoices[nextCamid].label);
+    });
+
+    cameraOptionBtn.removeAttribute('disabled');
+    pictureBtn.removeAttribute('disabled');
+  });
 }
 
 
 let cameraActivated = false;
 
-// Show the webcam feature after the button has been clicked.
-document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click", ()=> {
-  
-  if(cameraActivated == true){
-    let videoElem = document.getElementById("video-element");
-    let photosContainer = document.getElementById('photos-container');
-    let cameraContainer = document.getElementById('camera-container');
+function initWebcam(editor) {
+  // Show the webcam feature after the button has been clicked.
+  document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click", ()=> {
+    if(cameraActivated == true){
+      let videoElem = document.getElementById("video-element");
+      let photosContainer = document.getElementById('photos-container');
+      let cameraContainer = document.getElementById('camera-container');
 
-    videoElem.srcObject = null;
-    document.getElementById('editor').removeChild(cameraContainer);
-    cameraContainer.removeChild(photosContainer);
-    cameraActivated = false;
-  }
-  
-})
+      videoElem.srcObject = null;
+      document.getElementById('editor').removeChild(cameraContainer);
+      cameraActivated = false;
+    }
+  })
 
-document.getElementById("additionCamera").addEventListener("click", ()=> {
+  document.getElementById("additionCamera").addEventListener("click", () => {
+    if(cameraActivated == true) {
+      let videoElem = document.getElementById("video-element");
+      let cameraContainer = document.getElementById('camera-container');
 
-  if(cameraActivated == true){
+      videoElem.srcObject = null;
+      document.getElementById('editor').removeChild(cameraContainer);
+      cameraActivated = false;
+    }
+    else {
+      cameraActivated = true;
+      showWebcam(); 
 
-    let videoElem = document.getElementById("video-element");
-    let photosContainer = document.getElementById('photos-container');
-    let cameraContainer = document.getElementById('camera-container');
-
-    videoElem.srcObject = null;
-    document.getElementById('editor').removeChild(cameraContainer);
-    cameraContainer.removeChild(photosContainer);
-    cameraActivated = false;
-  }
-  else{
-    
-    cameraActivated = true;
-    showWebcam(); 
-
-    let modalImage = document.getElementById('modal-image');
-    let saveBtn = document.getElementById('save-btn');
-    let deleteBtn = document.getElementById('delete-btn');
-    let pictureBtn = document.getElementById("picture");
-    let select = document.getElementById('select-camera');
-    let videoElem = document.getElementById("video-element");
-    let videoOverlay = document.getElementById('video-snapshot-overlay');
-    let photosContainer = document.getElementById('photos-container');
-    let picturesTaken = parseInt(localStorage.getItem('picturesTaken')) || 0;
-    let modalContainer = document.getElementById('modal-container');
-    let cameraContainer = document.getElementById('camera-container');
-    let canvas = document.getElementById('modal-image');
-    
-    
-    
-    
-
-
-
-    // select.addEventListener('change', () =>{
-    //     //Disable picture button if no webcam is selected.
-    //     if(select.selectedIndex == 0){
-    //       pictureBtn.setAttribute('disabled', 'true');
-    //       videoElem.srcObject = null;
-    //     }
-    //     else{
-    //       pictureBtn.removeAttribute('disabled');
-    //     }
-    //   });
-      
-    // function toggleButtons() {
-    //   // If the video is on
-    //   if (!videoOff.disabled) {
-    //     videoOff.setAttribute('disabled', 'true');
-    //     pictureBtn.setAttribute('disabled', 'true');
-    //     pictureBtn.style.backgroundColor = 'rgb(235, 235, 235)';
-    //     message.innerText = 'Not Recording';
-    //     message.classList.remove('recording');
-    //     document.getElementById('select-camera').selectedIndex = 0;
-    //     mirrorVideo.disabled = true;
-    //     mirrorVideo.style.backgroundColor = 'rgb(235, 235, 235)';;
-    //     mirrorVideo.style.color = 'rgb(201, 201, 201)';
-    //     videoElem.classList.remove('mirror');
-    //   // If the video is off
-    //   } else {
-    //     videoOff.removeAttribute('disabled');
-    //     pictureBtn.removeAttribute('disabled');
-    //     pictureBtn.style.backgroundColor = 'white';
-    //     message.innerText = 'Recording';
-    //     message.classList.add('recording');
-    //     mirrorVideo.style.backgroundColor = 'white';
-    //     mirrorVideo.style.color = 'black';
-    //     mirrorVideo.disabled = false;
-    //   }
-    // }
+      let pictureBtn = document.getElementById("picture");
+      let videoElem = document.getElementById("video-element");
+      let videoOverlay = document.getElementById('video-snapshot-overlay');
 
       // When the picture button is clicked, capture a frame from the video
       pictureBtn.addEventListener('click', () => {
-        picturesTaken += 1;
-        localStorage.setItem('picturesTaken', picturesTaken);
-        let newListItem = document.createElement('li');
-        newListItem.id = `picNum${picturesTaken}`;
         let canvas = document.createElement('canvas');
-      
-        // Adding the captured image to the gallery, but we want to immidiately show
-        canvas.classList.add('gallery-image');
-        canvas.width = videoElem.width;
+        canvas.id = 'camera_preview_img';
         canvas.height = videoElem.height;
-        canvas.style.width = 160;
-        canvas.style.heigth = 90;
-        let timestamp = new Date();
-        canvas.setAttribute('data-timestamp', timestamp.getTime());
+        canvas.width = videoElem.width;
+        canvas.setAttribute('data-timestamp', new Date().getTime());
+
         let context = canvas.getContext('2d');
-      
-        // Bring up the enlargened version if photo is clicked
-        canvas.addEventListener('click', () => {
-          modalContainer.style.display = 'grid';
-          modalImage.getContext('2d').drawImage(canvas, 0, 0);
-          modal.prepend(modalImage);
-          saveBtn.setAttribute('data-canvas-id', newListItem.id);
-          deleteBtn.setAttribute('data-canvas-id', newListItem.id);
-        });
+        context.drawImage(videoElem, 0, 0, videoElem.width, videoElem.height);
       
         // flash effect
         videoOverlay.style.backgroundColor = 'white';
@@ -212,221 +221,17 @@ document.getElementById("additionCamera").addEventListener("click", ()=> {
         setTimeout(() => {
           videoOverlay.style.transition = '0.05s ease all';
           videoOverlay.style.backgroundColor = 'transparent';
+          videoOverlay.appendChild(canvas);
+          toggleScene('preview', canvas, editor);
         }, 200);
-        
-        // We don't need this since we don't have a mirror feature.
-      
-        // if (videoElem.classList.contains('mirror')) {
-        //   // Flip the canvas to draw the image mirrored, then flip the canvas back
-        //   // so that the image number isn't mirrored as well
-        //   context.translate(canvas.width, 0);
-        //   context.scale(-1, 1);
-        //   context.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
-        //   context.translate(canvas.width, 0);
-        //   context.scale(-1, 1);
-        // } else {
-        //   context.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
-        // }
-      
-        // Adding the captured image to the gallery
-        context.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
-      
-        // Add photo count to bottom left
-        // context.font = '80px Sans-serif';
-        // context.strokeStyle = 'black';
-        // context.lineWidth = 8;
-        // context.strokeText(`${picturesTaken}`, 10, 350);
-        // context.fillStyle = 'white';
-        // context.fillText(`${picturesTaken}`, 10, 350);
-      
-        newListItem.appendChild(canvas);
-        photosContainer.prepend(newListItem);
       });
       
-        // Created IndexedDB database using Dexie.js
-        console.log("Working");
-        db = new Dexie("image_database");
-        db.version(1).stores({
-            images: 'timestamp,file,id'
-        });
-      
-        // Find all Camera devices and let the user choose
-        populateCameraChoices();
-        console.log("Working");
-
-        // Pull images from IndexedDB and insert them in the DOM
-        populateImageContainer();
-      
-        // If the modal is clicked, close it
-        modalContainer.addEventListener('click', () => {
-          modalContainer.style.display = 'none';
-        });
-      
-        // Save the image to IndexedDB
-        saveBtn.addEventListener('click', () => {
-          let listItem = document.getElementById(saveBtn.getAttribute('data-canvas-id'));
-          let canvas = listItem.childNodes[0];
-          canvas.toBlob(blob => {
-            let imgTimestamp = canvas.getAttribute('data-timestamp');
-            db.images.get(imgTimestamp).then(image => {
-              console.log("memek");
-              if (!image) {
-                db.images.put({timestamp: imgTimestamp, file: blob, id: listItem.id}).then(() => {
-                  return db.images.get(imgTimestamp);
-                }).then(image => {
-                  let saveFile = document.getElementById('save-file');
-                  let blob = image.file;
-                  let url  = URL.createObjectURL(blob);
-                  saveFile.href = url;
-                  saveFile.download = `Picture_${picturesTaken}`;
-                  saveFile.click();
-                  alert('Saved Successfully! (In Downloads folder)');
-                  console.log('Saved Successfully!');
-                }).catch(function(error) {
-                  alert(`Error saving to IndexedDB: ${error}`);
-                  console.log(`Error saving to IndexedDB: ${error}`);
-                });
-              } else {
-                let saveFile = document.getElementById('save-file');
-                let blob = image.file;
-                let url  = URL.createObjectURL(blob);
-                saveFile.href = url;
-                saveFile.download = `${imgTimestamp}`;
-                saveFile.click();
-                alert('Saved Successfully! (In Downloads folder)');
-                console.log('Saved Successfully!');
-              }
-            });
-          });
-        
-      
-        // Delete the image from IndexedDB and from the DOM
-        deleteBtn.addEventListener('click', () => {
-          let canvas = document.getElementById(deleteBtn.getAttribute('data-canvas-id')).childNodes[0];
-          let imgTimestamp = canvas.getAttribute('data-timestamp');
-          db.images.delete(imgTimestamp).then(() => {
-            alert('Deleted from IndexedDB Sucessfully!');
-            console.log('Deleted from IndexedDB Sucessfully!');
-            let listItem = document.getElementById(deleteBtn.getAttribute('data-canvas-id'));
-            photosContainer.removeChild(listItem);
-            console.log('Removed from DOM');
-          }).catch(function(error) {
-            alert(`Error deleting from IndexedDB: ${error}`);
-            console.log(`Error deleting from IndexedDB: ${error}`);
-          });
-        });
-      });
-
       // Find all Camera devices and let the user choose
-      function populateCameraChoices() {
-      
-        navigator.mediaDevices.enumerateDevices().then(mediaDevices => {
-          let count = 1;
-          mediaDevices.forEach(mediaDevice => {
-            if (mediaDevice.kind === 'videoinput') {
-              let option = document.createElement('option');
-              option.value = mediaDevice.deviceId;
-              let label = mediaDevice.label || `Camera ${count++}`;
-              let textNode = document.createTextNode(label);
-              option.appendChild(textNode);
-              select.appendChild(option);
-            }
-          });
-        });
-        
-        // Default camera will run
-        const videoConstraints = {};
-          if (select.value == '' || select.value == 'Select Camera:') {
-            videoConstraints.facingMode = 'environment';
-          } else {
-            videoConstraints.deviceId = { exact: select.value };
-          }
-          const constraints = {
-            video: videoConstraints,
-            audio: false
-          };
-      
-          navigator.mediaDevices
-            .getUserMedia(constraints)
-            .then(stream => {
-              currStream = stream;
-              videoElem.srcObject = stream;
-              // if (videoOff.disabled) {
-              //   toggleButtons();
-              // }
-              return navigator.mediaDevices.enumerateDevices();
-          })
-
-        select.addEventListener('change', () => {
-          const videoConstraints = {};
-          if (select.value == '' || select.value == 'Select Camera:') {
-            videoConstraints.facingMode = 'environment';
-          } else {
-            videoConstraints.deviceId = { exact: select.value };
-          }
-          const constraints = {
-            video: videoConstraints,
-            audio: false
-          };
-      
-          navigator.mediaDevices
-            .getUserMedia(constraints)
-            .then(stream => {
-              currStream = stream;
-              videoElem.srcObject = stream;
-              // if (videoOff.disabled) {
-              //   toggleButtons();
-              // }
-              return navigator.mediaDevices.enumerateDevices();
-            })
-            // .catch(error => {
-            //   if (videoOff.disabled) {
-            //     toggleButtons();
-            //   }
-            //   videoElem.srcObject = null;
-            //   console.error(error);
-            // });
-        });
-      }
-      
-      // Pull images from IndexedDB and insert them in the DOM
-      function populateImageContainer() {
-        db.images.each(image => {
-          // Create the list item and canvas elements
-          let newListItem = document.createElement('li');
-          newListItem.id = image.id;
-          let canvas = document.createElement('canvas');
-          canvas.classList.add('gallery-image');
-          canvas.width = videoElem.width;
-          canvas.height = videoElem.height;
-          canvas.style.width = 160;
-          canvas.style.heigth = 90;
-          canvas.setAttribute('data-timestamp', image.timestamp);
-      
-          // Add the blob to the Canvas
-          let context = canvas.getContext('2d');
-          let img = new Image();
-          img.onload = function(){
-            context.drawImage(img, 0, 0, canvas.width, canvas.height)
-          }
-          img.src = URL.createObjectURL(image.file);
-      
-          // Bring up the enlargened version if photo is clicked
-          canvas.addEventListener('click', () => {
-            modalContainer.style.display = 'grid';
-            modalImage.getContext('2d').drawImage(canvas, 0, 0, 100,100);
-            modal.prepend(modalImage);
-            saveBtn.setAttribute('data-canvas-id', newListItem.id);
-            deleteBtn.setAttribute('data-canvas-id', newListItem.id);
-          });
-          
-          newListItem.appendChild(canvas);
-          photosContainer.prepend(newListItem);
-        });
-      }
+      populateCameraChoices();
     }
   });
+}
 
 
-module.exports = webcam;
-exports.webcam = webcam;
+module.exports = initWebcam;
+exports.webcam = initWebcam;

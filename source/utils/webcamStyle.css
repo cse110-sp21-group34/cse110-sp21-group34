@@ -8,11 +8,6 @@
   width: 99%;
 }
 
-.gallery-image:hover {
-  filter: opacity(50%);
-  cursor: pointer;
-}
-
 .mirror {
   transform: scaleX(-1);
 }
@@ -24,7 +19,7 @@
 
 #camera-container {
   position: fixed;
-  z-index: -3;
+  z-index: 1;
   align-items: center;
   background-color: lightgray;
   border-radius: 20px;
@@ -32,55 +27,18 @@
   grid-template-areas:
   'video'
   'controls';
-  width: 650px;
-  height: 400px;
+  grid-template-rows: auto 50px;
+  max-width: 650px;
+  max-height: 400px;
   justify-items: center;
   text-align: center;
   padding: 20px;
   right: 120px;
-  bottom: 225px;
-}
-
-#camera-select-container {
-  display: flex;
+  bottom: 5%;
 }
 
 #message {
   font-size: 1.1em;
-}
-
-#cameraIcon{
-  align-self: center;
-
-}
-
-#model {
-  align-items: center;
-  /* background-color: rgb(255, 11, 11); */
-  display: grid;
-  grid-template-rows: 8fr 1fr;
-  
-  justify-items: center;
-  
-}
-
-#model-container {
-  align-items: center;
-  background-color: rgba(243, 0, 0, 0);
-  display: none;
-  
-  justify-items: center;
-
-  position: fixed;
-  right: 0px;
-  bottom: 0px;
-  width: 100vw;
-  z-index: 15;
-}
-
-#model:hover,
-#model-container:hover {
-  cursor: pointer;
 }
 
 #photo-capture {
@@ -113,6 +71,16 @@
   width: 160px;
 }
 
+#recording-controls {
+  align-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-areas: '. decline capture accept cam';
+  align-items: center;
+  justify-items: center;
+}
+
 #recording-controls button {
   background-color: rgb(255, 255, 255);
   border: black;
@@ -122,7 +90,6 @@
   font-size: 1.5em;
   align-items: center;
 }
-
 
 #recording-controls button:hover {
   cursor: pointer;
@@ -134,46 +101,64 @@
   cursor: not-allowed;
 }
 
-#save-delete {
-  align-self: flex-start;
-  column-gap: 20px;
-  grid-template-columns: 1fr 1fr;
+
+#recording-controls #picture {
+  grid-area: capture;
 }
 
-#save-delete button {
-  height: 30px;
-  width: 120px;
-}
-
-#save-delete button:hover {
-  cursor: pointer;
-}
-
-#select-camera {
+#recording-controls #picture #cameraIcon{
   align-self: center;
-  height: 20px;
-  justify-self: center;
-  margin-right: 20px;
-  width: 50px;
+  content: url('./icons/photo_camera_black_36dp.svg');
 }
 
-#save-file {
-  display: none;
+#recording-controls #picture:disabled #cameraIcon {
+  align-self: center;
+  content: url('./icons/no_photography_black_36dp.svg');
+}
+
+
+#recording-controls #cameraOption {
+  grid-area: cam;
+}
+
+#recording-controls #cameraOption #cameraOptionIcon{
+  align-self: center;
+  content: url('./icons/cameraswitch_black_36dp.svg');
+}
+
+
+#recording-controls #pictureAccept {
+  grid-area: accept;
+}
+
+#recording-controls #pictureAccept #pictureAcceptIcon{
+  align-self: center;
+  content: url('./icons/done_black_36dp.svg');
+}
+
+
+#recording-controls #pictureDecline {
+  grid-area: decline;
+}
+
+#recording-controls #pictureDecline #pictureDeclineIcon{
+  align-self: center;
+  content: url('./icons/clear_black_36dp.svg');
 }
 
 #video-element {
   background-color: gray;
   grid-area: video;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 #video-snapshot-overlay {
   background-color: transparent;
-  height: 360px;
+  height: 100%;
   grid-area: video;
   position: relative;
   transition: 0.2s ease all;
-  width: 640px;
-  z-index: 2;
+  width: 100%;
+  z-index: 3;
 }
