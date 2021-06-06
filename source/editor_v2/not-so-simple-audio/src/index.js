@@ -1,7 +1,7 @@
 /**
  * Build styles
  */
-//require('./index.css').toString();
+import styles from './index.css';
 
 const storage = require("storage");
 
@@ -161,7 +161,7 @@ class NotSoSimpleAudio {
         audio.src = URL.createObjectURL(blob)
         audio.setAttribute('asset_id', this.data.asset_id)
       }).catch(err => {
-        console.error("Failed to retrieve asset " + this.data.asset_id + ": " + err)
+        console.error("[NotSoSimpleAudio] Failed to retrieve asset " + this.data.asset_id + ": " + err)
       });
     }
     else if (this.data.url) {
@@ -207,18 +207,16 @@ class NotSoSimpleAudio {
           this.data.asset_id = uid;
           delete this.data.url;
           audio.setAttribute('asset_id', uid);
+          console.log("[NotSoSimpleAudio] saved: ", uid);
         }).catch(err => {
-          console.error("Failed to save asset " + audio.src + ": " + err)
-        }).finally(() => {
-          console.log("WHYYY NOT DISPATCH??????");
-          audio.dispatchEvent(new Event('focusout'));
+          console.error("[NotSoSimpleAudio] Failed to save asset " + audio.src + ": " + err)
         });
       }
     };
 
     audio.onerror = (e) => {
       // @todo use api.Notifies.show() to show error notification
-      console.log('Failed to load an audio', e);
+      console.error('[NotSoSimpleAudio] Failed to load an audio', e);
     }; 
 
     return wrapper;

@@ -1,7 +1,7 @@
 /**
  * Build styles
  */
-//require('./index.css').toString();
+import styles from './index.css';
 
 const storage = require("storage");
 
@@ -150,7 +150,7 @@ class NotSoSimpleImage {
         image.src = URL.createObjectURL(blob)
         image.setAttribute('asset_id', this.data.asset_id)
       }).catch(err => {
-        console.error("Failed to retrieve asset " + this.data.asset_id + ": " + err)
+        console.error("[NotSoSimpleImage] Failed to retrieve asset " + this.data.asset_id + ": " + err)
       });
     }
     else if (this.data.url) {
@@ -194,18 +194,16 @@ class NotSoSimpleImage {
           this.data.asset_id = uid;
           delete this.data.url;
           image.setAttribute('asset_id', uid);
+          console.log("[NotSoSimpleImage] saved:", uid);
         }).catch(err => {
-          console.error("Failed to save asset " + image.src + ": " + err)
-        }).finally(() => {
-          console.log("WHYYY NOT DISPATCH??????");
-          image.dispatchEvent(new Event('focusout'));
+          console.error("[NotSoSimpleImage] Failed to save asset " + image.src + ": " + err)
         });
       }
     };
 
     image.onerror = (e) => {
       // @todo use api.Notifies.show() to show error notification
-      console.log('Failed to load an image', e);
+      console.error('[NotSoSimpleImage] Failed to load an image', e);
     }; 
 
     return wrapper;
