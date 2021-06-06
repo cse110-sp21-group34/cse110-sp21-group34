@@ -1,0 +1,164 @@
+/* styles.css */
+
+.webcam {
+  align-items: center;
+  display: grid;
+  height: 98.5vh;
+  justify-items: center;
+  width: 99%;
+}
+
+.mirror {
+  transform: scaleX(-1);
+}
+
+.recording {
+  color: red;
+  font-weight: bold;
+}
+
+#camera-container {
+  position: fixed;
+  z-index: 1;
+  align-items: center;
+  background-color: lightgray;
+  border-radius: 20px;
+  display: grid;
+  grid-template-areas:
+  'video'
+  'controls';
+  grid-template-rows: auto 50px;
+  max-width: 650px;
+  max-height: 400px;
+  justify-items: center;
+  text-align: center;
+  padding: 20px;
+  right: 120px;
+  bottom: 5%;
+}
+
+#message {
+  font-size: 1.1em;
+}
+
+#photo-capture {
+  grid-area: video;
+}
+
+#photos-container {
+  background-color: lightgray;
+  border-radius: 20px;
+  display: flex;
+  height: 111px;
+  list-style-type: none;
+  max-width: 680px;
+  padding: 20px 0;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+#photos-container li {
+  margin-right: 20px;
+  padding: none;
+}
+
+#photos-container li:first-of-type {
+  margin-left: 20px;
+}
+
+#photos-container > li > canvas {
+  height: 90px;
+  width: 160px;
+}
+
+#recording-controls {
+  align-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-areas: '. decline capture accept cam';
+  align-items: center;
+  justify-items: center;
+}
+
+#recording-controls button {
+  background-color: rgb(255, 255, 255);
+  border: black;
+  width: 50px;
+  border-radius: 50px;
+  height: 40px;
+  font-size: 1.5em;
+  align-items: center;
+}
+
+#recording-controls button:hover {
+  cursor: pointer;
+}
+
+#recording-controls button:disabled {
+  background-color: rgb(235, 235, 235);
+  color: rgb(201, 201, 201);
+  cursor: not-allowed;
+}
+
+
+#recording-controls #picture {
+  grid-area: capture;
+}
+
+#recording-controls #picture #cameraIcon{
+  align-self: center;
+  content: url('./icons/photo_camera_black_36dp.svg');
+}
+
+#recording-controls #picture:disabled #cameraIcon {
+  align-self: center;
+  content: url('./icons/no_photography_black_36dp.svg');
+}
+
+
+#recording-controls #cameraOption {
+  grid-area: cam;
+}
+
+#recording-controls #cameraOption #cameraOptionIcon{
+  align-self: center;
+  content: url('./icons/cameraswitch_black_36dp.svg');
+}
+
+
+#recording-controls #pictureAccept {
+  grid-area: accept;
+}
+
+#recording-controls #pictureAccept #pictureAcceptIcon{
+  align-self: center;
+  content: url('./icons/done_black_36dp.svg');
+}
+
+
+#recording-controls #pictureDecline {
+  grid-area: decline;
+}
+
+#recording-controls #pictureDecline #pictureDeclineIcon{
+  align-self: center;
+  content: url('./icons/clear_black_36dp.svg');
+}
+
+#video-element {
+  background-color: gray;
+  grid-area: video;
+  position: relative;
+  z-index: 2;
+}
+
+#video-snapshot-overlay {
+  background-color: transparent;
+  height: 100%;
+  grid-area: video;
+  position: relative;
+  transition: 0.2s ease all;
+  width: 100%;
+  z-index: 3;
+}
