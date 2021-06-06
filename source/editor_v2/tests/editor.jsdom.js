@@ -29,7 +29,6 @@ describe("Editor", () => {
         let holderNode = document.createElement('div');
         holderNode.id = holder;
         document.body.appendChild(holderNode);
-        console.log(document.getElementById('editor'));
 
         let newEditor = new Editor(date, holder, {journals: newJournal});
         expect(newEditor.isReady).resolves.toBe(expect.anything());
