@@ -38,6 +38,7 @@ document.getElementById("blocker").addEventListener("click", () => {
   console.log("Executing action");
 });
 
+document.getElementById("additionFirstExp").style.height = "0";
 document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click", () => {
   if(document.getElementById("additionFirstExp").style.height !== "0px") {
     document.getElementById("additionThreeDots").style.transform = "rotate(0deg)";
@@ -59,12 +60,16 @@ document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click"
     document.getElementById("additionSecondExp").style.width = "0";
     document.getElementById("additionRecordStart").style.opacity = "0";
     document.getElementById("additionRecordStop").style.opacity = "0";
-    document.getElementById("voiceArea").style.opacity = "0";
+    if(document.getElementById("voiceArea")){
+      document.getElementById("voiceArea").style.opacity = "0";
+    }
     document.getElementById("additionMicrophoneClose").style.opacity = "0";
     document.getElementById("additionRecordStart").style.pointerEvents = "none";
     document.getElementById("additionRecordStop").style.pointerEvents = "none";
   }
-  document.getElementById("audio-element").style.zIndex = "15";
+  if(document.getElementById("audio-element")){
+    document.getElementById("audio-element").style.zIndex = "15";
+  }
   console.log("Executing action");
 });
 
@@ -77,16 +82,6 @@ document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => 
     document.getElementById("additionCamera").style.pointerEvents = "all";
     document.getElementById("voiceArea").style.opacity = "0";
     document.getElementById("audio-element").style.zIndex = "15";
-  }else if(document.getElementById("additionSecondExp").style.width === "0px") {
-    document.getElementById("additionSecondExp").style.width = "56px";
-    document.getElementById("additionRecordStart").style.opacity = "100%";
-    document.getElementById("additionCamera").style.opacity = "0";
-    document.getElementById("additionCamera").style.pointerEvents = "none";
-    document.getElementById("voiceArea").style.opacity = "100%";
-    document.getElementById("voiceArea").style.pointerEvents = "all";
-    document.getElementById("additionRecordStart").style.pointerEvents = "all";
-    document.getElementById("audio-element").style.zIndex = "15";
-    document.getElementById("audio-element").style.pointerEvents = "all";
   }
   console.log("Executing action");
 });

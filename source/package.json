@@ -8,35 +8,31 @@
   },
   "scripts": {
     "dev": "parcel editing-page.html -p 8000",
-    "test": "jest --env=jsdom",
-    "doc": "jsdoc -c jsdoc.json",
-    "prep": "npm install && npm link ./storage && npm link ./editor_v2"
+    "test": "jest --silent",
+    "test:unit": "jest --selectProjects Unit",
+    "test:jsdom": "jest --selectProjects Jsdom",
+    "test:e2e": "jest --selectProjects End-to-End",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-jest": "^27.0.2",
     "eslint": "^7.26.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.0.3",
+    "jest": "^27.0.4",
     "jest-dev-server": "*",
-    "jest-puppeteer": "*",
+    "jest-puppeteer": "^5.0.4",
+    "jest-transform-css": "^2.1.0",
     "jsdoc": "^3.6.7",
     "parcel": "^2.0.0-beta.2",
     "prettier": "^2.3.0",
-    "puppeteer": "*"
+    "puppeteer": "^10.0.0"
   },
   "dependencies": {
-    "dexie": "^3.0.3",
     "editor": "file:editor_v2",
-    "jest-transform-css": "^2.1.0",
-    "md5": "^2.3.0",
     "storage": "file:storage"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "moduleNameMapper": {
-      "\\.(css|less|sass|scss)$": "identity-obj-proxy",
-      "\\.(gif|ttf|eot|svg)$": "./__mocks__/fileMock.js"
-    }
   }
 }
