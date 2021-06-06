@@ -13,11 +13,12 @@ class Assets {
    * @return {Promise<Blob>} promise object resolving to a blob object
    */
   get(uid) {
-    console.log("get() called: " + uid);
     if (this.map.uid) {
+      console.log("[Assets] getting asset from cache: " + uid);
       return new Promise(resolve => resolve(this.map[uid]));
     }
 
+    console.log("[Assets] getting asset: " + uid);
     return this.db.retrieve(uid).then(obj => {
       return fetch(obj.data);
     }).then(response => {
@@ -34,7 +35,7 @@ class Assets {
    * @returns {Promise<String>} promise object resolving to the key of that object
    */
   save(blob) {
-    console.log("save() called");
+    console.log("[Assets] saving asset");
     const reader = new FileReader();
 
     reader.readAsDataURL(blob);
@@ -44,7 +45,7 @@ class Assets {
         resolve(this.db.submit({uid: Md5(event.target.result), type: blob.type, data: event.target.result}));
       }
     }).then(uid => {
-      console.log("saved: " + uid)
+      console.log("[Assets] saved: " + uid)
       this.map[uid] = blob;
       return uid;
     });
@@ -71,7 +72,7 @@ class AssetsDexieWrapper {
 
   submit(data) {
     return this.db.assets.put(data).then(obj => {
-      console.log("submit() => obj: ", obj);
+      console.log("[Assets] submited. uid is", obj);
       return Promise.resolve(obj);
     })
   }

@@ -32,7 +32,7 @@ let saveTimer;
 //   } 
 // }
 
-function initSaver(editor, date, holderid) {
+function initListeners(editor, date, holderid) {
   document.getElementById(holderid).addEventListener('keydown', (e) => {
     // Map the behavior of 'enter' into 'shift + enter' for paragrah
     if (e.target.className === 'ce-paragraph cdx-block' || e.target.className === 'cdx-input embed-tool__caption') {
@@ -41,20 +41,7 @@ function initSaver(editor, date, holderid) {
         document.execCommand("insertLineBreak"); 
       }
     }
-    
-    // reset saveTimer
-    console.log("keydown triggered")
-    window.clearTimeout(saveTimer);
-    saveTimer = window.setTimeout(() => {editor.save().then((outputData) => {storage.journals.save(date, outputData)})} , savingInterval);
-
   });
-  document.getElementById(holderid).addEventListener('focusout', () => {
-    // Immediately save when bullet loses focus
-    console.log("defocused")
-    editor.save().then((outputData) => storage.journals.save(date, outputData));
-  });
-  // document.getElementById(holderid).addEventListener('change', () => console.log("changed!"));
-
 }
 
 function newEditor(date, holder) {
@@ -66,8 +53,11 @@ function newEditor(date, holder) {
     onReady: () => {
       // new Undo({ editor_obj});
       new DragDrop(editor_obj);
-      initSaver(editor_obj, date, holder, storage);
+      initListeners(editor_obj, date, holder);
       editor_obj.focus(true);
+    },
+    onChange: () => {
+      editor_obj.save().then((outputData) => storage.journals.save(date, outputData));
     },
     tools: {
       list: {

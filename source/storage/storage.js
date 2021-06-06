@@ -5,21 +5,21 @@ const storage = {
   init: init,
   get journals() {
     init();
-    return storage.journals;
+    return this.journals;
   },
   set journals(j) {
-    delete storage.journals;
-    storage.journals = j;
-    storage.j = j;
+    delete this.journals;
+    this.journals = j;
+    this.j = j;
   },
   get assets() {
     init();
-    return storage.assets;
+    return this.assets;
   },
   set assets(a) {
-    delete storage.assets;
-    storage.assets = a;
-    storage.a = a;
+    delete this.assets;
+    this.assets = a;
+    this.a = a;
   }
 }
 

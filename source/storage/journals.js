@@ -13,7 +13,7 @@ class Journals {
           Object.keys(source).length === 0
         ) {
           console.error(
-            "Source of journal is invalid. Received ",
+            "[Journals] Source of journal is invalid. Received ",
             source,
             ". Using default"
           );
@@ -23,7 +23,7 @@ class Journals {
             settings: {}
           };
         } else if (!"journals" in source || !"labels" in source) {
-          console.error("Invalid format. Using default");
+          console.error("[Journals] Invalid format. Using default");
           source = {
             labels: {},
             journals: {},
@@ -86,7 +86,7 @@ class Journals {
    */
   get(date) {
     if (!this.journals[date]) {
-      console.log("no such date");
+      console.log("[Journals] no such date");
       return {};
     }
     return this.journals[date];
@@ -104,9 +104,9 @@ class Journals {
         this.journals[date][key] = data[key];
       }
       return this.push().then(() => {
-        console.log("data saved")
+        console.log("[Journals] data saved")
       }).catch(error => {
-        console.error(`Error when saving journal on ${date}: ${error}`);
+        console.error(`[Journals] Error when saving journal on ${date}: ${error}`);
       });
     }
   }
@@ -130,7 +130,7 @@ class Journals {
    */
   newlabel(label, properties = {}) {
     if (this.labels[label]) {
-      console.warn("Attempting to create duplicated label: ", label);
+      console.warn("[Journals] Attempting to create duplicated label: ", label);
     }
     this.labels[label] = new Label(label, properties);
     this.push();
@@ -152,7 +152,7 @@ class Journals {
     }
 
     console.error(
-      "Failed to remove label: ",
+      "[Journals] Failed to remove label: ",
       this.labels[label].name,
       " is used in ",
       Object.keys(this.labels[label].journals).join(" ")
@@ -167,7 +167,7 @@ class Journals {
    */
   label(date, label = null) {
     if (label && !this.labels[label]) {
-      console.error("Label does not exist: ", label);
+      console.error("[Journals] Label does not exist: ", label);
       return;
     }
     if (label === null || this.journals[date].label) {
