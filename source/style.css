@@ -4,6 +4,20 @@ body {
   line-height: 100%;
 }
 
+#blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0%;
+  background-color: white;
+}
+
 .sidenav {
   height: 100%;
   width: min-content;
@@ -14,7 +28,7 @@ body {
   background-color: rgb(233, 233, 233);
   line-height: 5;
   position: fixed;
-  z-index: 28;
+  z-index: 30;
 }
 
 #icon {
@@ -30,6 +44,25 @@ body {
   -webkit-transition: all 0.2s; 
   -o-transition: all 0.2s; 
   transition: all 0.2s; 
+}
+
+#settingIcon {
+  font-size: 36px;
+  color: rgb(15, 25, 36);
+  float: left;
+  display: block;
+  position: fixed;
+  height: 36px;
+  left: 19px;
+  margin-bottom: 50px;
+  line-height: 100%;
+  z-index: 28;
+  transform: rotate(0deg);
+  -moz-transition: all 0.5s; 
+  -webkit-transition: all 0.5s; 
+  -o-transition: all 0.5s; 
+  transition: all 0.5s; 
+  z-index: 30;
 }
 
 #iconInside {
@@ -72,6 +105,10 @@ body {
   color: rgb(11, 110, 134);
 }
 
+#settingIcon:hover {
+  color: rgb(11, 110, 134);
+}
+
 #iconInside:hover {
   color: rgb(11, 110, 134);
 }
@@ -97,7 +134,7 @@ body {
   font-size: 40px;
   font-weight: 900;
   letter-spacing: 4px;
-  color:rgb(45, 63, 65);
+  color:rgb(45, 57, 65);
   text-shadow: rgb(167, 187, 189) 3px 3px 3px;
 }
 
@@ -476,7 +513,7 @@ body {
   left: 74px;
   background-color: rgb(146, 163, 162); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 85px; /* Place content 60px from the top */
+  padding-top: 65px; /* Place content 60px from the top */
   padding-bottom: 30px;
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
 }
@@ -678,7 +715,7 @@ border-radius: 10px;
 }
 
 #voiceArea {
-  z-index: 7;
+  z-index: -5;
   position: fixed;
   height: 150px;
   width: 350px;
@@ -688,20 +725,21 @@ border-radius: 10px;
   opacity: 0;
   -webkit-transition: .4s;
   transition: .4s;
+  pointer-events: none;
 }
 
-#record-title {
-  position: absolute;
-  right: 60px;
-  bottom: 130px;
+#timer {
+  position: fixed;
+  right: 188px;
+  bottom: 55px;
+  z-index: -3;
+  font-size: 24px;
+  width: max-content;
+  height: 100px;
+  margin: 0;
+  display: block;
 }
 
-#message {
-  position: absolute;
-  right: 60px;
-  bottom: 85px;
-  font-weight: 800;
-}
 
 #audio-element {
   position: absolute;
@@ -712,4 +750,13 @@ border-radius: 10px;
 
 #contentArea {
   position: relative;
+
+#sec {
+  position: fixed;
+  right: 160px;
+  bottom: 128px;
+  color: #6db6b5;
+  opacity: 0;
+  z-index: -3;
+
 }
