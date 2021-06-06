@@ -9,9 +9,9 @@
   "scripts": {
     "dev": "parcel editing-page.html -p 8000",
     "test": "jest --silent",
-    "test:unit": "jest --projects tests/unit",
-    "test:jsdom": "jest --projects tests/jsdom",
-    "test:e2e": "jest --projects tests/e2e",
+    "test:unit": "jest --selectProjects Unit",
+    "test:jsdom": "jest --selectProjects Jsdom",
+    "test:e2e": "jest --selectProjects End-to-End",
     "doc": "jsdoc -c jsdoc.json"
   },
   "author": "",
@@ -32,7 +32,6 @@
     "puppeteer": "^10.0.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
     "editor": "file:editor_v2",
     "storage": "file:storage"
   }

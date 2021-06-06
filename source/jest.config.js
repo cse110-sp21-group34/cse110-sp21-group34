@@ -3,7 +3,7 @@ module.exports = {
   projects: [
     {
       name: 'e2e',
-      displayName: 'End-to-End Tests',
+      displayName: 'End-to-End',
       preset: "jest-puppeteer",
   
       // A list of paths to directories that 
@@ -15,7 +15,7 @@ module.exports = {
     },
     {
       name: 'jsdom',
-      displayName: 'Jsdom Tests',
+      displayName: 'Jsdom',
       roots: [
         './'
       ],
@@ -27,7 +27,7 @@ module.exports = {
     },
     {
       name: 'unit',
-      displayName: 'Unit Tests',
+      displayName: 'Unit',
       roots: [
         './'
       ],
