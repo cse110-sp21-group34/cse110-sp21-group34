@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 describe("Editor", () => {
-    it('Test 1', async() => {
+    it('Initialize Test', async() => {
         let ref = {
             'labels': {},
             'journals': {}
@@ -26,8 +26,12 @@ describe("Editor", () => {
 
         let date = "2021-5-31";
         let holder = "editor";
+        let holderNode = document.createElement('div');
+        holderNode.id = holder;
+        document.body.appendChild(holderNode);
+        console.log(document.getElementById('editor'));
+
         let newEditor = new Editor(date, holder, {journals: newJournal});
-        console.log(newEditor);
-        expect(newEditor.date).toBe("2021-5-31");
+        expect(newEditor.isReady).resolves.toBe(expect.anything());
     });
 });

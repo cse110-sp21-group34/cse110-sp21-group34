@@ -116,6 +116,7 @@ function newEditor(date, holder) {
       },
   },
   });
+  editor_obj.date = date;
   return editor_obj;
 }
 

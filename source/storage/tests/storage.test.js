@@ -1,5 +1,4 @@
 const Journals = require('storage/journals')
-require("@babel/polyfill");
 
 describe("Storage Interface", () => {
 
