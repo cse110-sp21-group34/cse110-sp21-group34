@@ -28,7 +28,7 @@ body {
   background-color: rgb(233, 233, 233);
   line-height: 5;
   position: fixed;
-  z-index: 30;
+  z-index: 31;
 }
 
 #icon {
@@ -242,7 +242,7 @@ body {
   -o-transition: all 0.5s; 
   transition: all 0.5s; 
   margin-left: -210px;
-  z-index: 18;
+  z-index: 30;
 }
 
 #selectorExp {
@@ -508,7 +508,7 @@ body {
   height: 120px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 30; /* Stay on top */
+  z-index: 31; /* Stay on top */
   bottom: 0;
   left: 74px;
   background-color: rgb(146, 163, 162); /* Black*/

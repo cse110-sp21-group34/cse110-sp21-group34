@@ -17,7 +17,7 @@ document.getElementsByClassName("bi bi-gear")[0].addEventListener("click", () =>
     document.getElementById("editor").style.pointerEvents = "none";
     document.getElementById("settingIcon").style.transform = "rotate(180deg)";
     document.getElementById("blocker").style.pointerEvents = "all";
-  document.getElementById("blocker").style.zIndex = "29";
+    document.getElementById("blocker").style.zIndex = "29";
     console.log("Executing action");
   }else if(document.getElementById("mySidepanel").style.width !== "0px") {
     document.getElementById("mySidepanel").style.width = "0";
@@ -35,6 +35,9 @@ document.getElementById("blocker").addEventListener("click", () => {
   document.getElementById("settingIcon").style.transform = "rotate(0deg)";
   document.getElementById("blocker").style.pointerEvents = "none";
   document.getElementById("blocker").style.zIndex = "-2";
+  document.getElementById("dateSelector").style.marginLeft = "-210px";
+  document.getElementById("selectorExpBlock").style.left = "210px";
+  document.getElementById("selectorExp").style.transform = "rotate(0deg)";
   console.log("Executing action");
 });
 
@@ -117,10 +120,14 @@ document.getElementById("selectorExpBlock").addEventListener("click", () => {
     document.getElementById("dateSelector").style.marginLeft = "0px";
     document.getElementById("selectorExpBlock").style.left = "210px";
     document.getElementById("selectorExp").style.transform = "rotate(180deg)";
+    document.getElementById("blocker").style.pointerEvents = "all";
+    document.getElementById("blocker").style.zIndex = "29";
   }else {
     document.getElementById("dateSelector").style.marginLeft = "-210px";
     document.getElementById("selectorExpBlock").style.left = "210px";
     document.getElementById("selectorExp").style.transform = "rotate(0deg)";
+    document.getElementById("blocker").style.zIndex = "-2";
+    document.getElementById("blocker").style.pointerEvents = "none";
   }
 });
 
