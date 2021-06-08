@@ -185,6 +185,9 @@ class Journals {
    * @return {Object} settings
    */
   get settings() {
+    if (this.database.settings == undefined) {
+      this.database.settings = {};
+    }
     return this.database.settings;
   }
 
@@ -193,7 +196,7 @@ class Journals {
    * @param {Object} newSettings settings object
    */
   set settings(newSettings) {
-    this.database.settings = {...newSettings};
+    this.database.settings = Object.assign(this.database.settings, newSettings);
     this.push();
   }
 }
