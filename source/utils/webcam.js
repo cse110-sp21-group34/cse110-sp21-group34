@@ -134,7 +134,7 @@ function populateCameraChoices() {
     cameraOptionBtn.setAttribute('cam_name', cameraChoices[0].label);
 
     cameraOptionBtn.addEventListener('click', () => {
-      let nextCamid = cameraOptionBtn.getAttribute('camid') + 1;
+      let nextCamid = 1 + cameraOptionBtn.getAttribute('camid');
       if (nextCamid >= cameraChoices.length) {
         nextCamid = 0;
       }
@@ -161,8 +161,8 @@ function populateCameraChoices() {
         //   videoElem.srcObject = null;
         //   console.error(error);
         // });
-      this.setAttribute('camid', nextCamid);
-      this.setAttribute('cam_name', cameraChoices[nextCamid].label);
+      cameraOptionBtn.setAttribute('camid', nextCamid);
+      cameraOptionBtn.setAttribute('cam_name', cameraChoices[nextCamid].label);
     });
 
     cameraOptionBtn.removeAttribute('disabled');
@@ -176,14 +176,15 @@ let cameraActivated = false;
 function initWebcam(editor) {
   // Show the webcam feature after the button has been clicked.
   document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click", ()=> {
-    if(cameraActivated == true){
+    if(cameraActivated == true) {
       let videoElem = document.getElementById("video-element");
       let photosContainer = document.getElementById('photos-container');
       let cameraContainer = document.getElementById('camera-container');
-
+      videoElem.srcObject.getTracks().forEach(track => track.stop());
       videoElem.srcObject = null;
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
+
     }
   })
 
@@ -191,7 +192,7 @@ function initWebcam(editor) {
     if(cameraActivated == true) {
       let videoElem = document.getElementById("video-element");
       let cameraContainer = document.getElementById('camera-container');
-
+      videoElem.srcObject.getTracks().forEach(track => track.stop());
       videoElem.srcObject = null;
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
