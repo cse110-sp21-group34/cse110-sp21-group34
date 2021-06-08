@@ -184,6 +184,7 @@ document.getElementById("languageSelector").addEventListener("change", () => {
     document.getElementById("language").innerText = "اللغة";
     document.getElementById("about").innerText = "عن اقوينوكس";
   }
+  storage.journals.isReady.then(() => storage.journals.settings = {lang: lang});
   updateDates();
   updateMonthLanguage();
 });
@@ -216,6 +217,15 @@ const todayElement = document
 todayElement.classList.add("oneDayActive");
 // eslint-disable-next-line prettier/prettier
 storage.journals.isReady
+  .then(() => {
+    if (storage.journals.settings.lang) {
+      const languageSelectorOrder = ['en-US', 'zh', "ta", "id", "ar-EG"];
+      lang = storage.journals.settings.lang;
+      const languageSelector = document.getElementById("languageSelector");
+      languageSelector.selectedIndex = languageSelectorOrder.findIndex((e) => e === lang);
+      languageSelector.dispatchEvent(new Event('change'));
+    }
+  })
   .then(() => {return newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor")})
   .then(editorObj => {voice.createButton(editorObj); return editorObj})
   .then(editorObj => {webcam(editorObj)});
