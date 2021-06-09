@@ -19,4 +19,4 @@ jobs:
           front_page: README.md
 
       - name: Manual JSDoc
-        run: "npm install jsdoc; npx jsdoc -r -d $GITHUB_WORKSPACE/source/docs $GITHUB_WORKSPACE/source/*.js "
+        run: "npm install jsdoc; npx jsdoc -r -d $GITHUB_WORKSPACE/source/docs $GITHUB_WORKSPACE/source/ "

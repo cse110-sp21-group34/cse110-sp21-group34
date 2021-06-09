@@ -12,7 +12,7 @@
     "test:unit": "jest --selectProjects Unit",
     "test:jsdom": "jest --selectProjects Jsdom",
     "test:e2e": "jest --selectProjects End-to-End",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c config/jsdoc.json"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "babel-jest": "^27.0.2",
+    "clipboardy": "^2.3.0",
     "eslint": "^7.26.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.4",
@@ -29,11 +30,11 @@
     "jsdoc": "^3.6.7",
     "parcel": "^2.0.0-beta.2",
     "prettier": "^2.3.0",
-    "puppeteer": "^9.1.1",
-    "clipboardy": "^2.3.0"
+    "puppeteer": "^9.1.1"
   },
   "dependencies": {
     "editor": "file:editor",
+    "minami": "^1.2.3",
     "storage": "file:storage"
   }
 }
