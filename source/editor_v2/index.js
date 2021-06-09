@@ -65,7 +65,7 @@ function newEditor(date, holder) {
     onReady: () => {
       // new Undo({ editor_obj});
       new DragDrop(editor_obj);
-      initListeners(editor_obj, date, holder);
+      initListeners(holder);
       editor_obj.focus(true);
     },
     onChange: () => {
