@@ -61,11 +61,10 @@ function showWebcam(){
  * Controls the environment when the webcam feature is enabled. Acts as
  * as a routing mechanism to control other HTML elements.
  * 
- * @param {*} scene
- * @param {*} canvas
- * @param {*} editor 
+ * @param {string} scene - Represents the case oh which it falls into.
+ * @param {HTMLElement<canvas>} canvas - To draw the captured image.
  */
-function toggleScene(scene, canvas, editor) {
+function toggleScene(scene, canvas) {
   const recordingControls = document.getElementById('recording-controls'),
         captureBtn = document.getElementById('picture'),
         cameraOptionBtn = document.getElementById('cameraOption');
@@ -84,6 +83,7 @@ function toggleScene(scene, canvas, editor) {
       captureBtn.setAttribute('hidden', true);
       cameraOptionBtn.setAttribute('hidden', true);
 
+      // Creates the accept button in the preview.
       pictureAcceptBtn = document.createElement("button");
       pictureAcceptBtn.id = "pictureAccept";
       let pictureAcceptIcon = document.createElement("i");
@@ -92,6 +92,7 @@ function toggleScene(scene, canvas, editor) {
       recordingControls.appendChild(pictureAcceptBtn);
       pictureAcceptBtn.appendChild(pictureAcceptIcon);
       
+      // Creates the decline in the preview.
       pictureDeclineBtn = document.createElement("button");
       pictureDeclineBtn.id = "pictureDecline";
       let pictureDeclineIcon = document.createElement("i");
@@ -119,6 +120,9 @@ let cameraChoices = [];
 
 /**
  * Collect and populate all available webcams.
+ * 
+ * @return {EventTarget} - Returns all available camera devices.
+ * 
  */
 function populateCameraChoices() {
   let videoElem = document.getElementById("video-element");
