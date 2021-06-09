@@ -15,6 +15,7 @@ function showWebcam(){
   pictureBtn.id = "picture";
   pictureBtn.setAttribute('disabled', true);
   let cameraIcon = document.createElement("i");
+  cameraIcon.className = "bi bi-camera-fill";
   cameraIcon.id = "cameraIcon";
   recordingControls.appendChild(pictureBtn);
   pictureBtn.appendChild(cameraIcon);
@@ -23,6 +24,7 @@ function showWebcam(){
   cameraOptionBtn.id = "cameraOption";
   cameraOptionBtn.setAttribute('disabled', true);
   let cameraOptionIcon = document.createElement("i");
+  cameraOptionIcon.className = "bi bi-arrow-repeat";
   cameraOptionIcon.id = "cameraOptionIcon";
   recordingControls.appendChild(cameraOptionBtn);
   cameraOptionBtn.appendChild(cameraOptionIcon);
@@ -67,6 +69,7 @@ function toggleScene(scene, canvas, editor) {
       pictureAcceptBtn = document.createElement("button");
       pictureAcceptBtn.id = "pictureAccept";
       let pictureAcceptIcon = document.createElement("i");
+      pictureAcceptIcon.className = "bi bi-check2";
       pictureAcceptIcon.id = "pictureAcceptIcon";
       recordingControls.appendChild(pictureAcceptBtn);
       pictureAcceptBtn.appendChild(pictureAcceptIcon);
@@ -74,6 +77,7 @@ function toggleScene(scene, canvas, editor) {
       pictureDeclineBtn = document.createElement("button");
       pictureDeclineBtn.id = "pictureDecline";
       let pictureDeclineIcon = document.createElement("i");
+      pictureDeclineIcon.className = "bi bi-x";
       pictureDeclineIcon.id = "pictureDeclineIcon";
       recordingControls.appendChild(pictureDeclineBtn);
       pictureDeclineBtn.appendChild(pictureDeclineIcon);
@@ -184,7 +188,6 @@ function initWebcam(editor) {
       videoElem.srcObject = null;
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
-
     }
   })
 
@@ -196,10 +199,15 @@ function initWebcam(editor) {
       videoElem.srcObject = null;
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
+      document.getElementById("additionMicrophone").style.opacity = "100";
+      document.getElementById("additionMicrophone").style.pointerEvents = "all";
     }
     else {
       cameraActivated = true;
       showWebcam(); 
+
+      document.getElementById("additionMicrophone").style.opacity = "0";
+      document.getElementById("additionMicrophone").style.pointerEvents = "none";
 
       let pictureBtn = document.getElementById("picture");
       let videoElem = document.getElementById("video-element");
