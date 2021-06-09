@@ -202,8 +202,9 @@ let cameraActivated = false;
 
 /**
  * Initialize webcam in the editor.
+ * 
  */
-function initWebcam(editor) {
+function initWebcam() {
   
   // Show the webcam feature after the button has been clicked.
   document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click", ()=> {
@@ -272,7 +273,7 @@ function initWebcam(editor) {
           videoOverlay.style.transition = '0.05s ease all';
           videoOverlay.style.backgroundColor = 'transparent';
           videoOverlay.appendChild(previewCanvas);
-          toggleScene('preview', imageCanvas, editor);
+          toggleScene('preview', imageCanvas);
         }, 200);
       });
       
