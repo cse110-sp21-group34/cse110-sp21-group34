@@ -81,12 +81,14 @@ describe('Basic user flow for SPA ', () => {
       const select = await page.$("select[id='monthSelector']");
       await select.click();
 
-      const month = await page.$("select[id='monthSelector']");
-      await month.click();
+      await page.select('#monthSelector', '1');
 
-      var today = new Date();
-      var thisMonth = today.getMonth();
-      var numDays = new Date(year, thisMonth, 0).getDate();
+      var testYear = await page.evaluate(() => {
+        return document.getElementById('yearNum').innerHTML;
+      })
+      testYear = Number(testYear);
+      var thisMonth = 2;
+      var numDays = new Date(testYear, thisMonth, 0).getDate();
       console.log(numDays);
 
       const days = await page.evaluate(() => {
