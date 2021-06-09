@@ -2,6 +2,7 @@ const { Keyboard } = require("puppeteer");
 
 describe('Basic user flow for SPA ', () => {
     beforeAll(async () => {
+      await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36');
       await page.goto('http://localhost:8000');
     }, 30000);
 
@@ -61,7 +62,7 @@ describe('Basic user flow for SPA ', () => {
       await page.keyboard.press('KeyV');
       await page.keyboard.up('Control');
       await page.keyboard.up('Shift');
-      // await page.keyboard.type('https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg');
+      //await page.keyboard.type('https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg');
       await page.waitFor(500);
       const src = await page.evaluate(() => {
         // return document.getElementsByClassName("cdx-block cdx-simple-image")[0].getElementsByTagName('img').src;
