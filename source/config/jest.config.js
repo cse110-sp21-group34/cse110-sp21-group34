@@ -1,5 +1,6 @@
 module.exports = {
   verbose: true,
+  rootDir: "../",
   projects: [
     {
       name: 'e2e',
@@ -9,7 +10,7 @@ module.exports = {
       // A list of paths to directories that 
       // Jest should use to search for files in
       roots: [
-        './'
+        '../'
       ],
       testMatch: ["**/*.e2e.js"]
     },
@@ -17,7 +18,7 @@ module.exports = {
       name: 'jsdom',
       displayName: 'Jsdom',
       roots: [
-        './'
+        '../'
       ],
       testMatch: ["**/*.jsdom.js"],
       moduleNameMapper: {
@@ -29,7 +30,7 @@ module.exports = {
       name: 'unit',
       displayName: 'Unit',
       roots: [
-        './'
+        '../'
       ],
       testMatch: ["**/*.test.js"]
     }

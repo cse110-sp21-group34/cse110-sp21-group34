@@ -44,7 +44,7 @@ document.getElementById("blocker").addEventListener("click", () => {
   console.log("Executing action");
 });
 
-/ Set the preset value of the first expansion
+//Set the preset value of the first expansion
 document.getElementById("additionFirstExp").style.height = "0";
 
 /**

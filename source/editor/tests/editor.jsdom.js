@@ -8,8 +8,8 @@ describe("Editor", () => {
             'journals': {}
         };
 
-        const Journals = require('storage/journals');
-        const {Assets, AssetsMockWrapper} = require('storage/assets');
+        const Journals = require('../../storage/journals');
+        const {Assets, AssetsMockWrapper} = require('../../storage/assets');
 
         const newJournal = new Journals(ref, data => expect(JSON.parse(data)).toEqual(ref));
         await newJournal.isReady;
