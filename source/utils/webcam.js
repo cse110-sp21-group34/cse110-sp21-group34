@@ -4,6 +4,9 @@ const storage = require('storage');
 let imageSource = document.createElement("video");
 imageSource.setAttribute("autoplay", true);;
 
+/**  
+ * Shows the webcam feature.
+*/
 function showWebcam(){
   // Camera holder
   let cameraContainer = document.createElement("div");
@@ -13,6 +16,7 @@ function showWebcam(){
   let recordingControls = document.createElement("div");
   recordingControls.id = "recording-controls";
 
+  // Capture piture button
   let pictureBtn = document.createElement("button");
   pictureBtn.id = "picture";
   pictureBtn.setAttribute('disabled', true);
@@ -22,6 +26,7 @@ function showWebcam(){
   recordingControls.appendChild(pictureBtn);
   pictureBtn.appendChild(cameraIcon);
 
+  // Camera feature button
   let cameraOptionBtn = document.createElement("button");
   cameraOptionBtn.id = "cameraOption";
   cameraOptionBtn.setAttribute('disabled', true);
@@ -41,15 +46,23 @@ function showWebcam(){
   video.setAttribute("width", "480");
   video.setAttribute("height", "360");
   
+  // Construct the webcam HTML elements.
   cameraContainer.appendChild(videoSnapshot);
   cameraContainer.appendChild(video);
-
   cameraContainer.appendChild(recordingControls);
   
+  // Appending the webcam.
   document.getElementById('editor').appendChild(cameraContainer);
 }
 
-function toggleScene(scene, canvas, editor) {
+/**
+ * Controls the environment when the webcam feature is enabled. Acts as
+ * as a routing mechanism to control other HTML elements.
+ * 
+ * @param {string} scene - Represents the case oh which it falls into.
+ * @param {HTMLElement<canvas>} canvas - To draw the captured image.
+ */
+function toggleScene(scene, canvas) {
   const recordingControls = document.getElementById('recording-controls'),
         captureBtn = document.getElementById('picture'),
         cameraOptionBtn = document.getElementById('cameraOption');
@@ -67,6 +80,7 @@ function toggleScene(scene, canvas, editor) {
     case 'preview':
       cameraOptionBtn.setAttribute('hidden', true);
 
+      // Creates the accept button in the preview.
       pictureAcceptBtn = document.createElement("button");
       pictureAcceptBtn.id = "pictureAccept";
       let pictureAcceptIcon = document.createElement("i");
@@ -75,6 +89,7 @@ function toggleScene(scene, canvas, editor) {
       recordingControls.appendChild(pictureAcceptBtn);
       pictureAcceptBtn.appendChild(pictureAcceptIcon);
     
+      // Creates the decline in the preview.
       pictureDeclineBtn = document.createElement("button");
       pictureDeclineBtn.id = "pictureDecline";
       let pictureDeclineIcon = document.createElement("i");
@@ -100,6 +115,11 @@ function toggleScene(scene, canvas, editor) {
 
 let cameraChoices = [];
 
+/**
+ * Collect and populate all available webcams.
+ * 
+ * @return {EventTarget} - Returns all available camera devices.
+ */
 function populateCameraChoices() {
   let videoElem = document.getElementById("video-element");
   cameraChoices = [];
@@ -114,6 +134,7 @@ function populateCameraChoices() {
       console.error('No webcam found!');
       return;
     }
+
     // Default camera will run
     const cameraOptionBtn = document.getElementById('cameraOption'),
           pictureBtn = document.getElementById('picture');
@@ -133,10 +154,7 @@ function populateCameraChoices() {
         imageSource.setAttribute('width', streamSettings.width);
         imageSource.setAttribute('height', streamSettings.height);
         imageSource.srcObject = stream;
-        videoElem.srcObject = stream;  // Preview stream
-        // if (videoOff.disabled) {
-        //   toggleButtons();
-        // }
+        videoElem.srcObject = stream;
         return navigator.mediaDevices.enumerateDevices();
     })
 
@@ -163,19 +181,10 @@ function populateCameraChoices() {
           imageSource.setAttribute('width', streamSettings.width);
           imageSource.setAttribute('height', streamSettings.height);
           imageSource.srcObject = stream;
-          videoElem.srcObject = stream;  // Preview stream
-          // if (videoOff.disabled) {
-          //   toggleButtons();
-          // }
+          videoElem.srcObject = stream;
           return navigator.mediaDevices.enumerateDevices();
         });
-        // .catch(error => {
-        //   if (videoOff.disabled) {
-        //     toggleButtons();
-        //   }
-        //   videoElem.srcObject = null;
-        //   console.error(error);
-        // });
+
       cameraOptionBtn.setAttribute('camid', nextCamid);
       cameraOptionBtn.setAttribute('cam_name', cameraChoices[nextCamid].label);
     });
@@ -185,10 +194,13 @@ function populateCameraChoices() {
   });
 }
 
-
 let cameraActivated = false;
 
+/**
+ * Initialize webcam in the editor.
+ */
 function initWebcam(editor) {
+
   // Show the webcam feature after the button has been clicked.
   document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click", ()=> {
     if(cameraActivated == true) {
@@ -237,6 +249,7 @@ function initWebcam(editor) {
         previewCanvas.width = videoElem.width;
         previewCanvas.setAttribute('date-timestamp', new Date().getTime());
 
+        // Create the preview image
         let previewContext = previewCanvas.getContext('2d');
         previewContext.drawImage(videoElem, 0, 0, videoElem.width, videoElem.height);
 
@@ -249,7 +262,7 @@ function initWebcam(editor) {
         let imageContext = imageCanvas.getContext('2d');
         imageContext.drawImage(imageSource, 0, 0, imageSource.width, imageSource.height);
       
-        // flash effect
+        // Flash effect
         videoOverlay.style.backgroundColor = 'white';
         videoOverlay.style.transition = 'none';
         setTimeout(() => {

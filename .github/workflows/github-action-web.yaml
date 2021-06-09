@@ -15,4 +15,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Running test suits
-      run: "cd source; npm i; npm run test"
+      run: "cd source; npm i; sudo apt install xsel; npm run test"

@@ -11,6 +11,7 @@ jobs:
 
       - name: Build
         uses: andstor/jsdoc-action@v1
+        run: "npm install jsdoc; npx jsdoc -r -d $GITHUB_WORKSPACE/source/documentation $GITHUB_WORKSPACE/source/collection/*.js "
         with:
           source_dir: ./source
           output_dir: ./source/docs
