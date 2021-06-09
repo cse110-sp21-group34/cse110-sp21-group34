@@ -83,7 +83,7 @@ function toggleScene(scene, canvas, editor) {
       pictureAcceptBtn.addEventListener('click', () => {
         // transport to editor
         canvas.toBlob(blob => 
-          storage.assets.save(blob).then(uid => editor.blocks.insert("image", {asset_id: uid}, {}, editor.blocks.getBlocksCount()))
+          storage.assets.save(blob).then(uid => storage.currentEditor.blocks.insert("image", {asset_id: uid}, {}, storage.currentEditor.blocks.getBlocksCount()))
         );
         toggleScene('live');
       });

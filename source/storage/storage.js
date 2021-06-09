@@ -2,6 +2,7 @@ const Journals = require('./journals');
 const {Assets, AssetsDexieWrapper} = require('./assets');
 
 const storage = {
+  currentEditor: undefined,
   init: init,
   get journals() {
     init();

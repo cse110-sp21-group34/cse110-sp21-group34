@@ -56,12 +56,14 @@ function updateDates() {
       const editorDiv = document.createElement("div");
       editorDiv.id = "editor";
       document.getElementById("contentArea").appendChild(editorDiv);
-      const editor = newEditor(
-        `${utcDate.getFullYear()}-${
-          utcDate.getMonth() + 1
-        }-${utcDate.getDate()}`,
-        "editor"
-      );
+      storage.journals.isReady.then(() => {
+        storage.currentEditor = newEditor(
+          `${utcDate.getFullYear()}-${
+            utcDate.getMonth() + 1
+          }-${utcDate.getDate()}`,
+          "editor"
+        );
+      });
       // eslint-disable-next-line prettier/prettier
       const editorOptions = { weekday: dayLength };
       const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
@@ -226,8 +228,8 @@ storage.journals.isReady
       languageSelector.dispatchEvent(new Event('change'));
     }
   })
-  .then(() => {return newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor")})
-  .then(editorObj => {voice.createButton(editorObj); return editorObj})
-  .then(editorObj => {webcam(editorObj)});
+  .then(() => {storage.currentEditor = newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor")})
+  .then(() => voice.createButton())
+  .then(() => webcam());
 document.getElementsByClassName("dayList")[0].scrollTop =
   todayElement.offsetTop;
