@@ -761,3 +761,21 @@ border-radius: 10px;
   z-index: -3;
 
 }
+
+ /* Label Creation display: grid; */
+ #label_prompt_window {
+  align-items: center;
+  display: grid;
+  /* grid-template-columns: auto auto; */
+  justify-items: center;
+  /* Feel free to change if not fit (too bright or doesn't match with main theme) */
+  height: 5cm;
+  width: 12cm;
+  margin: auto;
+  border-style: solid;
+}
+
+/* TODO: style things inside label window also */
+.labelButton {
+    display: inline-flex;
+}
