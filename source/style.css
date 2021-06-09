@@ -1,9 +1,11 @@
+/* the style of the whole project */
 body {
   margin: 0;
   font-family: "Lexend", sans-serif;
   line-height: 100%;
 }
 
+/* the style of the "click somewhere else to close the window" function blocker */
 #blocker {
   position: fixed;
   top: 0;
@@ -18,6 +20,7 @@ body {
   background-color: white;
 }
 
+/* the style of sidebar */
 .sidenav {
   height: 100%;
   width: min-content;
@@ -31,6 +34,7 @@ body {
   z-index: 31;
 }
 
+/* the style of all the icons or buttons */
 #icon {
   font-size: 36px;
   color: rgb(15, 25, 36);
@@ -46,6 +50,7 @@ body {
   transition: all 0.2s; 
 }
 
+/* the style of the setting button */
 #settingIcon {
   font-size: 36px;
   color: rgb(15, 25, 36);
@@ -65,6 +70,7 @@ body {
   z-index: 30;
 }
 
+/* the style of icons inside the page with smaller size */
 #iconInside {
   font-size: 20px;
   color: rgb(48, 48, 48);
@@ -79,6 +85,7 @@ body {
   transition: all 0.2s; 
 }
 
+/* the style of lastYear button */
 #lastYear {
   font-size: 36px;
   color: rgb(48, 48, 48);
@@ -89,6 +96,7 @@ body {
   line-height: 100%;
 }
 
+/* the style of nextYear button */
 #nextYear {
   position: absolute;
   right: 0px;
@@ -101,6 +109,7 @@ body {
   line-height: 100%;
 }
 
+/* change color of buttons when hovering */
 #icon:hover {
   color: rgb(11, 110, 134);
 }
@@ -121,6 +130,7 @@ body {
   color: rgb(11, 110, 134);
 }
 
+/* import the team icon */
 .team-icon {
   content: url("../admin/branding/slack-icon-removebg-ver2.png");
   height: 64px;
@@ -129,6 +139,7 @@ body {
   margin-left: 5px;
 }
 
+/* the style of Equinox logo */
 #equinox {
   margin: 28px auto;
   font-size: 40px;
@@ -138,6 +149,7 @@ body {
   text-shadow: rgb(167, 187, 189) 3px 3px 3px;
 }
 
+/* the style of the landing page (unfinished) top bar */
 #topBar {
   margin-top: 0;
   margin-left: 74px;
@@ -146,6 +158,7 @@ body {
   background-color: rgb(242, 253, 255);
 }
 
+/* the style of the editing page top bar */
 #editingTopBar {
   margin-top: 0;
   margin-left: 74px;
@@ -155,11 +168,13 @@ body {
   background-color: rgb(242, 253, 255);
 }
 
+/* listing all elements from left to right */
 #topBar > * {
   margin-left: 0;
   float: left;
 }
 
+/* the style of landing page (unfinished) date block */
 #topDateBlock {
   width: max-content;
   background-color: darkgrey;
@@ -172,6 +187,7 @@ body {
   font-size: 30px;
 }
 
+/* the style of landing page (unfinished) search block */
 #topSearchBlock {
   width: 300px;
   margin: 0px;
@@ -231,6 +247,7 @@ body {
   top: -20px;
 }
 
+/* the style of the date selector or calendar */
 #dateSelector {
   width: 210px;
   font-size: 28px;
@@ -245,6 +262,7 @@ body {
   z-index: 30;
 }
 
+/* the style of the button to expand the dateSelector */
 #selectorExp {
   position: relative;
   top: 42px;
@@ -286,6 +304,7 @@ body {
   color: #ffffff;
 }
 
+/* the style of the year shown in dateSelector */
 #year {
   height: 70px;
   background-color: rgb(229, 241, 240);
@@ -304,6 +323,7 @@ body {
   margin-top: 22px;
 }
 
+/* the style of the month selector in dateSelector */
 #month {
   height: 70px;
 }
@@ -318,6 +338,7 @@ body {
   padding: 0 0 0 20px;
 }
 
+/* the style of all the days listed in dateSelector */
 .dayList {
   width: 210px;
   overflow-y: scroll;
@@ -325,6 +346,7 @@ body {
   position: relative;
 }
 
+/* the style of the scrollbar of the dayList */
 .dayList::-webkit-scrollbar-track {
   background-color: #F5F5F5;
 }
@@ -338,6 +360,7 @@ body {
   background-color: #000000;
 }
 
+/* the style of one day's texts */
 .oneDay {
   height: 60px;
   background-color: rgb(229, 241, 240);
@@ -351,7 +374,6 @@ body {
   background-color: #b9c9c4;
 }
 
-/* Make fixes here for the active color for selected date */
 .oneDayActive{
   background-color: #9dacaf;
   text-shadow: rgb(255, 255, 255) 2.5px 2.5px 2.5px;
@@ -366,16 +388,19 @@ body {
   text-shadow: rgb(255, 255, 255) 1.5px 1.5px 1.5px;
 }   
 
+/* the style of the week day in oneDay */
 .weekday {
   position: absolute;
   left: 5px;
 }
 
+/* the style of the month day in oneDay */
 .monthday {
   position: absolute;
   right: 8px;
 }
 
+/* the style of the label system and its animation */
 .labels { 
   width: max-content;
   margin: 0 0 0 16px;
@@ -411,6 +436,7 @@ body {
   text-shadow: #000 2px 2px 2px;
 }   
 
+/* the preset colors of labels */
 .labels .pcolor a:nth-child(8n-7) { background: #44a2b9 }   
 .labels .pcolor a:nth-child(8n-6) { background: #cc826b }   
 .labels .pcolor a:nth-child(8n-5) { background: #6cd8d1 }   
@@ -426,11 +452,13 @@ body {
   margin: 10px 0;
 }
 
+/* the style of the main editing page content */
 #mainPage {
   font-family: 'Lexend', sans-serif;
   margin-left: 74px;
 }
 
+/* the style of bullet notes content area */
 .noteBlock {
   width: calc(100vw - 178px);
   background-color: rgb(225, 238, 243);
@@ -454,6 +482,7 @@ body {
   width: calc(100vw - 74px);
 }
 
+/* the style of editing page top bar including the logo */
 #editingTopBar {
   line-height: 100%;
   height: 74px;
@@ -464,6 +493,7 @@ body {
   background-color: rgb(244, 252, 255);
 }
 
+/* the style of main page top bar */
 #mainPageTopBar {
   line-height: 100%;
   height: 50px;
@@ -476,10 +506,12 @@ body {
   position: relative;
 }
 
+/* the style of editor area */
 #editor {
   width: cal(100vw - 74px);
 }
 
+/* the style of editor scroll bar */
 #editor::-webkit-scrollbar-track {
   background-color: #e4d9d9;
 }
@@ -493,17 +525,15 @@ body {
   background-color: #000000;
 }
 
+/* the style of voice memo area */
 #voiceArea {
-    align-items: center;
-    display: grid;
-    justify-items: center;
-    height: 5cm;
+  align-items: center;
+  display: grid;
+  justify-items: center;
+  height: 5cm;
 }
 
-#record-title {
-    font-size: x-large;
-}
-/* The sidepanel menu */
+/* the style of setting menu */
 .sidepanel {
   height: 120px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
@@ -518,49 +548,39 @@ body {
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
 }
 
-/* The sidepanel links */
 .sidepanel a {
-padding: 8px 8px 8px 32px;
-text-decoration: none;
-font-size: 25px;
-color: #000000;
-display: block;
-transition: 0.3s;
-}
-
-/* Position and style the close button (top right corner) */
-.sidepanel .closebtn {
-position: absolute;
-top: 25px;
-right: 25px;
-font-size: 36px;
-margin-left: 50px;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
+  transition: 0.3s;
 }
 
 .settingLine {
-display: block;
-height: 60px;
+  display: block;
+  height: 60px;
 }
 
 .settingLine > * {
-float: left;
-clear: left;
+  float: left;
+  clear: left;
 }
 
 /* The switch - the box around the slider */
 .switch {
-position: absolute;
-right: 50px;
-display: inline-block;
-width: 60px;
-height: 34px;
+  position: absolute;
+  right: 50px;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
-opacity: 0;
-width: 0;
-height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 /* The slider */
@@ -611,6 +631,7 @@ border-radius: 34px;
 border-radius: 50%;
 }
 
+/* the style of the language switch selector */
 #languageSelector {
 font-size: 25px;
 font-family: 'Lexend', sans-serif;
@@ -623,10 +644,12 @@ right: 50px;
 border-radius: 10px;
 }
 
+/* the style of the function area on the right bottom side */
 #addition {
   z-index: 10;
 }
 
+/* the style of the add button */
 #additionThreeDots {
   font-size: 36px;
   color: rgb(48, 48, 48);
@@ -647,6 +670,7 @@ border-radius: 10px;
   color: rgb(18, 123, 141);
 }
 
+/* the style of first expansion after clicking the add button */
 #additionFirstExp {
   position: absolute;
   cursor: pointer;
@@ -672,6 +696,7 @@ border-radius: 10px;
   transition: 0.4s;
 }
 
+/* the style of Microphone in use icon */
 #additionMicrophoneClose {
   z-index: -1;
   pointer-events: none;
@@ -684,6 +709,7 @@ border-radius: 10px;
   color: rgb(18, 123, 141);
 }
 
+/* the style of the second expansion after clicking the microphone button */
 #additionSecondExp {
   width: 0;
   z-index: 10;
@@ -709,11 +735,13 @@ border-radius: 10px;
   color: rgb(18, 123, 141);
 }
 
+/* the style of the stop recording button */
 #additionRecordStop {
   pointer-events: none;
   color: red;
 }
 
+/* the style of the voice memo ui area */
 #voiceArea {
   z-index: -5;
   position: fixed;
@@ -728,6 +756,7 @@ border-radius: 10px;
   pointer-events: none;
 }
 
+/* the style of the recording timer */
 #timer {
   position: fixed;
   right: 188px;
@@ -740,7 +769,6 @@ border-radius: 10px;
   display: block;
 }
 
-
 #audio-element {
   position: absolute;
   right: 0;
@@ -752,6 +780,7 @@ border-radius: 10px;
   position: relative;
 }
 
+/* the style of "sec" word after recording starts */
 #sec {
   position: fixed;
   right: 160px;
