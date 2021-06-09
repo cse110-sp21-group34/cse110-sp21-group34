@@ -1,6 +1,10 @@
 document.querySelector("#iconInside").addEventListener("click", createNew);
 
-// function that create a pop-up window for user to select label name and color
+/**
+ * function that create a pop-up window for user to select label name and color
+ * @constructor
+ * @param none
+ */
 function createNew() {
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
@@ -38,16 +42,12 @@ function createNew() {
     main_area.insertBefore(prompt, main_area.children[2]);
 
     document.querySelector("#createLabelButton").addEventListener("click", () => {
-        createLabel(nameInput.value, colorInput.value);
+        createLabel(nameInput.value, colorInput.value);   // create the label
         prompt.parentNode.removeChild(prompt);  // Close the window
-
-
     });
 
     document.querySelector("#cancelLabelButton").addEventListener("click", () => {
         prompt.parentNode.removeChild(prompt);  // Close the window
-
-
     });
 
     // This line disable our user to open several pop-up windows at a time
@@ -55,7 +55,11 @@ function createNew() {
 
 }
 
-// simple function that creates label element on the page
+/**
+ * simple function that creates label element on the page
+ * @param {string} name - name of the label, from text input box
+ * @param {*} color - color of the label, from color input box
+ */
 function createLabel(name, color) {
     var oneLabel = document.createElement('a');
     oneLabel.href = "#";
@@ -75,21 +79,25 @@ function createLabel(name, color) {
 }
 
 // Make our 3 default labels editable.
-// Not sure if should be kept. (What if someone doesn't have study on his schedule at all ^&^)
 document.querySelectorAll(".oneLabel").forEach(item => {
     item.addEventListener('contextmenu', (e) => {
         e.preventDefault();
+        // When the user right click, if there isn't a pop-up window yet, create one
         if (!document.getElementById('label_prompt_window')) {
             editLabel(item);
         }
     });
+    // prevent the left click event
     item.addEventListener('click', (e) => e.preventDefault());
 });
 
 
 
-// function that opens the editing window (similar to that one when creating labels) when you click the label
-// TODO: click may have other major functionality. Figure out how to bind it to right-click
+/**
+ * function that opens the editing window
+ * (similar to that one when creating labels) when you click the label
+ * @param {document element <a> of class oneLabel} oneLabel 
+ */
 function editLabel(oneLabel) {
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
