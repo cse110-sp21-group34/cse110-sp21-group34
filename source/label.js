@@ -77,12 +77,11 @@ function createLabel(name, color) {
 // Make our 3 default labels editable.
 // Not sure if should be kept. (What if someone doesn't have study on his schedule at all ^&^)
 document.querySelectorAll(".oneLabel").forEach(item => {
-    function someFunction(event) {
-        item.removeEventListener('click', someFunction);
-        editLabel(item);
-    }
-    item.addEventListener('click', someFunction);
-
+    item.addEventListener('click', (e) => {
+        if (!document.getElementById('label_prompt_window')) {
+            editLabel(item);
+        }
+    });
 });
 
 
@@ -103,7 +102,7 @@ function editLabel(oneLabel) {
     colorInput.id = "colorInput";
     colorInput.type = "color";
     // This line isn't working.
-    colorInput.defaultValue = oneLabel.style.background;
+    colorInput.defaultValue = oneLabel.style.background
     prompt.appendChild(question)
     prompt.appendChild(nameInput)
     prompt.appendChild(colorInput)
@@ -128,10 +127,6 @@ function editLabel(oneLabel) {
         if (colorInput.value != "#daf5ff") {
             oneLabel.style.background = colorInput.value;
         }
-
-        oneLabel.addEventListener("click", () => {
-            editLabel(oneLabel);
-        });
     });
 
     document.querySelector("#cancelLabelButton").addEventListener("click", () => {
