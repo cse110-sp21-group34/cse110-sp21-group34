@@ -77,11 +77,13 @@ function createLabel(name, color) {
 // Make our 3 default labels editable.
 // Not sure if should be kept. (What if someone doesn't have study on his schedule at all ^&^)
 document.querySelectorAll(".oneLabel").forEach(item => {
-    item.addEventListener('click', (e) => {
+    item.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
         if (!document.getElementById('label_prompt_window')) {
             editLabel(item);
         }
     });
+    item.addEventListener('click', (e) => e.preventDefault());
 });
 
 
