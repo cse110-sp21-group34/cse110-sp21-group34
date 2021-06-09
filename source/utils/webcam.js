@@ -201,6 +201,8 @@ function initWebcam(editor) {
       imageSource.srcObject = null;
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
+      document.getElementById("additionMicrophone").style.opacity = "100";
+      document.getElementById("additionMicrophone").style.pointerEvents = "all";
     }
   })
 
