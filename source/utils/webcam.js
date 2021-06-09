@@ -1,6 +1,8 @@
 import styles from './webcamStyle.css';
 
 const storage = require('storage');
+let imageSource = document.createElement("video");
+imageSource.setAttribute("autoplay", true);;
 
 function showWebcam(){
   // Camera holder
@@ -85,7 +87,7 @@ function toggleScene(scene, canvas, editor) {
       pictureAcceptBtn.addEventListener('click', () => {
         // transport to editor
         canvas.toBlob(blob => 
-          storage.assets.save(blob).then(uid => editor.blocks.insert("image", {asset_id: uid}, {}, editor.blocks.getBlocksCount()))
+          storage.assets.save(blob).then(uid => storage.currentEditor.blocks.insert("image", {asset_id: uid}, {}, storage.currentEditor.blocks.getBlocksCount()))
         );
         toggleScene('live');
       });
@@ -119,15 +121,20 @@ function populateCameraChoices() {
 
     const constraints = {
       video: {
-        exact: cameraChoices[0].deviceId
-      },
-      audio: false
+        deviceId: cameraChoices[0].deviceId
+      }
     };
+
+    console.log(cameraChoices);
 
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(stream => {
-        videoElem.srcObject = stream;
+        let streamSettings = stream.getVideoTracks()[0].getSettings();
+        imageSource.setAttribute('width', streamSettings.width);
+        imageSource.setAttribute('height', streamSettings.height);
+        imageSource.srcObject = stream;
+        videoElem.srcObject = stream;  // Preview stream
         // if (videoOff.disabled) {
         //   toggleButtons();
         // }
@@ -138,21 +145,26 @@ function populateCameraChoices() {
     cameraOptionBtn.setAttribute('cam_name', cameraChoices[0].label);
 
     cameraOptionBtn.addEventListener('click', () => {
-      let nextCamid = 1 + cameraOptionBtn.getAttribute('camid');
+      let nextCamid = 1 + +cameraOptionBtn.getAttribute('camid');
       if (nextCamid >= cameraChoices.length) {
         nextCamid = 0;
       }
       const constraints = {
         video: {
-          exact: cameraChoices[nextCamid].deviceId
-        },
-        audio: false
+          deviceId: cameraChoices[nextCamid].deviceId
+        }
       };
 
       navigator.mediaDevices
         .getUserMedia(constraints)
         .then(stream => {
-          videoElem.srcObject = stream;
+          // Stop the original camera before switching
+          videoElem.srcObject.getTracks().forEach(track => track.stop());
+          let streamSettings = stream.getVideoTracks()[0].getSettings();
+          imageSource.setAttribute('width', streamSettings.width);
+          imageSource.setAttribute('height', streamSettings.height);
+          imageSource.srcObject = stream;
+          videoElem.srcObject = stream;  // Preview stream
           // if (videoOff.disabled) {
           //   toggleButtons();
           // }
@@ -186,6 +198,7 @@ function initWebcam(editor) {
       let cameraContainer = document.getElementById('camera-container');
       videoElem.srcObject.getTracks().forEach(track => track.stop());
       videoElem.srcObject = null;
+      imageSource.srcObject = null;
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
     }
@@ -197,6 +210,7 @@ function initWebcam(editor) {
       let cameraContainer = document.getElementById('camera-container');
       videoElem.srcObject.getTracks().forEach(track => track.stop());
       videoElem.srcObject = null;
+      imageSource.srcObject = null;
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
       document.getElementById("additionMicrophone").style.opacity = "100";
@@ -215,14 +229,23 @@ function initWebcam(editor) {
 
       // When the picture button is clicked, capture a frame from the video
       pictureBtn.addEventListener('click', () => {
-        let canvas = document.createElement('canvas');
-        canvas.id = 'camera_preview_img';
-        canvas.height = videoElem.height;
-        canvas.width = videoElem.width;
-        canvas.setAttribute('data-timestamp', new Date().getTime());
+        let previewCanvas = document.createElement('canvas');
+        previewCanvas.id = 'camera_preview_img';
+        previewCanvas.height = videoElem.height;
+        previewCanvas.width = videoElem.width;
+        previewCanvas.setAttribute('date-timestamp', new Date().getTime());
 
-        let context = canvas.getContext('2d');
-        context.drawImage(videoElem, 0, 0, videoElem.width, videoElem.height);
+        let previewContext = previewCanvas.getContext('2d');
+        previewContext.drawImage(videoElem, 0, 0, videoElem.width, videoElem.height);
+
+        // Capture the actual high-def image
+        let imageCanvas = document.createElement('canvas');
+        imageCanvas.height = imageSource.height;
+        imageCanvas.width = imageSource.width;
+        imageCanvas.setAttribute('date-timestamp', new Date().getTime());
+
+        let imageContext = imageCanvas.getContext('2d');
+        imageContext.drawImage(imageSource, 0, 0, imageSource.width, imageSource.height);
       
         // flash effect
         videoOverlay.style.backgroundColor = 'white';
@@ -230,8 +253,8 @@ function initWebcam(editor) {
         setTimeout(() => {
           videoOverlay.style.transition = '0.05s ease all';
           videoOverlay.style.backgroundColor = 'transparent';
-          videoOverlay.appendChild(canvas);
-          toggleScene('preview', canvas, editor);
+          videoOverlay.appendChild(previewCanvas);
+          toggleScene('preview', imageCanvas, editor);
         }, 200);
       });
       

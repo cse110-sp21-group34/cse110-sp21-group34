@@ -42,7 +42,7 @@ But there were problems because those 4 variables will have null assigned to the
 since they were run before I click the button and create vioce-recording. 
 There shouldn't have been these many things like variable declaring, inner function,
 etc. inside an EventListener.*/
-function createButton(editorObj) {
+function createButton() {
     document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => {
         createRecorder();
 
@@ -99,7 +99,7 @@ function createButton(editorObj) {
             console.log("data available after MediaRecorder.stop() called.");
 
             const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-            storage.assets.save(blob).then(uid => editorObj.blocks.insert("audio", {asset_id: uid}, {}, editorObj.blocks.getBlocksCount()));
+            storage.assets.save(blob).then(uid => storage.currentEditor.blocks.insert("audio", {asset_id: uid}, {}, storage.currentEditor.blocks.getBlocksCount()));
             chunks = [];
             const audioURL = window.URL.createObjectURL(blob);
             audioElem.src = audioURL;
