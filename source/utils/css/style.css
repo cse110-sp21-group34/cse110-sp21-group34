@@ -122,7 +122,7 @@ body {
 }
 
 .team-icon {
-  content: url("../admin/branding/slack-icon-removebg-ver2.png");
+  content: url("../../../admin/branding/slack-icon-removebg-ver2.png");
   height: 64px;
   width: 64px;
   margin-top: 5px;

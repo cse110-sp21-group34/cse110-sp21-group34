@@ -3,6 +3,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 // const Delimiter = require('@editorjs/delimiter');
+import styles from './css/index.css';
+
 const EditorJS = require('@editorjs/editorjs')
 const Alert = require("editorjs-alert");
 const NestedList = require('@editorjs/nested-list');
@@ -56,11 +58,11 @@ function initListeners(holderid) {
  * @param {string} date - The date of the journal entry.
  * @param {string} holder - The holder id of the editor.
  */
-function newEditor(date, holder) {
+function newEditor(holder) {
   let editor_obj = new EditorJS({
     logLevel: 'VERBOSE',
     holderId: holder,
-    data: storage.journals.get(date),
+    data: storage.journals.get(storage.currentDate),
     defaultBlock: "list",
     onReady: () => {
       // new Undo({ editor_obj});
@@ -69,7 +71,7 @@ function newEditor(date, holder) {
       editor_obj.focus(true);
     },
     onChange: () => {
-      editor_obj.save().then((outputData) => storage.journals.save(date, outputData));
+      editor_obj.save().then((outputData) => storage.journals.save(storage.currentDate, outputData));
     },
     tools: {
       list: {
@@ -128,7 +130,6 @@ function newEditor(date, holder) {
       },
   },
   });
-  editor_obj.date = date;
   return editor_obj;
 }
 

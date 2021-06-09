@@ -58,6 +58,7 @@ document.getElementsByClassName("bi bi-plus-circle")[0].addEventListener("click"
     document.getElementById("additionCamera").style.height = "36px";
     document.getElementById("additionMicrophone").style.opacity = "100%";
     document.getElementById("additionCamera").style.opacity = "100%";
+    document.getElementById("additionCamera").style.pointerEvents = "all";
   }
   if(document.getElementById("additionSecondExp").style.width !== "0px") {
     document.getElementById("additionSecondExp").style.width = "0";

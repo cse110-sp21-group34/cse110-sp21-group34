@@ -1,4 +1,4 @@
-import styles from './webcamStyle.css';
+import styles from './css/webcamStyle.css';
 
 const storage = require('storage');
 let imageSource = document.createElement("video");
@@ -38,7 +38,7 @@ function showWebcam(){
   let video = document.createElement("video");
   video.id = "video-element";
   video.setAttribute("autoplay", "true");
-  video.setAttribute("width", "640");
+  video.setAttribute("width", "480");
   video.setAttribute("height", "360");
   
   cameraContainer.appendChild(videoSnapshot);
@@ -65,7 +65,6 @@ function toggleScene(scene, canvas, editor) {
       document.getElementById('camera_preview_img').remove();
       break;
     case 'preview':
-      captureBtn.setAttribute('hidden', true);
       cameraOptionBtn.setAttribute('hidden', true);
 
       pictureAcceptBtn = document.createElement("button");
@@ -231,6 +230,7 @@ function initWebcam(editor) {
 
       // When the picture button is clicked, capture a frame from the video
       pictureBtn.addEventListener('click', () => {
+        pictureBtn.setAttribute('hidden', true);
         let previewCanvas = document.createElement('canvas');
         previewCanvas.id = 'camera_preview_img';
         previewCanvas.height = videoElem.height;

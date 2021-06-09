@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
 const newEditor = require('editor');
 const storage = require('storage');
-const voice = require('./utils/voice');
-const webcam = require('./utils/webcam');
+const voice = require('./voice');
+const webcam = require('./webcam');
 
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
@@ -50,20 +50,27 @@ function updateDates() {
         prevDate[0].classList.remove("oneDayActive");
       }
       oneDayDiv.classList.add("oneDayActive");
-      document
-        .getElementById("contentArea")
-        .removeChild(document.getElementById("editor"));
-      const editorDiv = document.createElement("div");
-      editorDiv.id = "editor";
-      document.getElementById("contentArea").appendChild(editorDiv);
-      storage.journals.isReady.then(() => {
-        storage.currentEditor = newEditor(
-          `${utcDate.getFullYear()}-${
+      // document
+      //   .getElementById("contentArea")
+      //   .removeChild(document.getElementById("editor"));
+      // const editorDiv = document.createElement("div");
+      // editorDiv.id = "editor";
+      // document.getElementById("contentArea").appendChild(editorDiv);
+      if (storage.currentEditor) {
+        storage.currentEditor.isReady.then(() => {
+          storage.currentDate = `${utcDate.getFullYear()}-${
             utcDate.getMonth() + 1
-          }-${utcDate.getDate()}`,
-          "editor"
-        );
-      });
+          }-${utcDate.getDate()}`;
+          let saved_data = storage.journals.get(storage.currentDate);
+
+          if (Object.keys(saved_data).length === 0) {
+            storage.currentEditor.clear();
+          }
+          else {
+            storage.currentEditor.render(saved_data);
+          }
+        });
+      }
       // eslint-disable-next-line prettier/prettier
       const editorOptions = { weekday: dayLength };
       const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
@@ -138,6 +145,8 @@ let dayLength = "long";
 const todayDate = new Date();
 const todayOptions = { weekday: length };
 const todayDay = new Intl.DateTimeFormat(lang, todayOptions).format(todayDate);
+storage.currentDate = `${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`;
+
 document.querySelector("#monthSelector").value = todayDate.getMonth();
 // eslint-disable-next-line prettier/prettier
 document.getElementsByClassName("dailyDate")[0].innerHTML = 
@@ -228,7 +237,7 @@ storage.journals.isReady
       languageSelector.dispatchEvent(new Event('change'));
     }
   })
-  .then(() => {storage.currentEditor = newEditor(`${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`,"editor")})
+  .then(() => {storage.currentEditor = newEditor("editor")})
   .then(() => voice.createButton())
   .then(() => webcam());
 document.getElementsByClassName("dayList")[0].scrollTop =

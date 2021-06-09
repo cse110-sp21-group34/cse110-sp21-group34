@@ -3,6 +3,7 @@ const {Assets, AssetsDexieWrapper} = require('./assets');
 
 const storage = {
   currentEditor: undefined,
+  currentDate: undefined,
   init: init,
   get journals() {
     init();
