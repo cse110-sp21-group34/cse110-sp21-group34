@@ -40,12 +40,38 @@ describe('Basic user flow for SPA ', () => {
 
       await page.keyboard.type('message');
 
+      await page.keyboard.press('Enter');
       const content = await page.evaluate(() => {
         return document.getElementsByClassName('cdx-nested-list__item-content')[0].textContent;
       })
 
       expect(content).toBe('message');
     }, 15000);
+
+    it('Add image', async () => {
+      const input = await page.$("div[id='editor']");
+      const clipboardy = require('clipboardy');
+      await input.click();
+      await page.waitForTimeout(1000); // Wait for element to come up
+      const text = 'https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg';
+      await clipboardy.writeSync(text);
+      await page.waitFor(500);
+      await page.keyboard.down('Control');
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('KeyV');
+      await page.keyboard.up('Control');
+      await page.keyboard.up('Shift');
+      // await page.keyboard.type('https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg');
+      await page.waitFor(500);
+      const src = await page.evaluate(() => {
+        // return document.getElementsByClassName("cdx-block cdx-simple-image")[0].getElementsByTagName('img').src;
+        return document.querySelector("div > img").getAttribute('src');
+      })
+      expect(src).toBe('https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg');
+    }, 10000);
+
+
+
 
     it('Switching dates and preserve content', async () => {
       var curr = await page.evaluate(() => {
@@ -97,4 +123,6 @@ describe('Basic user flow for SPA ', () => {
 
       expect(days).toBe(numDays);
     }, 15000);
+
+
 })
