@@ -32,9 +32,14 @@ let saveTimer;
 //   } 
 // }
 
-function initListeners(editor, date, holderid) {
+/**
+ * Initialize the EventListener to map "enter" press to "soft break line".
+ * @constructor
+ * @param {string} holderid - The id of the editor.
+ */
+function initListeners(holderid) {
   document.getElementById(holderid).addEventListener('keydown', (e) => {
-    // Map the behavior of 'enter' into 'shift + enter' for paragrah
+    // Map the behavior of 'enter' into 'shift + enter' ，which is the line break for paragrah
     if (e.target.className === 'ce-paragraph cdx-block' || e.target.className === 'cdx-input embed-tool__caption') {
       if (e.key === 'Enter' && e.shiftKey==false) {
         e.preventDefault(); 
@@ -44,6 +49,13 @@ function initListeners(editor, date, holderid) {
   });
 }
 
+
+/**
+ * Initialize the text editor with tools.
+ * @constructor
+ * @param {string} date - The date of the journal entry.
+ * @param {string} holder - The holder id of the editor.
+ */
 function newEditor(date, holder) {
   let editor_obj = new EditorJS({
     logLevel: 'VERBOSE',
