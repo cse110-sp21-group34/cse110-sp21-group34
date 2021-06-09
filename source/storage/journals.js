@@ -122,6 +122,36 @@ class Journals {
     // console.log(this.database);
   }
 
+  labelDate(date, label, args) {
+    if (!this.journals[date]) {
+      this.journals[date] = {labels: {}};
+    }
+    if (!this.journals[date].labels) {
+      this.journals[date].labels = {};
+    }
+    this.journals[date].labels[label] = args;
+    this.push();
+  }
+
+  removeLabelDate(date, label) {
+    if (!this.journals[date] || 
+        !this.journals[date].labels || 
+        !this.journals[date].labels[label]) {
+      return;
+    }
+    delete this.journals[date].labels[label];
+    this.push();
+  }
+
+  getLabelDate(date) {
+    if (!this.journals[date] || 
+        !this.journals[date].labels) {
+      return {};
+    }
+    return this.journals[date].labels;
+  }
+
+
   /**
    * Create new label
    * @param {String} label label name

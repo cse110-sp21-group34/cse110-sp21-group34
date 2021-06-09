@@ -3,6 +3,7 @@ const newEditor = require('editor');
 const storage = require('storage');
 const voice = require('./voice');
 const webcam = require('./webcam');
+const { createLabel } = require('./label');
 
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
@@ -68,6 +69,14 @@ function updateDates() {
           }
           else {
             storage.currentEditor.render(saved_data);
+          }
+
+          let labels = storage.journals.getLabelDate(storage.currentDate);
+          if (Object.keys(labels) !== 0) {
+            document.getElementsByClassName('pcolor')[0].innerHTML = '';
+            for (let label in labels) {
+              createLabel(label, labels[label].color);
+            }
           }
         });
       }
@@ -235,6 +244,12 @@ storage.journals.isReady
       const languageSelector = document.getElementById("languageSelector");
       languageSelector.selectedIndex = languageSelectorOrder.findIndex((e) => e === lang);
       languageSelector.dispatchEvent(new Event('change'));
+    }
+    let labels = storage.journals.getLabelDate(storage.currentDate);
+    if (Object.keys(labels) !== 0) {
+      for (let label in labels) {
+        createLabel(label, labels[label].color);
+      }
     }
   })
   .then(() => {storage.currentEditor = newEditor("editor")})
