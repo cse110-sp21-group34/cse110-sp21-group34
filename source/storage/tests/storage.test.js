@@ -5,22 +5,6 @@ describe("Storage Interface", () => {
     it ('Test storage journal initialization', () => {
         expect(Storage.journals.isReady).resolves.toBe(expect.anything())
     })
-    it ('Test storage assets initialization', () => {
-        
-        // const newJournal = new Journals(ref, data => expect(JSON.parse(data)).toEqual(ref));
-        // // await newJournal.isReady;
-
-        // const newAssetDB = new AssetsMockWrapper();
-        // const newAsset = new Assets(newAssetDB);
-        // Storage.init('dexie', {
-        //     journals: newJournal,
-        //     assets: newAsset
-        // });
-        // expect(Storage.assets.isReady).resolves.toBe(expect.anything())
-        // Storage.journals= new Journals(() => undefined, data => Promise.resolve(expect(JSON.parse(data))));
-        // expect(Storage.journals.isReady).resolves.toBe(expect.anything())
-        
-    })
 
 
     describe("Pure Journal", () => {
@@ -286,7 +270,11 @@ describe("Storage Interface", () => {
                 label_ref[l].push(date + count)
                 obj.label(date + count, l)
             }
-
+            // Remove labels, expected to fail because they are linked to journals
+            console.error = jest.fn()
+            for (let l in label) {
+                expect(obj.removelabel(l)).toBe(1);
+            }       
             // Actual load test
             obj = new Journals(JSON.parse(saved_data), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))
             await obj.isReady;
@@ -339,75 +327,52 @@ describe("Storage Interface", () => {
                     color: "FFFFF9"
                 }
             };
-            
-            let saved_data;
 
             // Preparing the journals
             let obj = new Journals(ref, data => {return new Promise((resolve) => {saved_data = data; resolve();})});
             await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-            for (let count = 0; count < 50; count++) {
-                let random_dict = {
-                    "time" : 1550476186479,
-                    "blocks" : [],
-                    "version" : "2.8.1"
-                };
-                for (let x = 0; x < 10; x++) {
-                    let temp = {}
-                    temp[Math.random().toString(36).substring(7)] = Math.random().toString(36).substring(7);
-                    random_dict.blocks.push(temp)
-                }
-                ref.journals[date + count] = random_dict
-                obj.save(date + count, random_dict)
-            }
-            expect(obj.removelabel("noneExisting")).toBe(0);
+            expect(obj.removelabel("noneExisting")).toBe(1);
             expect(obj.getLabelDate(date)).toEqual({});
             // Create labels
             for (let l in label) {
                 ref.labels[l] = label[l]
                 obj.newlabel(l, label[l])
-                obj.labelDate(label[l], date);
+                obj.labelDate(l, date);
             }          
 
+            // Remove labels
             for (let l in label) {
                 obj.removeLabelDate(label[l], date)
-                obj.removelabel(label[l])
+                obj.removelabel(l)
             }       
+            expect(obj.labels).toEqual({});
 
-            let label_ref = {
-                "play": [],
-                "work": [],
-                "job": [],
-                "task": [],
-                "hobby": [],
-                "diary": [],
-                "show": [],
-                "music": [],
-                "sport": [],
-                "travel": []
+        });
+
+
+        it('Testing ability to change settings', async () => {
+            let ref = {
+                'labels': {},
+                'journals': {},
+                'settings': {}
+            };
+            
+            let saved_data;
+
+            // Preparing the journals
+            let obj = new Journals(ref, data => {return new Promise((resolve) => {saved_data = data; resolve();})});
+            await obj.isReady;
+            obj.settings = "test";
+            let refSetting = {
+                    "0": "t",
+                    "1": "e",
+                    "2": "s",
+                    "3": "t",
             }
+            expect(obj.settings).toEqual(refSetting);
 
-            // Assign labels
-            // for (let count = 0; count < 48; count++) {
-            //     let l = Object.keys(label)[Math.floor(Math.random() * 10)]
-            //     ref.journals[date + count]['label'] = l
-            //     label_ref[l].push(date + count)
-            //     obj.label(date + count, l)
-            // }
-            // expect(obj.getLabelDate(date)).toEqual({});
-
-            // // Actual load test
-            // obj = new Journals(JSON.parse(saved_data), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))
-            // await obj.isReady;
-
-            // for (let l in label_ref) {
-            //     expect(Object.keys(obj.labels[l].journals).sort()).toEqual(label_ref[l].sort())
-            // }
-
-            // for (let l in obj.labels) {
-            //     expect(obj.labels[l].properties).toEqual(label[l])
-            // }
         });
     });
 })
