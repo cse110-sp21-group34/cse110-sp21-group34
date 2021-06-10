@@ -326,6 +326,8 @@ describe("Storage Interface", () => {
                 }
             };
 
+            let saved_data;
+            
             // Preparing the journals
             let obj = new Journals(ref, data => {return new Promise((resolve) => {saved_data = data; resolve();})});
             await obj.isReady;
