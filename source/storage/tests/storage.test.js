@@ -11,7 +11,7 @@ describe("Storage Interface", () => {
                 'journals': {},
                 'settings': {}
             };
-            
+            Storage.init("dexie");
             (new Journals(() => undefined, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
             (new Journals(() => null, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
             (new Journals(() => {}, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());

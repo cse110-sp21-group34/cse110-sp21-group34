@@ -23,6 +23,8 @@ describe("Editor", () => {
             journals: newJournal,
             assets: newAsset
         });
+        expect(storage.journals).not.toBe('')
+        expect(storage.assets).not.toBe('')
         const Editor = require('editor');
 
         storage.currentDate = "2021-5-31";
