@@ -170,6 +170,15 @@ setTimeout(function() {
   document.getElementById("dateSelector").style.marginLeft = "-210px";
 }, 750);
 
+document.getElementById("addLabel").addEventListener("click", () => {
+  if(document.getElementById("label_prompt_window").style.marginTop !== "0px") {
+    setTimeout(function() {
+      document.getElementById("label_prompt_window").style.marginTop = "0px";
+    }, 100);
+    document.getElementById("editingMainPage").style.top = "80px";
+  }
+});
+
 /**
  * The basic function of timer.
  * @constructor

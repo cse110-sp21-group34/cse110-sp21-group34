@@ -71,18 +71,41 @@ body {
 }
 
 /* the style of icons inside the page with smaller size */
-#iconInside {
-  font-size: 20px;
+#addLabel {
+  font-size: 25px;
   color: rgb(48, 48, 48);
+  width: 130px;
   float: left;
-  display: block;
   height: 50px;
-  margin: 16px 19px 0 19px;
+  margin: 14px 19px 0 8px;
   line-height: 100%;
   -moz-transition: all 0.2s; 
   -webkit-transition: all 0.2s; 
   -o-transition: all 0.2s; 
   transition: all 0.2s; 
+}
+
+#addLabel > * {
+  float: left;
+}
+
+#addText {
+  position: relative;
+  top: -5px;
+  left: -8px;
+  font-size: 10px;
+  margin: 0 0 0 10px;
+  pointer-events: none;
+}
+
+#labelText {
+  position: relative;
+  bottom: -7px;
+  left: -41px;
+  font-size: 10px;
+  margin: 0 0 0 10px;
+  pointer-events: none;
+  font-weight: bold;
 }
 
 /* the style of lastYear button */
@@ -118,7 +141,7 @@ body {
   color: rgb(11, 110, 134);
 }
 
-#iconInside:hover {
+#addLabel:hover {
   color: rgb(11, 110, 134);
 }
 
@@ -185,66 +208,6 @@ body {
   margin: 19px 12px;
   float: left;
   font-size: 30px;
-}
-
-/* the style of landing page (unfinished) search block */
-#topSearchBlock {
-  width: 300px;
-  margin: 0px;
-  height: 74px;
-  float: left;
-  font-size: 30px;
-  background-color: rgb(232, 234, 235);
-  position: absolute;
-  right: 0px;
-  line-height: 150%;
-}
-
-#topSearchBlock > * {
-  margin: 16px 0 0 0;
-  float: left;
-  font-size: 30px;
-}
-
-#topSearchText {
-  float: left;
-  font-family: 'Lexend', sans-serif;
-  font-size: 20px;
-  background-color: rgb(232, 234, 235);
-  border-width: 0;
-  width: 200px;
-  margin-top: 30px;
-  margin-left: 8px;
-}
-
-#topSearchText:focus {
-  outline: none;
-}
-
-#searchLabel {
-  position: absolute;
-  left: 64px;
-  top: 0;
-  pointer-events: none;
-  -moz-transition: all 0.2s; 
-  -webkit-transition: all 0.2s; 
-  -o-transition: all 0.2s; 
-  transition: all 0.2s; 
-}
-
-#topSearchText:hover + label {
-  font-size: 15px;
-  top: -20px;
-}
-
-#topSearchText:focus + label {
-  font-size: 15px;
-  top: -20px;
-}
-
-#topSearchText:valid + label {
-  font-size: 15px;
-  top: -20px;
 }
 
 /* the style of the date selector or calendar */
@@ -478,8 +441,12 @@ body {
 #editingMainPage {
   position: relative;
   left: 74px;
-  top: 0px;
+  top: 30px;
   width: calc(100vw - 74px);
+  -moz-transition: all 0.5s; 
+  -webkit-transition: all 0.5s; 
+  -o-transition: all 0.5s; 
+  transition: all 0.5s; 
 }
 
 /* the style of editing page top bar including the logo */
@@ -501,9 +468,13 @@ body {
   margin-top: 0;
   margin-left: 0;
   font-family: 'Lexend', sans-serif;
-  display: flex;
   background-color: rgb(225, 238, 243);
-  position: relative;
+  position: fixed;
+  left: 74px;
+  top: 74px;
+  display: flex;
+  float: left;
+  z-index: 1;
 }
 
 /* the style of editor area */

@@ -140,7 +140,7 @@
 #recording-controls #pictureAccept {
   grid-area: accept;
   position: absolute;
-  left: 270px;
+  left: 190px;
   bottom: 10px;
   width: 80px;
 }
@@ -154,7 +154,7 @@
 #recording-controls #pictureDecline {
   grid-area: decline;
   position: absolute;
-  right: 270px;
+  right: 190px;
   bottom: 10px;
 }
 
