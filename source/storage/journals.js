@@ -173,7 +173,7 @@ class Journals {
    * @returns {int} return code
    */
   removelabel(label) {
-    if (!this.labels[label]) return;
+    if (!this.labels[label]) return 0;
     if (Object.keys(this.labels[label].journals).length === 0) {
       // No journal is assicoated with this label, proceed to removal
       delete this.labels[label];

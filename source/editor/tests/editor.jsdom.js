@@ -10,9 +10,10 @@ describe("Editor", () => {
 
         const Journals = require('../../storage/journals');
         const {Assets, AssetsMockWrapper} = require('../../storage/assets');
+        const newJournal = new Journals(ref, data=> expect(JSON.parse(data)).toEqual(ref) );
 
-        const newJournal = new Journals(ref, data => expect(JSON.parse(data)).toEqual(ref));
         await newJournal.isReady;
+
 
         const newAssetDB = new AssetsMockWrapper();
         const newAsset = new Assets(newAssetDB);
@@ -32,5 +33,9 @@ describe("Editor", () => {
 
         let newEditor = new Editor(date, holder, {journals: newJournal});
         expect(newEditor.isReady).resolves.toBe(expect.anything());
+        expect(storage.assets).toEqual({"db": {"db": {}}, "map": {}})
+        storage.assets = {};
+        expect(newJournal.settings).toEqual({});
+        expect(storage.assets).toEqual({})
     });
 });
