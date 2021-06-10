@@ -1,6 +1,6 @@
 module.exports = {
   verbose: true,
-  rootDir: "../",
+  rootDir: "./",
   projects: [
     {
       name: 'e2e',
@@ -23,7 +23,7 @@ module.exports = {
       testMatch: ["**/*.jsdom.js"],
       moduleNameMapper: {
         "\\.(css|less|sass|scss)$": "identity-obj-proxy",
-        "\\.(gif|ttf|eot|svg)$": "./__mocks__/fileMock.js"
+        "\\.(gif|ttf|eot|svg)$": "../__mocks__/fileMock.js"
       }
     },
     {
