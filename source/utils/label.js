@@ -156,6 +156,12 @@ function editLabel(oneLabel) {
     cancelButton.id = "cancelLabelButton";
     cancelButton.innerText = "Cancel";
     prompt.appendChild(cancelButton)
+    var deleteButton = document.createElement("button")
+    deleteButton.id = "deleteLabelButton";
+    deleteButton.innerText = "Delete";
+    deleteButton.style.background = "#ff5e5e";
+    prompt.appendChild(deleteButton);
+
 
     var main_area = document.getElementById('editingMainPage')
     main_area.insertBefore(prompt, main_area.children[1]);
@@ -181,6 +187,18 @@ function editLabel(oneLabel) {
             prompt.parentNode.removeChild(prompt);  // Close the window
         }, 600);
     });
+
+    function deleteConfirm() {
+        deleteButton.removeEventListener('click', deleteConfirm);
+        deleteButton.innerText = "Confirm?";
+        deleteButton.addEventListener('click', () => {
+            prompt.parentNode.removeChild(prompt);  // Close the window
+            storage.journals.removeLabelDate(storage.currentDate, oneLabel.innerText);
+            oneLabel.parentNode.removeChild(oneLabel);
+        })
+    }
+
+    deleteButton.addEventListener('click', deleteConfirm);
 
 }
 
