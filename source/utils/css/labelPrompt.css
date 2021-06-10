@@ -1,10 +1,123 @@
 #label_prompt_window {
-    align-items: center;
-    display: grid;
-    justify-items: center;
     /* Feel free to change if not fit (too bright or doesn't match with main theme) */
-    height: 5cm;
-    width: 12cm;
-    margin: auto;
-    border-style: solid;
+    padding-left: 30px;
+    height: 50px;
+    width: calc(100vw - 104px);
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: rgb(193, 206, 211);
+    position: fixed;
+    top: 124px;
+    left: 74px;
+    margin-top: -50px;
+    -moz-transition: all 0.6s; 
+    -webkit-transition: all 0.6s; 
+    -o-transition: all 0.6s; 
+    transition: all 0.6s; 
+    z-index: 0;
+}
+
+#label_prompt_window > * {
+    float: left;
+}
+
+#nameColorQ {
+    margin-top: 17px;
+    font-size: 20px;
+}
+
+#nameInputBlock {
+    background-color: rgb(232, 234, 235);
+    width: 300px;
+    margin-top: 5px;
+    height: 40px;
+    position: absolute;
+    right: 160px;
+    padding: 0;
+}
+  
+#topLabelText {
+    font-family: 'Lexend', sans-serif;
+    font-size: 20px;
+    position: absolute;
+    width: 100px;
+    right: 90px;
+    margin: 0;
+    top: 10px;
+    color: rgb(31, 62, 66);
+    border-width: 0;
+    width: 200px;
+    pointer-events: none;
+    line-height: 100%;
+    -moz-transition: all 0.5s; 
+    -webkit-transition: all 0.5s; 
+    -o-transition: all 0.5s; 
+    transition: all 0.3s; 
+    z-index: 100;
+}
+
+#nameInput {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    width: 290px;
+    height: 35px;
+    font-size: 30px;
+    font-family: "Lexend", sans-serif;
+    background-color: rgb(232, 234, 235);
+    line-height: 150%;
+    border: none;
+    z-index: 1;
+}
+
+#nameInputBlock > * {
+    float: left;
+    font-size: 20px;
+}
+  
+#topLabelText:focus {
+    outline: none;
+}
+
+#colorInput {
+    position: absolute;
+    margin-top: 5px;
+    right: 468px;
+    height: 38px;
+    border: none;
+}
+
+.labelButton {
+    background-color: rgb(255, 255, 255);
+    border: black;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    align-items: center;
+    position: absolute;
+    margin: 5px;
+    -moz-transition: all 0.2s; 
+    -webkit-transition: all 0.2s; 
+    -o-transition: all 0.2s; 
+    transition: all 0.2s; 
+}
+
+.labelButton:hover {
+    cursor: pointer;
+    background-color: rgb(21, 78, 116);
+    color: white;
+}
+
+#createLabelButton {
+    right: 66px;
+    width: 80px;
+}
+
+#cancelLabelButton {
+    right: 18px;
+}
+
+#cancelLabelButton:hover {
+    background-color: crimson;
 }

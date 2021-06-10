@@ -2,7 +2,10 @@ import styles from './css/labelPrompt.css';
 
 const storage = require("storage");
 
-document.querySelector("#iconInside").addEventListener("click", createNew);
+if(document.getElementById("editingMainPage").style.top === "30px") {
+    document.querySelector("#addLabel").addEventListener("click", createNew);
+    console.log("11111111111");
+}
 
 /**
  * Function that create a pop-up window for user to select label name and color
@@ -15,6 +18,7 @@ function createNew() {
 
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
+    prompt.style.marginTop = "-50px";
     var question = document.createElement('p')
     question.id = "nameColorQ"
     question.innerText = "Please name your label and choose a color.";
@@ -23,41 +27,69 @@ function createNew() {
     var nullP = document.createElement('p');
     prompt.appendChild(nullP)
     */
-    var nameInput = document.createElement('input')
+    var nameInput = document.createElement('input');
     nameInput.id = "nameInput";
-    nameInput.type = "text"
-    var colorInput = document.createElement('input')
+    nameInput.type = "text";
+    var nameInputText = document.createElement("p");
+    nameInputText.id = "topLabelText";
+    nameInputText.innerText = "Label Content Here";
+    nameInputText.style.fontSize = "20px";
+    nameInputText.style.top = "10px";
+    nameInputText.style.color = "rgb(31, 62, 66)";
+    var nameInputBlock = document.createElement("div");
+    nameInputBlock.id = "nameInputBlock";
+    var colorInput = document.createElement('input');
     colorInput.id = "colorInput";
-    colorInput.type = "color"
-    prompt.appendChild(question)
-    prompt.appendChild(nameInput)
-    prompt.appendChild(colorInput)
+    colorInput.type = "color";
+    prompt.appendChild(nameInputBlock);
+    nameInputBlock.appendChild(nameInput);
+    nameInputBlock.appendChild(nameInputText);
+    prompt.appendChild(colorInput);
+    prompt.appendChild(question);
 
-    var createButton = document.createElement("button")
+    var createButton = document.createElement("button");
+    var createButtonIcon = document.createElement("i");
+    createButtonIcon.className = "bi bi-check2";
     createButton.id = "createLabelButton";
-    createButton.innerText = "Confirm";
     createButton.className = "labelButton";
+    createButton.appendChild(createButtonIcon);
     prompt.appendChild(createButton)
 
-    var cancelButton = document.createElement("button")
+    var cancelButton = document.createElement("button");
+    var cancelButtonIcon = document.createElement("i");
+    cancelButtonIcon.className = "bi bi-x";
     cancelButton.id = "cancelLabelButton";
-    cancelButton.innerText = "Cancel";
     cancelButton.className = "labelButton";
+    cancelButton.appendChild(cancelButtonIcon);
     prompt.appendChild(cancelButton)
 
     var main_area = document.getElementById('editingMainPage')
+    
     main_area.insertBefore(prompt, main_area.children[1]);
 
     document.querySelector("#createLabelButton").addEventListener("click", () => {
         createLabel(nameInput.value, colorInput.value);
         storage.journals.labelDate(storage.currentDate, nameInput.value, {color: colorInput.value});
-        
-        prompt.parentNode.removeChild(prompt);  // Close the window
+        document.getElementById("label_prompt_window").style.marginTop = "-50px";
+        document.getElementById("editingMainPage").style.top = "30px";
+        setTimeout(function(){
+            prompt.parentNode.removeChild(prompt);  // Close the window
+        }, 600);
     });
 
     document.querySelector("#cancelLabelButton").addEventListener("click", () => {
-        prompt.parentNode.removeChild(prompt);  // Close the window
+        document.getElementById("label_prompt_window").style.marginTop = "-50px";
+        document.getElementById("editingMainPage").style.top = "30px";
+        setTimeout(function(){
+            prompt.parentNode.removeChild(prompt);  // Close the window
+        }, 600);
     });
+
+    setTimeout(function(){
+        nameInputText.style.opacity = "0";
+    }, 1000);
+
+    console.log("expanding the new label editor");
 }
 
 /**
@@ -82,7 +114,10 @@ function createLabel(name, color) {
         editLabel(oneLabel);
     });
     oneLabel.addEventListener('click', (e) => e.preventDefault());
-    document.querySelector("#iconInside").addEventListener("click", createNew);
+    if(document.getElementById("editingMainPage").style.top === "30px") {
+        document.querySelector("#addLabel").addEventListener("click", createNew);
+        console.log("22222222222222");
+    }
 }
 
 /**
@@ -140,7 +175,11 @@ function editLabel(oneLabel) {
     });
 
     document.querySelector("#cancelLabelButton").addEventListener("click", () => {
-        prompt.parentNode.removeChild(prompt);  // Close the window
+        document.getElementById("label_prompt_window").style.marginTop = "-50px";
+        document.getElementById("editingMainPage").style.top = "30px";
+        setTimeout(function(){
+            prompt.parentNode.removeChild(prompt);  // Close the window
+        }, 600);
     });
 
 }
