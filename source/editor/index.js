@@ -51,7 +51,6 @@ function initListeners(holderid) {
  * @param {string} holder - The holder id of the editor.
  */
 export function newEditor(holder) {
-  initListeners(holder);
   let editor_obj = new EditorJS({
     logLevel: 'VERBOSE',
     holderId: holder,
@@ -60,6 +59,7 @@ export function newEditor(holder) {
     onReady: () => {
       new DragDrop(editor_obj);
       editor_obj.focus(true);
+      initListeners(holder);
     },
     onChange: () => {
       editor_obj.save().then((outputData) => storage.journals.save(storage.currentDate, outputData));
