@@ -25,6 +25,14 @@ const storage = require('storage');
 // Set up saving triggers after finishing initializing editor
 const savingInterval = 1000;  // ms
 let saveTimer;
+// document.onkeydown = function onkeydown(e) {
+//   if (e.which === 13 && e.shiftKey==false) {
+//     e.preventDefault(); 
+//     document.execCommand("insertLineBreak");    
+//       console.log('enter pressed without shift');
+//     return false;
+//   } 
+// }
 
 /**
  * Initialize the EventListener to map "enter" press to "soft break line".
