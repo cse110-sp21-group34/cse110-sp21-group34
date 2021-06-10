@@ -6,10 +6,13 @@ document.querySelector("#iconInside").addEventListener("click", createNew);
 
 /**
  * Function that create a pop-up window for user to select label name and color
- * @param {function} editor Contains the storage handling for current date
- * @param {Date} date Date for which the label is to be attributed
  */
-function createNew(editor, date) {
+function createNew() {
+    if (document.getElementById('label_prompt_window')) {
+        let prompt = document.getElementById('label_prompt_window');
+        prompt.parentNode.removeChild(prompt);
+    }
+    
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
     var question = document.createElement('p')
@@ -55,10 +58,6 @@ function createNew(editor, date) {
     document.querySelector("#cancelLabelButton").addEventListener("click", () => {
         prompt.parentNode.removeChild(prompt);  // Close the window
     });
-
-    // This line disable our user to open several pop-up windows at a time
-    document.querySelector("#iconInside").removeEventListener("click", createNew);
-
 }
 
 /**
@@ -80,9 +79,11 @@ function createLabel(name, color) {
     // make our newly created label editable
     oneLabel.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        if (!document.getElementById('label_prompt_window')) {
-            editLabel(oneLabel);
+        if (document.getElementById('label_prompt_window')) {
+            let prompt = document.getElementById('label_prompt_window');
+            prompt.parentNode.removeChild(prompt);
         }
+        editLabel(oneLabel);
     });
     oneLabel.addEventListener('click', (e) => e.preventDefault());
     document.querySelector("#iconInside").addEventListener("click", createNew);
@@ -126,6 +127,7 @@ function editLabel(oneLabel) {
     document.querySelector("#changeLabelButton").addEventListener("click", () => {
         prompt.parentNode.removeChild(prompt);  // Close the window
         oneLabel.href = "#";
+        storage.journals.removeLabelDate(storage.currentDate, oneLabel.innerText);
         oneLabel.innerText = nameInput.value;
         // Make sure that our use won't choose color == background color, though chance == 0.01%
         if (colorInput.value != "#daf5ff") {
