@@ -50,16 +50,15 @@ function initListeners(holderid) {
  * @param {string} date - The date of the journal entry.
  * @param {string} holder - The holder id of the editor.
  */
-function newEditor(holder) {
+export function newEditor(holder) {
+  initListeners(holder);
   let editor_obj = new EditorJS({
     logLevel: 'VERBOSE',
     holderId: holder,
     data: storage.journals.get(storage.currentDate),
     defaultBlock: "list",
     onReady: () => {
-      // new Undo({ editor_obj});
       new DragDrop(editor_obj);
-      initListeners(holder);
       editor_obj.focus(true);
     },
     onChange: () => {
@@ -125,21 +124,7 @@ function newEditor(holder) {
   return editor_obj;
 }
 
-/*
-const saveBtn = document.querySelector("button");
-
-saveBtn.addEventListener("click", () => {
-  editor
-    .save()
-    .then((outputData) => {
-      console.log("Article data: ", outputData);
-      localStorage.setItem("Your content", outputData);
-    })
-    .catch((error) => {
-      console.log("Saving failed: ", error);
-    });
-});
-*/
 
 module.exports = newEditor;
 exports.newEditor = newEditor;
+exports.initListeners = initListeners;

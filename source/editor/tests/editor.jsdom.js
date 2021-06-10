@@ -26,7 +26,6 @@ describe("Editor", () => {
         expect(storage.journals).not.toBe('')
         expect(storage.assets).not.toBe('')
         const Editor = require('editor');
-
         storage.currentDate = "2021-5-31";
         let holder = "editor";
         let holderNode = document.createElement('div');
@@ -36,7 +35,6 @@ describe("Editor", () => {
         storage.currentEditor = new Editor(holder);
         expect(storage.currentEditor.isReady).resolves.toBe(expect.anything());
     });
-
 
     it('Testing assets with dexiesWrapper', async() => {
         const {Assets, AssetsDexieWrapper} = require('../../storage/assets');
