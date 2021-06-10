@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@editorjs/code": "^2.7.0",
     "@bomdi/codebox": "^1.0.12",
     "@editorjs/checklist": "latest",
+    "@editorjs/code": "^2.7.0",
     "@editorjs/editorjs": "^2.22.0",
     "@editorjs/embed": "git+https://github.com/cse110-sp21-group34/embed.git",
     "@editorjs/header": "latest",

@@ -49,29 +49,69 @@ describe('Calendar and Editor', () => {
       expect(content).toBe('message');
     }, 15000);
 
-    it('Add image', async () => {
+    it('Add image by url', async () => {
       const input = await page.$("div[id='editor']");
       const clipboardy = require('clipboardy');
       await input.click();
       await page.waitForTimeout(1000); // Wait for element to come up
-      const text = 'https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg';
-      await clipboardy.writeSync(text);
-      await page.waitFor(500);
+
+      // await clipboardy.writeSync(text);
+      await page.evaluate(() => {
+        const text = 'https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg';
+        var dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+        dummy.value = text;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+     });
+     await input.click();
+      await page.waitFor(1000);
       await page.keyboard.down('Control');
       await page.keyboard.down('Shift');
       await page.keyboard.press('KeyV');
       await page.keyboard.up('Control');
       await page.keyboard.up('Shift');
       // await page.keyboard.type('https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg');
-      await page.waitFor(500);
+      await page.waitFor(2500);
       const src = await page.evaluate(() => {
-        // return document.getElementsByClassName("cdx-block cdx-simple-image")[0].getElementsByTagName('img').src;
         return document.querySelector("div > img").getAttribute('src');
       })
       expect(src).toBe('https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg');
     }, 10000);
 
 
+
+    it('Add youtube by url', async () => {
+      const input = await page.$("div[id='editor']");
+      await input.click();
+      await page.waitForTimeout(1000); // Wait for element to come up
+
+      // await clipboardy.writeSync(text);
+      await page.evaluate(() => {
+        const text = 'https://www.youtube.com/watch?v=-8BAjBxp6PA';
+        var dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+        dummy.value = text;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+     });
+     await input.click();
+      await page.waitFor(1000);
+      await page.keyboard.down('Control');
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('KeyV');
+      await page.keyboard.up('Control');
+      await page.keyboard.up('Shift');
+      await page.waitFor(2500);
+      const src = await page.evaluate(() => {
+        return document.querySelector("div > iframe").getAttribute('src');
+      })
+      expect(src).toBe('https://www.youtube.com/embed/-8BAjBxp6PA');
+    }, 10000);
 
 
     it('Switching dates and preserve content', async () => {
