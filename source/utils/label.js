@@ -94,7 +94,7 @@ function editLabel(oneLabel) {
         let prompt = document.getElementById('label_prompt_window');
         prompt.parentNode.removeChild(prompt);
     }
-    
+
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
     var question = document.createElement('p');
@@ -128,7 +128,9 @@ function editLabel(oneLabel) {
     document.querySelector("#changeLabelButton").addEventListener("click", () => {
         prompt.parentNode.removeChild(prompt);  // Close the window
         oneLabel.href = "#";
-        storage.journals.removeLabelDate(storage.currentDate, oneLabel.innerText);
+        if (oneLabel.innerText !== nameInput.value) {
+            storage.journals.removeLabelDate(storage.currentDate, oneLabel.innerText);
+        }
         oneLabel.innerText = nameInput.value;
         // Make sure that our use won't choose color == background color, though chance == 0.01%
         if (colorInput.value != "#daf5ff") {
