@@ -112,6 +112,10 @@ function createLabel(name, color) {
     oneLabel.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         editLabel(oneLabel);
+        setTimeout(function() {
+            document.getElementById("label_prompt_window").style.marginTop = "0px";
+        }, 100);
+        document.getElementById("editingMainPage").style.top = "80px";
     });
     oneLabel.addEventListener('click', (e) => e.preventDefault());
     if(document.getElementById("editingMainPage").style.top === "30px") {
