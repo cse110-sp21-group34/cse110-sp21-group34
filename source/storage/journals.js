@@ -74,10 +74,6 @@ class Journals {
           }
         }
 
-        if (!this.database.settings) {
-          this.database.settings = {};
-        }
-
         resolve(this);
       });
     });
@@ -107,7 +103,9 @@ class Journals {
       for (const key in data) {
         this.journals[date][key] = data[key];
       }
-      return this.push().catch(error => {
+      return this.push().then(() => {
+        console.log("[Journals] data saved")
+      }).catch(error => {
         console.error(`[Journals] Error when saving journal on ${date}: ${error}`);
       });
     }
@@ -124,12 +122,6 @@ class Journals {
     // console.log(this.database);
   }
 
-  /**
-   * Create private label for specific date
-   * @param {String} date date of journal
-   * @param {String} label label name
-   * @param {LabelProperties} args label properties
-   */
   labelDate(date, label, args) {
     if (!this.journals[date]) {
       this.journals[date] = {labels: {}};
@@ -138,29 +130,19 @@ class Journals {
       this.journals[date].labels = {};
     }
     this.journals[date].labels[label] = args;
-    return this.push();
+    this.push();
   }
 
-  /**
-   * Remove private label from specific date
-   * @param {String} date date of journal
-   * @param {String} label label name
-   */
   removeLabelDate(date, label) {
     if (!this.journals[date] || 
         !this.journals[date].labels || 
         !this.journals[date].labels[label]) {
-      return Promise.resolve();
+      return;
     }
     delete this.journals[date].labels[label];
-    return this.push();
+    this.push();
   }
 
-  /**
-   * Get private labels of specific date
-   * @param {String} date date of journal
-   * @returns {LabelProperties} label properties
-   */
   getLabelDate(date) {
     if (!this.journals[date] || 
         !this.journals[date].labels) {
@@ -195,7 +177,8 @@ class Journals {
     if (Object.keys(this.labels[label].journals).length === 0) {
       // No journal is assicoated with this label, proceed to removal
       delete this.labels[label];
-      return this.push();
+      this.push();
+      return 0;
     }
 
     console.error(
@@ -204,7 +187,7 @@ class Journals {
       " is used in ",
       Object.keys(this.labels[label].journals).join(" ")
     );
-    return Promise.reject();
+    return 1;
   }
 
   /**
@@ -222,11 +205,9 @@ class Journals {
       const old_label = this.journals[date].label;
       if (this.labels[old_label]) this.labels[old_label].detach(date);
     }
-    if (label) {
-      this.labels[label].link(date, this.journals[date]);
-      this.database.journals[date].label = label;
-    }
-    return this.push();
+    if (label) this.labels[label].link(date, this.journals[date]);
+    this.push();
+    return 0;
   }
 
   /**
@@ -234,6 +215,9 @@ class Journals {
    * @return {Object} settings
    */
   get settings() {
+    if (this.database.settings == undefined) {
+      this.database.settings = {};
+    }
     return this.database.settings;
   }
 
