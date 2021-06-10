@@ -138,13 +138,13 @@ function editLabel(oneLabel) {
     prompt.id = "label_prompt_window";
     var question = document.createElement('p');
     question.id = "nameColorQ";
-    question.innerText = "Change your label name and color."
+    question.innerText = "Change your label name and color or delete."
     var nameInput = document.createElement('input')
-    nameInput.id = "nameInput";
+    nameInput.id = "nameInputEditing";
     nameInput.type = "text";
     nameInput.value = oneLabel.innerText;
     var colorInput = document.createElement('input')
-    colorInput.id = "colorInput";
+    colorInput.id = "colorInputEditing";
     colorInput.type = "color";
     // This line isn't working.
     colorInput.defaultValue = oneLabel.style.background
@@ -152,18 +152,27 @@ function editLabel(oneLabel) {
     prompt.appendChild(nameInput)
     prompt.appendChild(colorInput)
 
-    var changeButton = document.createElement("button")
+    var changeButton = document.createElement("button");
+    var changeButtonIcon = document.createElement("i");
+    changeButtonIcon.className = "bi bi-check2";
     changeButton.id = "changeLabelButton";
-    changeButton.innerText = "Confirm";
+    changeButton.className = "labelButton";
+    changeButton.appendChild(changeButtonIcon);
     prompt.appendChild(changeButton);
-    var cancelButton = document.createElement("button")
-    cancelButton.id = "cancelLabelButton";
-    cancelButton.innerText = "Cancel";
+    var cancelButton = document.createElement("button");
+    var cancelButtonIcon = document.createElement("i");
+    cancelButtonIcon.className = "bi bi-x";
+    cancelButton.id = "cancelLabelButtonEditing";
+    cancelButton.className = "labelButton";
+    cancelButton.appendChild(cancelButtonIcon);
     prompt.appendChild(cancelButton)
     var deleteButton = document.createElement("button")
+    var deleteButtonIcon = document.createElement("i");
+    deleteButtonIcon.id = "deleteButtonIcon";
+    deleteButtonIcon.className = "bi bi-trash";
     deleteButton.id = "deleteLabelButton";
-    deleteButton.innerText = "Delete";
-    deleteButton.style.background = "#ff5e5e";
+    deleteButton.className = "labelButton";
+    deleteButton.appendChild(deleteButtonIcon);
     prompt.appendChild(deleteButton);
 
 
@@ -171,7 +180,11 @@ function editLabel(oneLabel) {
     main_area.insertBefore(prompt, main_area.children[1]);
 
     document.querySelector("#changeLabelButton").addEventListener("click", () => {
-        prompt.parentNode.removeChild(prompt);  // Close the window
+        document.getElementById("label_prompt_window").style.marginTop = "-50px";
+        document.getElementById("editingMainPage").style.top = "30px";
+        setTimeout(function(){
+            prompt.parentNode.removeChild(prompt);  // Close the window
+        }, 600);
         oneLabel.href = "#";
         if (oneLabel.innerText !== nameInput.value) {
             storage.journals.removeLabelDate(storage.currentDate, oneLabel.innerText);
@@ -184,7 +197,7 @@ function editLabel(oneLabel) {
         storage.journals.labelDate(storage.currentDate, nameInput.value, {color: colorInput.value});
     });
 
-    document.querySelector("#cancelLabelButton").addEventListener("click", () => {
+    document.querySelector("#cancelLabelButtonEditing").addEventListener("click", () => {
         document.getElementById("label_prompt_window").style.marginTop = "-50px";
         document.getElementById("editingMainPage").style.top = "30px";
         setTimeout(function(){
@@ -194,11 +207,18 @@ function editLabel(oneLabel) {
 
     function deleteConfirm() {
         deleteButton.removeEventListener('click', deleteConfirm);
-        deleteButton.innerText = "Confirm?";
+        document.getElementById("deleteButtonIcon").style.opacity = "0";
+        setTimeout(function() {
+            document.getElementById("deleteButtonIcon").style.opacity = "100";
+            document.getElementById("deleteButtonIcon").className = "bi bi-question";
+            document.getElementById("deleteLabelButton").style.backgroundColor = "#580909";
+            document.getElementById("deleteButtonIcon").style.color = "white";
+        }, 300);
         deleteButton.addEventListener('click', () => {
             prompt.parentNode.removeChild(prompt);  // Close the window
             storage.journals.removeLabelDate(storage.currentDate, oneLabel.innerText);
             oneLabel.parentNode.removeChild(oneLabel);
+            document.getElementById("editingMainPage").style.top = "30px";
         })
     }
 

@@ -71,6 +71,28 @@
     z-index: 1;
 }
 
+#colorInputEditing {
+    position: absolute;
+    margin-top: 5px;
+    right: 468px;
+    height: 38px;
+    border: none;
+}
+
+#nameInputEditing {
+    position: absolute;
+    top: 5px;
+    right: 167px;
+    width: 290px;
+    height: 38px;
+    font-size: 30px;
+    font-family: "Lexend", sans-serif;
+    background-color: rgb(232, 234, 235);
+    line-height: 150%;
+    border: none;
+    z-index: 1;
+}
+
 #nameInputBlock > * {
     float: left;
     font-size: 20px;
@@ -120,4 +142,32 @@
 
 #cancelLabelButton:hover {
     background-color: crimson;
+}
+
+#changeLabelButton {
+    right: 114px;
+}
+
+#cancelLabelButtonEditing {
+    right: 66px;
+}
+
+#cancelLabelButtonEditing:hover {
+    background-color: crimson;
+}
+
+#deleteLabelButton {
+    right: 18px;
+    background-color: #ff5e5e;
+}
+
+#deleteLabelButton:hover {
+    background-color: #580909;
+}
+
+#deleteButtonIcon {
+    -moz-transition: all 0.3s; 
+    -webkit-transition: all 0.3s; 
+    -o-transition: all 0.3s; 
+    transition: all 0.3s; 
 }

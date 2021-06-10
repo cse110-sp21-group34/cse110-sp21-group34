@@ -72,17 +72,40 @@ body {
 
 /* the style of icons inside the page with smaller size */
 #addLabel {
-  font-size: 20px;
+  font-size: 25px;
   color: rgb(48, 48, 48);
+  width: 130px;
   float: left;
-  display: block;
   height: 50px;
-  margin: 16px 19px 0 19px;
+  margin: 14px 19px 0 8px;
   line-height: 100%;
   -moz-transition: all 0.2s; 
   -webkit-transition: all 0.2s; 
   -o-transition: all 0.2s; 
   transition: all 0.2s; 
+}
+
+#addLabel > * {
+  float: left;
+}
+
+#addText {
+  position: relative;
+  top: -5px;
+  left: -8px;
+  font-size: 10px;
+  margin: 0 0 0 10px;
+  pointer-events: none;
+}
+
+#labelText {
+  position: relative;
+  bottom: -7px;
+  left: -41px;
+  font-size: 10px;
+  margin: 0 0 0 10px;
+  pointer-events: none;
+  font-weight: bold;
 }
 
 /* the style of lastYear button */
