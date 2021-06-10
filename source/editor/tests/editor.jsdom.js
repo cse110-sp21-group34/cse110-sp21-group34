@@ -25,17 +25,13 @@ describe("Editor", () => {
         });
         const Editor = require('editor');
 
-        let date = "2021-5-31";
+        storage.currentDate = "2021-5-31";
         let holder = "editor";
         let holderNode = document.createElement('div');
         holderNode.id = holder;
         document.body.appendChild(holderNode);
 
-        let newEditor = new Editor(date, holder, {journals: newJournal});
-        expect(newEditor.isReady).resolves.toBe(expect.anything());
-        expect(storage.assets).toEqual({"db": {"db": {}}, "map": {}})
-        storage.assets = {};
-        expect(newJournal.settings).toEqual({});
-        expect(storage.assets).toEqual({})
+        storage.currentEditor = new Editor(holder);
+        expect(storage.currentEditor.isReady).resolves.toBe(expect.anything());
     });
 });

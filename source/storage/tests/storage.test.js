@@ -1,28 +1,8 @@
-const Journals = require('storage/journals')
-const Storage = require('storage/storage')
-const {Assets, AssetsMockWrapper} = require('../../storage/assets');
+const Journals = require('storage/journals');
+const Storage = require('storage');
+const {Assets, AssetsMockWrapper} = require('storage/assets');
+
 describe("Storage Interface", () => {
-    it ('Test storage journal initialization', () => {
-        expect(Storage.journals.isReady).resolves.toBe(expect.anything())
-    })
-    it ('Test storage assets initialization', () => {
-        
-        // const newJournal = new Journals(ref, data => expect(JSON.parse(data)).toEqual(ref));
-        // // await newJournal.isReady;
-
-        // const newAssetDB = new AssetsMockWrapper();
-        // const newAsset = new Assets(newAssetDB);
-        // Storage.init('dexie', {
-        //     journals: newJournal,
-        //     assets: newAsset
-        // });
-        // expect(Storage.assets.isReady).resolves.toBe(expect.anything())
-        // Storage.journals= new Journals(() => undefined, data => Promise.resolve(expect(JSON.parse(data))));
-        // expect(Storage.journals.isReady).resolves.toBe(expect.anything())
-        
-    })
-
-
     describe("Pure Journal", () => {
         it('Initial from empty dictionary', () => {
             let ref = {
@@ -35,6 +15,7 @@ describe("Storage Interface", () => {
             (new Journals(() => null, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
             (new Journals(() => {}, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
             (new Journals(() => "", data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
+            (new Journals(() => {return {"corrupted": {}}}, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))).isReady.then(o => o.push());
         });
 
         it('Adding journals', async () => {
@@ -44,7 +25,7 @@ describe("Storage Interface", () => {
                 'settings': {}
             };
             
-            let obj = new Journals(ref, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
+            let obj = new Journals(JSON.parse(JSON.stringify(ref)), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
             await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -60,7 +41,7 @@ describe("Storage Interface", () => {
                     random_dict.blocks.push(temp)
                 }
                 ref.journals[date + count] = random_dict
-                obj.save(date + count, random_dict)
+                await obj.save(date + count, random_dict)
             }
         });
 
@@ -72,7 +53,7 @@ describe("Storage Interface", () => {
             };
             
             let saved_data;
-            let obj = new Journals(ref, data => {return new Promise((resolve) => {saved_data = data; resolve();})});
+            let obj = new Journals(JSON.parse(JSON.stringify(ref)), data => {return new Promise((resolve) => {saved_data = data; resolve();})});
             await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -140,7 +121,7 @@ describe("Storage Interface", () => {
             };
             
             // Preparing the journals
-            let obj = new Journals(ref, data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
+            let obj = new Journals(JSON.parse(JSON.stringify(ref)), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)));
             await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -156,7 +137,7 @@ describe("Storage Interface", () => {
                     random_dict.blocks.push(temp)
                 }
                 ref.journals[date + count] = random_dict
-                obj.save(date + count, random_dict)
+                await obj.save(date + count, random_dict)
             }
 
             // Create labels
@@ -241,7 +222,7 @@ describe("Storage Interface", () => {
             let saved_data;
 
             // Preparing the journals
-            let obj = new Journals(ref, data => {return new Promise((resolve) => {saved_data = data; resolve();})});
+            let obj = new Journals(JSON.parse(JSON.stringify(ref)), data => {return new Promise((resolve) => {saved_data = data; resolve();})});
             await obj.isReady;
             let date = new Date();
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -257,7 +238,7 @@ describe("Storage Interface", () => {
                     random_dict.blocks.push(temp)
                 }
                 ref.journals[date + count] = random_dict
-                obj.save(date + count, random_dict)
+                await obj.save(date + count, random_dict)
             }
 
             // Create labels
@@ -410,4 +391,116 @@ describe("Storage Interface", () => {
             // }
         });
     });
+
+    describe("Journals with date specific labels", () => {
+        let ref, journal, date;
+        it("Initialize Journal", async() => {
+            ref = {
+                'labels': {},
+                'journals': {},
+                'settings': {}
+            }
+            journal = new Journals(JSON.parse(JSON.stringify(ref)), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))
+            await journal.isReady;
+
+            date = new Date();
+            date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+            for (let count = 0; count < 50; count++) {
+                let random_dict = {
+                    "time" : 1550476186479,
+                    "blocks" : [],
+                    "version" : "2.8.1"
+                };
+                for (let x = 0; x < 10; x++) {
+                    let temp = {}
+                    temp[Math.random().toString(36).substring(7)] = Math.random().toString(36).substring(7);
+                    random_dict.blocks.push(temp)
+                }
+                ref.journals[date + count] = random_dict;
+                await journal.save(date + count, random_dict);
+            }
+        });
+
+        it("Get Labels from empty journals", async () => {
+            expect(journal.getLabelDate(date + 5)).toEqual({});
+        });
+
+        it("Remove Labels from empty journals", async() => {
+            await journal.removeLabelDate(date + 6);
+        });
+
+        it("Create Labels", async () => {
+            for (let count = 0; count < 50; count++) {
+                ref.journals[date + count].labels = {};
+                for (let x = 0; x < 10; x++) {
+                    let label_name = Math.random().toString(36).substring(7);
+                    ref.journals[date + count].labels[label_name] = {prop: label_name};
+                    await journal.labelDate(date + count, label_name, {prop: label_name});
+                }
+            }
+        });
+
+        it("Edit Labels", async () => {
+            for (let count = 0; count < 50; count+=2) {
+                let labels = ref.journals[date + count].labels;
+                for (let label in labels) {
+                    let newProp = Math.random().toString(36).substring(7)
+                    labels[label].prop = newProp;
+                    await journal.labelDate(date + count, label, {prop: newProp});
+                }
+            }
+        });
+
+        it("Remove Labels", async () => {
+            for (let count = 0; count < 50; count+=3) {
+                let labels = ref.journals[date + count].labels;
+                for (let label in labels) {
+                    if (Math.random() < 0.5) {
+                        delete ref.journals[date + count].labels[label];
+                        await journal.removeLabelDate(date + count, label);
+                    }
+                }
+            }
+        });
+
+        it("Get Labels", async () => {
+            for (let count = 0; count < 50; count+=3) {
+                let labels = ref.journals[date + count].labels;
+                expect(journal.getLabelDate(date + count)).toEqual(labels);
+            }
+        });
+    });
+
+    describe("Settings", () => {
+        let ref, journal;
+        it("Initialize Journal", async() => {
+            ref = {
+                'labels': {},
+                'journals': {}
+            }
+            journal = new Journals(JSON.parse(JSON.stringify(ref)), data => Promise.resolve(() => {
+                expect(JSON.parse(data)).toEqual(ref);
+            }));
+            await journal.isReady;
+            ref.settings = {};
+        });
+        it("Save Settings", async() => {
+            for (let x = 0; x < 10; x++) {
+                let property = Math.random().toString(36).substring(7);
+                ref.settings[property] = property;
+                let setting = {};
+                setting[property] = property;
+                journal.settings = setting;
+            }
+        });
+        it("Load Settings", async() => {
+            expect(journal.settings).toEqual(ref.settings);
+        });
+        it("Load Settings from storage", async() => {
+
+            journal = new Journals(JSON.parse(JSON.stringify(ref)), data => Promise.resolve(expect(JSON.parse(data)).toEqual(ref)))
+            await journal.isReady;
+            expect(journal.settings).toEqual(ref.settings);
+        });
+    })
 })

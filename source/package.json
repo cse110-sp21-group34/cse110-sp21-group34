@@ -8,10 +8,10 @@
   },
   "scripts": {
     "dev": "parcel editing-page.html -p 8000",
-    "test": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --silent --coverage --config config/jest.config.js",
-    "test:unit": "jest --selectProjects Unit",
-    "test:jsdom": "jest --selectProjects Jsdom",
-    "test:e2e": "jest --selectProjects End-to-End",
+    "test": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --silent --coverage --verbose --config config/jest.config.js",
+    "test:unit": "jest --config config/jest.config.js --selectProjects Unit --verbose --coverage",
+    "test:jsdom": "jest --config config/jest.config.js --selectProjects Jsdom --verbose",
+    "test:e2e": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --config config/jest.config.js --selectProjects End-to-End",
     "doc": "jsdoc -c config/jsdoc.json"
   },
   "author": "",
