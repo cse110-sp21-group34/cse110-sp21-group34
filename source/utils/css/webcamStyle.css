@@ -1,0 +1,185 @@
+/* style.css */
+
+.webcam {
+  align-items: center;
+  display: grid;
+  height: 98.5vh;
+  justify-items: center;
+  width: 100%;
+}
+
+.mirror {
+  transform: scaleX(-1);
+}
+
+.recording {
+  color: red;
+  font-weight: bold;
+}
+
+#camera-container {
+  position: fixed;
+  z-index: 1;
+  align-items: center;
+  background-color: rgb(225, 238, 243);
+  display: grid;
+  grid-template-areas:
+  'video'
+  'controls';
+  grid-template-rows: auto 50px;
+  max-width: 650px;
+  max-height: 400px;
+  justify-items: center;
+  text-align: center;
+  padding: 20px;
+  right: 130px;
+  bottom: 60px;
+}
+
+#message {
+  font-size: 1.1em;
+}
+
+#photo-capture {
+  grid-area: video;
+}
+
+#photos-container {
+  background-color: lightgray;
+  display: flex;
+  height: 111px;
+  list-style-type: none;
+  max-width: 680px;
+  padding: 20px 0;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+#photos-container li {
+  margin-right: 20px;
+  padding: none;
+}
+
+#photos-container li:first-of-type {
+  margin-left: 20px;
+}
+
+#photos-container > li > canvas {
+  height: 90px;
+  width: 160px;
+}
+
+#recording-controls {
+  align-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-areas: '. decline capture accept cam';
+  align-items: center;
+  justify-items: center;
+  margin-top: 8px;
+}
+
+#recording-controls button {
+  background-color: rgb(255, 255, 255);
+  border: black;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5em;
+  align-items: center;
+  position: relative;
+  -moz-transition: all 0.2s; 
+  -webkit-transition: all 0.2s; 
+  -o-transition: all 0.2s; 
+  transition: all 0.2s; 
+}
+
+#recording-controls button:hover {
+  cursor: pointer;
+  background-color: rgb(21, 78, 116);
+  color: white;
+}
+
+#recording-controls button:disabled {
+  background-color: rgb(235, 235, 235);
+  color: rgb(201, 201, 201);
+  cursor: not-allowed;
+}
+
+
+#recording-controls #picture {
+  grid-area: capture;
+  position: absolute;
+  bottom: 10px;
+  width: 100px;
+}
+
+#recording-controls #picture #cameraIcon{
+  align-self: center;
+  font-size: 28px;
+}
+
+#recording-controls #picture:disabled #cameraIcon {
+  align-self: center;
+}
+
+
+#recording-controls #cameraOption {
+  grid-area: cam;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+#recording-controls #cameraOption #cameraOptionIcon{
+  align-self: center;
+  font-size: 28px;
+}
+
+
+#recording-controls #pictureAccept {
+  grid-area: accept;
+  position: absolute;
+  left: 270px;
+  bottom: 10px;
+  width: 80px;
+}
+
+#recording-controls #pictureAccept #pictureAcceptIcon{
+  align-self: center;
+  font-size: 24px;
+}
+
+
+#recording-controls #pictureDecline {
+  grid-area: decline;
+  position: absolute;
+  right: 270px;
+  bottom: 10px;
+}
+
+#recording-controls #pictureDecline #pictureDeclineIcon{
+  align-self: center;
+  font-size: 28px;
+}
+
+#recording-controls #pictureDecline:hover {
+  background-color: crimson;
+}
+
+#video-element {
+  background-color: rgb(201, 201, 201);
+  grid-area: video;
+  position: relative;
+  z-index: 2;
+}
+
+#video-snapshot-overlay {
+  background-color: transparent;
+  height: 360px;
+  grid-area: video;
+  position: relative;
+  transition: 0.2s ease all;
+  width: 100%;
+  z-index: 3;
+}

@@ -7,24 +7,35 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "jsdoc -c jsdoc.json"
+    "dev": "parcel editing-page.html -p 8000",
+    "test": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --silent --coverage --verbose --config config/jest.config.js",
+    "test:unit": "jest --config config/jest.config.js --selectProjects Unit --verbose --coverage",
+    "test:jsdom": "jest --config config/jest.config.js --selectProjects Jsdom --verbose",
+    "test:e2e": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --config config/jest.config.js --selectProjects End-to-End",
+    "doc": "jsdoc -c config/jsdoc.json"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-jest": "^27.0.2",
+    "clipboardy": "^2.3.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.26.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-node": "^4.1.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^1.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.4",
+    "jest-dev-server": "*",
+    "jest-puppeteer": "^5.0.4",
+    "jest-transform-css": "^2.1.0",
     "jsdoc": "^3.6.7",
-    "prettier": "^2.3.0"
+    "parcel": "^2.0.0-beta.2",
+    "prettier": "^2.3.0",
+    "puppeteer": "^9.1.1"
+  },
+  "dependencies": {
+    "editor": "file:editor",
+    "minami": "^1.2.3",
+    "storage": "file:storage"
   }
 }

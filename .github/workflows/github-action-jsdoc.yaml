@@ -17,3 +17,6 @@ jobs:
           recurse: false
           template: minami
           front_page: README.md
+
+      - name: Manual JSDoc
+        run: "cd source; npm i; npm run doc"
