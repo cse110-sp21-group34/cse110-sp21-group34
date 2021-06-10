@@ -1,6 +1,8 @@
 const storage = require('storage');
 
-// voice control functions
+/**
+ * Creates a new recorder for recording audio notes
+ */
 function createRecorder() {
   var voiceArea = document.createElement("div");
   voiceArea.id = "voiceArea";
@@ -13,14 +15,9 @@ function createRecorder() {
 }
 
 
-/* Could someone please help me with this part? It functions well but the structure
-is super messy. After we click the button and create the voice div, we should begin
-to bind functions to the voice-recording system. (Starting from line 50)
-Originally, all lines following are on outmost level (outside addEventListener).
-But there were problems because those 4 variables will have null assigned to them
-since they were run before I click the button and create vioce-recording. 
-There shouldn't have been these many things like variable declaring, inner function,
-etc. inside an EventListener.*/
+/**
+ * Creates a new button to record the audio note and handles the behaviour of the same
+ */
 function createButton() {
   document.getElementsByClassName("bi bi-mic")[0].addEventListener("click", () => {
     if (document.getElementById('voiceArea')) return;
@@ -63,7 +60,6 @@ function createButton() {
           mediaRecorder.stop();
           console.log(mediaRecorder.state);
           console.log("recorder stopped");
-          // mediaRecorder.requestData();
           toggleButtons();
           document.getElementById("additionMicrophone").style.opacity = "1";
           document.getElementById("additionMicrophoneClose").style.opacity = "0";

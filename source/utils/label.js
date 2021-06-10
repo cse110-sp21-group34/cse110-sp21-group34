@@ -4,7 +4,11 @@ const storage = require("storage");
 
 document.querySelector("#iconInside").addEventListener("click", createNew);
 
-// function that create a pop-up window for user to select label name and color
+/**
+ * Function that create a pop-up window for user to select label name and color
+ * @param {function} editor Contains the storage handling for current date
+ * @param {Date} date Date for which the label is to be attributed
+ */
 function createNew(editor, date) {
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
@@ -57,7 +61,11 @@ function createNew(editor, date) {
 
 }
 
-// simple function that creates label element on the page
+/**
+ * Creates label element on the page
+ * @param  {String} name Holds the name of the label
+ * @param  {String} color Holds the hexcode for the color of the label
+ */
 function createLabel(name, color) {
     var oneLabel = document.createElement('a');
     oneLabel.href = "#";
@@ -80,9 +88,10 @@ function createLabel(name, color) {
     document.querySelector("#iconInside").addEventListener("click", createNew);
 }
 
-
-// function that opens the editing window (similar to that one when creating labels) when you click the label
-// TODO: click may have other major functionality. Figure out how to bind it to right-click
+/**
+ * Opens interface to edit label when it is right-clicked
+ * @param  {HTMLElement<a>} oneLabel HTML Anchor tag whose label is to be edited
+ */
 function editLabel(oneLabel) {
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";

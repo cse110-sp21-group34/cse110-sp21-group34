@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>editor/index.js - Documentation</title>
+    <title>utils/label.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">editor/index.js</h1>
+    <h1 class="page-title">utils/label.js</h1>
     
 
     
@@ -39,160 +39,151 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* eslint-disable node/no-unsupported-features/es-syntax */
-/* eslint-disable no-new */
-/* eslint-disable no-undef */
-/* eslint-disable no-console */
-// const Delimiter = require('@editorjs/delimiter');
-import styles from './css/index.css';
+            <pre class="prettyprint source linenums"><code>import styles from './css/labelPrompt.css';
 
-const EditorJS = require('@editorjs/editorjs')
-const Alert = require("editorjs-alert");
-const NestedList = require('@editorjs/nested-list');
-const Checklist = require('@editorjs/checklist');
-const Marker = require("@editorjs/marker");
-const AlignmentBlockTune = require('editorjs-text-alignment-blocktune');
-const DragDrop = require('editorjs-drag-drop');
-const Paragraph = require('@editorjs/paragraph');
-const Embed = require('@editorjs/embed');
-const Header = require('@editorjs/header');
+const storage = require("storage");
 
-const NotSoSimpleImage = require('./not-so-simple-image/src/index')
-const NotSoSimpleAudio = require('./not-so-simple-audio/src/index')
-const { resolveConfig } = require('prettier');
-
-const storage = require('storage');
-
-// Set up saving triggers after finishing initializing editor
-const savingInterval = 1000;  // ms
-let saveTimer;
-// document.onkeydown = function onkeydown(e) {
-//   if (e.which === 13 &amp;&amp; e.shiftKey==false) {
-//     e.preventDefault(); 
-//     document.execCommand("insertLineBreak");    
-//       console.log('enter pressed without shift');
-//     return false;
-//   } 
-// }
+document.querySelector("#iconInside").addEventListener("click", createNew);
 
 /**
- * Initialize the EventListener to map "enter" press to "soft break line".
- * @constructor
- * @param {string} holderid - The id of the editor.
+ * Function that create a pop-up window for user to select label name and color
+ * @param {function} editor Contains the storage handling for current date
+ * @param {Date} date Date for which the label is to be attributed
  */
-function initListeners(holderid) {
-  document.getElementById(holderid).addEventListener('keydown', (e) => {
-    // Map the behavior of 'enter' into 'shift + enter' ，which is the line break for paragrah
-    if (e.target.className === 'ce-paragraph cdx-block' || e.target.className === 'cdx-input embed-tool__caption') {
-      if (e.key === 'Enter' &amp;&amp; e.shiftKey==false) {
-        e.preventDefault(); 
-        document.execCommand("insertLineBreak"); 
-      }
-    }
-  });
-}
+function createNew(editor, date) {
+    var prompt = document.createElement('div')
+    prompt.id = "label_prompt_window";
+    var question = document.createElement('p')
+    question.id = "nameColorQ"
+    question.innerText = "Please name your label and choose a color.";
+    // uncomment this if grid-template-columns turned on
+    /*
+    var nullP = document.createElement('p');
+    prompt.appendChild(nullP)
+    */
+    var nameInput = document.createElement('input')
+    nameInput.id = "nameInput";
+    nameInput.type = "text"
+    var colorInput = document.createElement('input')
+    colorInput.id = "colorInput";
+    colorInput.type = "color"
+    prompt.appendChild(question)
+    prompt.appendChild(nameInput)
+    prompt.appendChild(colorInput)
 
+    var createButton = document.createElement("button")
+    createButton.id = "createLabelButton";
+    createButton.innerText = "Confirm";
+    createButton.className = "labelButton";
+    prompt.appendChild(createButton)
 
-/**
- * Initialize the text editor with tools.
- * @constructor
- * @param {string} date - The date of the journal entry.
- * @param {string} holder - The holder id of the editor.
- */
-function newEditor(holder) {
-  let editor_obj = new EditorJS({
-    logLevel: 'VERBOSE',
-    holderId: holder,
-    data: storage.journals.get(storage.currentDate),
-    defaultBlock: "list",
-    onReady: () => {
-      // new Undo({ editor_obj});
-      new DragDrop(editor_obj);
-      initListeners(holder);
-      editor_obj.focus(true);
-    },
-    onChange: () => {
-      editor_obj.save().then((outputData) => storage.journals.save(storage.currentDate, outputData));
-    },
-    tools: {
-      list: {
-        class: NestedList,
-        inlineToolbar: true,
-      },
-      alert: Alert,
-      paragraph: {
-        class: Paragraph,
-        inlineToolbar: true,
-        placeholder: "Type your content here"
-      },
+    var cancelButton = document.createElement("button")
+    cancelButton.id = "cancelLabelButton";
+    cancelButton.innerText = "Cancel";
+    cancelButton.className = "labelButton";
+    prompt.appendChild(cancelButton)
 
-      header: {
-        class: Header,
-        inlineToolbar: true,
-        shortcut: "CMD+SHIFT+H",
-      },
+    var main_area = document.getElementById('editingMainPage')
+    main_area.insertBefore(prompt, main_area.children[1]);
 
-      checklist: {
-        class: Checklist,
-        inlineToolbar: true,
-      },
-
-      Marker: {
-        class: Marker,
-        shortcut: "CMD+SHIFT+M",
-      },
-
-      anyTuneName: {
-        class: AlignmentBlockTune,
-        config: {
-          default: "left",
-          blocks: {
-            header: "center",
-            list: "right",
-          },
-        },
-      },
-      image: {
-        class: NotSoSimpleImage,
-      },
-
-      audio: {
-        class: NotSoSimpleAudio,
-      },
-
-      embed: {
-        class: Embed,
-        config: {
-          services: {
-            youtube: true,
-            coub: true,
-          },
-        },
-      },
-  },
-  });
-  return editor_obj;
-}
-
-/*
-const saveBtn = document.querySelector("button");
-
-saveBtn.addEventListener("click", () => {
-  editor
-    .save()
-    .then((outputData) => {
-      console.log("Article data: ", outputData);
-      localStorage.setItem("Your content", outputData);
-    })
-    .catch((error) => {
-      console.log("Saving failed: ", error);
+    document.querySelector("#createLabelButton").addEventListener("click", () => {
+        createLabel(nameInput.value, colorInput.value);
+        storage.journals.labelDate(storage.currentDate, nameInput.value, {color: colorInput.value});
+        
+        prompt.parentNode.removeChild(prompt);  // Close the window
     });
-});
-*/
 
-module.exports = newEditor;
-exports.newEditor = newEditor;
-</code></pre>
+    document.querySelector("#cancelLabelButton").addEventListener("click", () => {
+        prompt.parentNode.removeChild(prompt);  // Close the window
+    });
+
+    // This line disable our user to open several pop-up windows at a time
+    document.querySelector("#iconInside").removeEventListener("click", createNew);
+
+}
+
+/**
+ * Creates label element on the page
+ * @param  {String} name Holds the name of the label
+ * @param  {String} color Holds the hexcode for the color of the label
+ */
+function createLabel(name, color) {
+    var oneLabel = document.createElement('a');
+    oneLabel.href = "#";
+    oneLabel.innerText = name;
+    oneLabel.className = "oneLabel"
+    // Make sure that our use won't choose color == background color, though chance == 0.01%
+    if (color != "#daf5ff") {
+        oneLabel.style.background = color;
+    }
+    var labelArea = document.getElementsByClassName('pcolor')[0];
+    labelArea.appendChild(oneLabel);
+    // make our newly created label editable
+    oneLabel.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        if (!document.getElementById('label_prompt_window')) {
+            editLabel(oneLabel);
+        }
+    });
+    oneLabel.addEventListener('click', (e) => e.preventDefault());
+    document.querySelector("#iconInside").addEventListener("click", createNew);
+}
+
+/**
+ * Opens interface to edit label when it is right-clicked
+ * @param  {HTMLElement&lt;a>} oneLabel HTML Anchor tag whose label is to be edited
+ */
+function editLabel(oneLabel) {
+    var prompt = document.createElement('div')
+    prompt.id = "label_prompt_window";
+    var question = document.createElement('p');
+    question.id = "nameColorQ";
+    question.innerText = "Change your label name and color."
+    var nameInput = document.createElement('input')
+    nameInput.id = "nameInput";
+    nameInput.type = "text";
+    nameInput.value = oneLabel.innerText;
+    var colorInput = document.createElement('input')
+    colorInput.id = "colorInput";
+    colorInput.type = "color";
+    // This line isn't working.
+    colorInput.defaultValue = oneLabel.style.background
+    prompt.appendChild(question)
+    prompt.appendChild(nameInput)
+    prompt.appendChild(colorInput)
+
+    var changeButton = document.createElement("button")
+    changeButton.id = "changeLabelButton";
+    changeButton.innerText = "Confirm";
+    prompt.appendChild(changeButton);
+    var cancelButton = document.createElement("button")
+    cancelButton.id = "cancelLabelButton";
+    cancelButton.innerText = "Cancel";
+    prompt.appendChild(cancelButton)
+
+    var main_area = document.getElementById('editingMainPage')
+    main_area.insertBefore(prompt, main_area.children[1]);
+
+    document.querySelector("#changeLabelButton").addEventListener("click", () => {
+        prompt.parentNode.removeChild(prompt);  // Close the window
+        oneLabel.href = "#";
+        oneLabel.innerText = nameInput.value;
+        // Make sure that our use won't choose color == background color, though chance == 0.01%
+        if (colorInput.value != "#daf5ff") {
+            oneLabel.style.background = colorInput.value;
+        }
+        storage.journals.labelDate(storage.currentDate, nameInput.value, {color: colorInput.value});
+    });
+
+    document.querySelector("#cancelLabelButton").addEventListener("click", () => {
+        prompt.parentNode.removeChild(prompt);  // Close the window
+    });
+
+}
+
+module.exports = {
+    createLabel: createLabel
+}</code></pre>
         </article>
     </section>
 

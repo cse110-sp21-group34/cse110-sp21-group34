@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 const newEditor = require('editor');
 const storage = require('storage');
 const voice = require('./voice');
@@ -13,7 +12,6 @@ function updateDates() {
   const selectOption = document.querySelector("#monthSelector"); // Obtains the month selecting element.
 
   // Obtains the appropriate month in 0-indexed month format.
-  // eslint-disable-next-line prettier/prettier
   const currMonth = Number(selectOption.options[selectOption.selectedIndex].value); 
 
   // Obtains number of days in a given month and day
@@ -32,17 +30,13 @@ function updateDates() {
     // Obtains the day of the current date in English format with first three letters
     const utcDate = new Date(Date.UTC(currYear, currMonth, currDate));
     const options = { weekday: length };
-    // eslint-disable-next-line prettier/prettier
     const currDay = new Intl.DateTimeFormat(lang, options).format(utcDate);
 
     // Initialize div element to contain one day
     const oneDayDiv = document.createElement("div");
     oneDayDiv.classList.add("oneDay");
-    // eslint-disable-next-line no-loop-func
     oneDayDiv.addEventListener("click", (event) => {
-      // eslint-disable-next-line prettier/prettier
       window.history.pushState({},
-        // eslint-disable-next-line prettier/prettier
         `entry${utcDate.getMonth() + 1}${currDate}${currYear}`, 
         `/#entry${utcDate.getMonth() + 1}${currDate}${currYear}`
       );
@@ -51,12 +45,8 @@ function updateDates() {
         prevDate[0].classList.remove("oneDayActive");
       }
       oneDayDiv.classList.add("oneDayActive");
-      // document
-      //   .getElementById("contentArea")
-      //   .removeChild(document.getElementById("editor"));
-      // const editorDiv = document.createElement("div");
-      // editorDiv.id = "editor";
-      // document.getElementById("contentArea").appendChild(editorDiv);
+
+      // To instantiate the storage for the text editor for current date.
       if (storage.currentEditor) {
         storage.currentEditor.isReady.then(() => {
           storage.currentDate = `${utcDate.getFullYear()}-${
@@ -80,13 +70,12 @@ function updateDates() {
           }
         });
       }
-      // eslint-disable-next-line prettier/prettier
+      // Determines the format of date being displayed using the selected language.
       const editorOptions = { weekday: dayLength };
       const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
         utcDate
       );
       document.getElementsByClassName("dailyDate")[0].innerHTML =
-        // eslint-disable-next-line prettier/prettier
         `${utcDate.getMonth() + 1}/${currDate}, ${editorDay}`;
       routerDate = currDate;
       routerYear = currYear;
@@ -114,6 +103,7 @@ function updateDates() {
   const oldDayList = document.querySelector(".dayList");
   oldDayList?.replaceWith(newDayList); // Ignore null day list using (?.)
 
+  // Handles the selection of correct date if month/year goes out of scope
   if (routerYear === currYear) {
     if (routerMonth === currMonth) {
       const routerElement = document.getElementById(
@@ -125,16 +115,19 @@ function updateDates() {
     }
   }
 
+  // Displays the header with the date being selected.
   const routerFullDate = new Date(Date.UTC(routerYear, routerMonth, routerDate));
   const editorOptions = { weekday: dayLength };
   const editorDay = new Intl.DateTimeFormat(lang, editorOptions).format(
     routerFullDate
   );
   document.getElementsByClassName("dailyDate")[0].innerHTML =
-    // eslint-disable-next-line prettier/prettier
         `${routerMonth + 1}/${routerDate}, ${editorDay}`;
 }
 
+/** 
+ * Updates the months with the selected language.
+ */
 function updateMonthLanguage() {
   const monthOptions = { month: "long" };
   for (let i = 0; i < 12; i += 1) {
@@ -146,34 +139,34 @@ function updateMonthLanguage() {
   }
 }
 
-// Starts up the calendar with the current month
+// Starts up the calendar in English language
 let lang = "en-US";
 let length = "short";
 let dayLength = "long";
 
+// Starts up the calendar with the current month, day, year 
 const todayDate = new Date();
 const todayOptions = { weekday: length };
 const todayDay = new Intl.DateTimeFormat(lang, todayOptions).format(todayDate);
 storage.currentDate = `${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`;
 
+// Handles the route and saves the selected date
 document.querySelector("#monthSelector").value = todayDate.getMonth();
-// eslint-disable-next-line prettier/prettier
 document.getElementsByClassName("dailyDate")[0].innerHTML = 
-  // eslint-disable-next-line prettier/prettier
   `${todayDate.getMonth() + 1}/${todayDate.getDate()}, ${todayDay}`;
 window.history.pushState(
   {},
-  // eslint-disable-next-line prettier/prettier
   `entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`, 
-  // eslint-disable-next-line prettier/prettier
   `/#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`
 );
 let routerMonth = todayDate.getMonth();
 let routerYear = todayDate.getFullYear();
 let routerDate = todayDate.getDate();
 
+/**
+ * Sets the options for the specific language when it is changed.
+ */
 document.getElementById("languageSelector").addEventListener("change", () => {
-  // TODO: Placeholder check when we implement settings
   if (document.getElementById("languageSelector").value === "English") {
     lang = "en-US";
     length = "short";
@@ -204,6 +197,7 @@ document.getElementById("languageSelector").addEventListener("change", () => {
     document.getElementById("language").innerText = "اللغة";
     document.getElementById("about").innerText = "عن اقوينوكس";
   }
+  // Stores Language so that it is retained even during your next visit.
   storage.journals.isReady.then(() => storage.journals.settings = {lang: lang});
   updateDates();
   updateMonthLanguage();
@@ -231,11 +225,11 @@ document.querySelector("#monthSelector").addEventListener("change", () => {
 // Instantiates the dates when page is first loaded
 updateDates();
 const todayElement = document
-  // eslint-disable-next-line prettier/prettier
   .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`);
 
+
+// Instantiates the storage for today's entries.
 todayElement.classList.add("oneDayActive");
-// eslint-disable-next-line prettier/prettier
 storage.journals.isReady
   .then(() => {
     if (storage.journals.settings.lang) {
