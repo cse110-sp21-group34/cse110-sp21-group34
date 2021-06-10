@@ -141,7 +141,7 @@ class Journals {
     return this.push();
   }
 
-  /**
+    /**
    * Remove private label from specific date
    * @param {String} date date of journal
    * @param {String} label label name
@@ -191,7 +191,7 @@ class Journals {
    * @returns {int} return code
    */
   removelabel(label) {
-    if (!this.labels[label]) return 0;
+    if (!this.labels[label]) return 1;
     if (Object.keys(this.labels[label].journals).length === 0) {
       // No journal is assicoated with this label, proceed to removal
       delete this.labels[label];

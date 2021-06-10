@@ -25,14 +25,6 @@ const storage = require('storage');
 // Set up saving triggers after finishing initializing editor
 const savingInterval = 1000;  // ms
 let saveTimer;
-// document.onkeydown = function onkeydown(e) {
-//   if (e.which === 13 && e.shiftKey==false) {
-//     e.preventDefault(); 
-//     document.execCommand("insertLineBreak");    
-//       console.log('enter pressed without shift');
-//     return false;
-//   } 
-// }
 
 /**
  * Initialize the EventListener to map "enter" press to "soft break line".
@@ -58,17 +50,16 @@ function initListeners(holderid) {
  * @param {string} date - The date of the journal entry.
  * @param {string} holder - The holder id of the editor.
  */
-function newEditor(holder) {
+export function newEditor(holder) {
   let editor_obj = new EditorJS({
     logLevel: 'VERBOSE',
     holderId: holder,
     data: storage.journals.get(storage.currentDate),
     defaultBlock: "list",
     onReady: () => {
-      // new Undo({ editor_obj});
       new DragDrop(editor_obj);
-      initListeners(holder);
       editor_obj.focus(true);
+      initListeners(holder);
     },
     onChange: () => {
       editor_obj.save().then((outputData) => storage.journals.save(storage.currentDate, outputData));
@@ -133,21 +124,7 @@ function newEditor(holder) {
   return editor_obj;
 }
 
-/*
-const saveBtn = document.querySelector("button");
-
-saveBtn.addEventListener("click", () => {
-  editor
-    .save()
-    .then((outputData) => {
-      console.log("Article data: ", outputData);
-      localStorage.setItem("Your content", outputData);
-    })
-    .catch((error) => {
-      console.log("Saving failed: ", error);
-    });
-});
-*/
 
 module.exports = newEditor;
 exports.newEditor = newEditor;
+exports.initListeners = initListeners;
