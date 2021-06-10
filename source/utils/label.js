@@ -12,7 +12,7 @@ function createNew() {
         let prompt = document.getElementById('label_prompt_window');
         prompt.parentNode.removeChild(prompt);
     }
-    
+
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
     var question = document.createElement('p')
@@ -79,10 +79,6 @@ function createLabel(name, color) {
     // make our newly created label editable
     oneLabel.addEventListener('contextmenu', (e) => {
         e.preventDefault();
-        if (document.getElementById('label_prompt_window')) {
-            let prompt = document.getElementById('label_prompt_window');
-            prompt.parentNode.removeChild(prompt);
-        }
         editLabel(oneLabel);
     });
     oneLabel.addEventListener('click', (e) => e.preventDefault());
@@ -94,6 +90,11 @@ function createLabel(name, color) {
  * @param  {HTMLElement<a>} oneLabel HTML Anchor tag whose label is to be edited
  */
 function editLabel(oneLabel) {
+    if (document.getElementById('label_prompt_window')) {
+        let prompt = document.getElementById('label_prompt_window');
+        prompt.parentNode.removeChild(prompt);
+    }
+    
     var prompt = document.createElement('div')
     prompt.id = "label_prompt_window";
     var question = document.createElement('p');
