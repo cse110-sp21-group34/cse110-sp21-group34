@@ -4,9 +4,9 @@ const Storage = require('storage');
 const {Assets, AssetsMockWrapper} = require('storage/assets');
 
 describe("Storage Interface", () => {
-    describe("Demo Test", () => {``
+    it("Demo Test", () => {
         expect(1).toBe(1);
-    })
+    });
     describe("Pure Journal", () => {
         it('Initial from empty dictionary', () => {
             let ref = {
