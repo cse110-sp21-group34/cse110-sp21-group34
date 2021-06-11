@@ -1,4 +1,4 @@
-# Final Video for Group 34 - Public Version
+# Final Video for Group 34 - Private Version
 
 ### Google Drive Link:
 
