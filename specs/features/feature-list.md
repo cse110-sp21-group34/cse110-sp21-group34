@@ -4,21 +4,20 @@
 
 <ins>Quick Note:</ins> Click outside of the current element to move on to create a new element. Clicking on `ENTER/RETURN` would help create a newline/bullet on the same element. 
   
-To change an option for a given feature, click on the four dots on the top right of an element which will appear once you hover near it.
+To change an option for a given feature, click on the four dots on the top right of an element which will appear once you hover near it.  
 
-<img src="./img/change-options.png">
+<img src="./img/change-options.png" width="auto">
 
 ### 1. Rapid Logging - Nested Bullets
 
 You can quickly take notes in bullet-format and this is the default option presented when you enter the website.  
-Click on `TAB` to nest a list by one level and click on `ENTER/RETURN` to de-nest a list by one level.
-<img src="./img/nestedList.gif">
-
-<img src="./img/rapid-logging.png" width="400px">
+Click on `TAB` to nest a list by one level and click on `ENTER/RETURN` to de-nest a list by one level.  
+  
+<img src="./img/nestedList.gif" width="300px">
   
 ### 2. Expandable Calendar
 
-We have a vertical calendar that can be expanded and minimized at will for better usability. Thanks to Professor Powell for giving us this suggestion. This has been animated for aesthetic purposes.
+We have a vertical calendar that can be expanded and minimized at will for better usability. Thanks to Professor Powell for giving us this suggestion. This has been animated for aesthetic purposes.  
   
 The year can be changed by clicking on the two arrows beside the year currently selected. The month can be selected by clicking on the dropdown that has the currently selected month.  
 <img src="./img/calendar.gif">
@@ -114,7 +113,7 @@ The different languages are implemented in hopes of accomodating people who spea
 
 ### 18. Labels
 
-Labels are implemented for each date so that one could go to a date and quickly know what thei
+Labels are implemented for each date so that one could go to a date and quickly know what their 
 
 ### 19. Reload goes back to Today's Date and Automatically Scrolls to that Date 
 
