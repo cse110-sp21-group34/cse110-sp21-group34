@@ -7,8 +7,6 @@ Check out our [**Onboarding Document**](./specs/onboard.md) to get started with 
   
 Check out our [**Feature List**](./specs/features/feature-list.md) to get acquainted with the different features of the product.
 
-Check out our [**Options List**](./specs/features/options.md) to know of the different options for the different features allowed in our project.
-
 ## Our Project
 
 <img src="admin/branding/team-icon.jpeg" width="400" alt="equinox-logo" style="padding-bottom:50px; padding-top:50px;">
