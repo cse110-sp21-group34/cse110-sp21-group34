@@ -128,17 +128,29 @@ There were many features that we wanted to originally implement but due to time 
 
 ### 1. Different Languages for Labels
 
-We really wanted to complete the functionality for changing the languages of the prompts displayed when creating or editing the label. This would allow for the complete experience of using a different language in Equinox. But, as implementation of labels was completed on Wednesday of Week 11, we were not able to 
+We really wanted to complete the functionality for changing the languages of the prompts displayed when creating or editing the label. This would allow for the complete experience of using a different language in Equinox. But, as implementation of labels was completed on Wednesday of Week 11, we were not able to figure out how to access storage for the language and hence missed out on this small feature. 
 
 ### 2. Search Function
 
+A function to search for the bullets to correctly know which date a certain bullet is coming from was planned.
+
 ### 3. Indexing through Date
+
+The functionality to type in a date and quickly go to that date without navigating the vertical calendar was also proposed.
 
 ### 4. About Page
 
+A short About Page that gave a quick tutorial of the features in Equinox was also proposed but we did not get the time to complete this one either.
+
 ### 5. Calendar Page
+
+A conventional calendar that showed the labels of a page and which allowed the clicking of a date to load the editor up for that date was also proposed. 
 
 ### 6. Summary of Labels
 
+A summary page that showed details about the different labels used by the user was also planned. This would maximise the potential that our labels implementation that we have right now.
+
 ### 7. Dark Mode
+
+A Dark Mode was also planned but this turned out to be a mammoth task for the UI Designers, so we dropped it focus on a cleaner UI for the page we already have.
 
