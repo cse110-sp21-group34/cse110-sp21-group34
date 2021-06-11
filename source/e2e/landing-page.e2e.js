@@ -33,6 +33,35 @@ describe('Calendar and Editor', () => {
       expect(content).toBe(title);
     });
 
+    it('Switch language to Chinese', async () => {
+      const settingIcon = await page.$("i[id='settingIcon']");
+      await settingIcon.click();
+
+      const select = await page.$("select[id='languageSelector']");
+      await select.click();
+      await page.select('#languageSelector', 'Chinese');
+      var title = '';
+      var date = new Date();
+      title = title + (date.getMonth() + 1) + '/';
+      title = title + date.getDate() + ', ';
+
+      const content = await page.evaluate(() => {
+        return document.getElementsByClassName('dailyDate')[0].textContent;
+      })
+
+      var day = date.getDay();
+      if(day == 1) title = title + '星期一';
+      else if(day == 2) title = title + '星期二';
+      else if(day == 3) title = title + '星期三';
+      else if(day == 4) title = title + '星期四';
+      else if(day == 5) title = title + '星期五';
+      else if(day == 6) title = title + '星期六';
+      else if(day == 7) title = title + '星期日';
+      await settingIcon.click();
+      expect(content).toBe(title);
+    });
+
+
     it('Text input', async () => {
       const input = await page.$("div[id='editor']");
       await input.click();
@@ -51,7 +80,6 @@ describe('Calendar and Editor', () => {
 
     it('Add image by url', async () => {
       const input = await page.$("div[id='editor']");
-      const clipboardy = require('clipboardy');
       await input.click();
       await page.waitForTimeout(1000); // Wait for element to come up
 
