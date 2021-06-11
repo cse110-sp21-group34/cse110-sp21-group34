@@ -141,6 +141,13 @@ As bullet journals as mostly used to log activities for days around the current 
 ### 20. Animations
 
 Animations are added to make every change in state look cleaner in terms of UX and aesthetics. This allows for a more pleasant experience with the app and makes it feel alive rather than a rigid outdated web app.
+<img src="./img/side-bar.gif" height="500px" >
+<img src="./img/additional.gif" width="300px" >
+<img src="./img/overall.gif" width="500px">
+<img src="./img/setting.gif" width="300px" >
+
+
+
 
 
 ## Features That Were Planned But Did Not Implement
