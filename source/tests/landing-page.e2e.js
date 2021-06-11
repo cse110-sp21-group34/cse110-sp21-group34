@@ -126,4 +126,32 @@ describe('Basic user flow for SPA ', () => {
     }, 15000);
 
 
+       // Testing language for Indonesia
+    it('Switch language to Chinese', async () => {
+      const settingIcon = await page.$("i[id='settingIcon']");
+      await settingIcon.click();
+
+      const select = await page.$("select[id='languageSelector']");
+      await select.click();
+      await page.select('#languageSelector', 'Bahasa Indonesia');
+      var title = '';
+      var date = new Date();
+      title = title + (date.getMonth() + 1) + '/';
+      title = title + date.getDate() + ', ';
+
+      const content = await page.evaluate(() => {
+        return document.getElementsByClassName('dailyDate')[0].textContent;
+      })
+
+      var day = date.getDay();
+      if(day == 1) title = title + 'Rabu';
+      else if(day == 2) title = title + 'Kamis';
+      else if(day == 3) title = title + 'Jumat';
+      else if(day == 4) title = title + 'Sabtu';
+      else if(day == 5) title = title + 'Minggu';
+      else if(day == 6) title = title + 'Senin';
+      else if(day == 7) title = title + 'Selasa';
+      await settingIcon.click();
+      expect(content).toBe(title);
+    });
 })
