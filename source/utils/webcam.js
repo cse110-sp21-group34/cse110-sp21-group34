@@ -215,8 +215,8 @@ function initWebcam(editor) {
       document.getElementById('editor').removeChild(cameraContainer);
       cameraActivated = false;
       if(document.getElementById("additionFirstExp").style.height !== "0px") {
-      document.getElementById("additionMicrophone").style.opacity = "100";
-      document.getElementById("additionMicrophone").style.pointerEvents = "all";
+        document.getElementById("additionMicrophone").style.opacity = "100";
+        document.getElementById("additionMicrophone").style.pointerEvents = "all";
       }
     }
   })
