@@ -85,9 +85,22 @@ Any element can be easily deleted using `Backspace`. This enables easy deletion 
 
 ### 16. Copy-Paste by Highlighting Elements
 
+Elements can be copy-pasted between dates or within the same date by just highlighting over those elements and using the appropriate copy/cut and paste command.
+
 ### 17. Different Languages
 
+We have implemented the functionality for the different languages:
+1. English
+2. Chinese
+3. Bahasa Indonesia
+4. Arabic
+5. Tamil
+
+The different languages are implemented in hopes of accomodating people who speak these other languages and feel more comfortable with them. This was suggested by Professor Powell as a meaningful way to showcase our diverse cultural backgrounds.
+
 ### 18. Labels
+
+Labels are implemented for each date so that one could go to a date and quickly know what thei
 
 ### 19. Reload goes back to Today's Date and Automatically Scrolls to that Date 
 
