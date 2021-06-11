@@ -102,7 +102,7 @@ describe('Calendar and Editor', () => {
       await page.keyboard.up('Control');
       await page.keyboard.up('Shift');
       // await page.keyboard.type('https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg');
-      await page.waitFor(2500);
+      await page.waitFor(5500);
       const src = await page.evaluate(() => {
         return document.querySelector("div > img").getAttribute('src');
       })

@@ -94,10 +94,15 @@ For people not comfortable with dragging elements, top and down buttons inside t
 ### 15. Ability to Delete using Backspace
 
 Any element can be easily deleted using `Backspace`. This enables easy deletion of the elements. An alternative way to delete elements is to use the `X` Button under the button on the top right.   
+<img src="./img/backspace.gif" width="350px">
+
 
 ### 16. Copy-Paste by Highlighting Elements
 
 Elements can be copy-pasted between dates or within the same date by just highlighting over those elements and using the appropriate copy/cut and paste command.  
+
+<img src="./img/copyPaste.gif" width="350px">
+
 
 ### 17. Different Languages
 <img src="./img/languageSwtiching.gif" width="350px">
@@ -114,8 +119,11 @@ The different languages are implemented in hopes of accomodating people who spea
 ### 18. Labels
 
 Labels are implemented for each date so that one could go to a date and quickly know what their   
+<img src="./img/label.gif" width="350px">
 
 ### 19. Reload goes back to Today's Date and Automatically Scrolls to that Date 
+<img src="./img/reload_resized.gif" width="350px">
+
 
 ### 20. Animations
 
