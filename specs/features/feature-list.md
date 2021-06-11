@@ -13,94 +13,94 @@ To change an option for a given feature, click on the four dots on the top right
 You can quickly take notes in bullet-format and this is the default option presented when you enter the website.  
 Click on `TAB` to nest a list by one level and click on `ENTER/RETURN` to de-nest a list by one level.  
   
-<img src="./img/nestedList.gif" width="300px">
+<img src="./img/nestedList.gif" width="350px">
   
 ### 2. Expandable Calendar
 
 We have a vertical calendar that can be expanded and minimized at will for better usability. Thanks to Professor Powell for giving us this suggestion. This has been animated for aesthetic purposes.  
   
 The year can be changed by clicking on the two arrows beside the year currently selected. The month can be selected by clicking on the dropdown that has the currently selected month.  
-<img src="./img/calendar.gif">
+<img src="./img/calendar.gif " width="350px">
 
 ### 3. Headings
 
 There are 6 different heading sizes that can be added from `h1` through to `h6`. Click on the `H` option. 
 
-<img src="./img/heading-option.png">
+<img src="./img/heading-option.png" >
 
 <img src="./img/heading.png">
 
 ### 4. Checklists
 
-Click on the `Tick` option. These types of bullets can be selected or deselected.
-<img src="./img/checklist.gif">
+Click on the `Tick` option. These types of bullets can be selected or deselected.  
+<img src="./img/checklist.gif" width="350px"> 
 
 ### 5. Alerts
 
-Click on the `(i)` option. These type of bullets have their own background that can be customized with the following colors/
-<img src="./img/alert.gif">
+Click on the `(i)` option. These type of bullets have their own background that can be customized with the following colors/  
+<img src="./img/alert.gif" width="350px">
 
 ### 6. Bold/Italics/Highlight/Link
 
-Text can be bolded, italicized, highlighted by selecting the text that you want to do the prior operation to. You can also add a link by doing the same.
-<img src="./img/bold_etc.gif">
+Text can be bolded, italicized, highlighted by selecting the text that you want to do the prior operation to. You can also add a link by doing the same.  
+<img src="./img/bold_etc.gif" width="350px">
 
 ### 7. Different Bullet Styles
 
-There are multiple bullet styles to choose from and can be chosen from the button with the four dots on the top left.
-<img src="./img/bullets.gif">
+There are multiple bullet styles to choose from and can be chosen from the button with the four dots on the top left.  
+<img src="./img/bullets.gif" width="350px">
 
 # INSERT GIF HERE
 
 ### 8. Image
 
-You can either upload an image from your computer or copy paste a link to add an image. Click on the `Image` Button to upload from your local computer.
-<img src="./img/image.gif">
+You can either upload an image from your computer or copy paste a link to add an image. Click on the `Image` Button to upload from your local computer.  
+<img src="./img/image.gif" width="350px">
 
 ### 9. Audio
 
-You can either upload an image from your computer or copy paste a link to add an image. Click on the `Audio` Button to upload from your local computer.
-<img src="./img/audio.gif">
+You can either upload an image from your computer or copy paste a link to add an image. Click on the `Audio` Button to upload from your local computer.  
+<img src="./img/audio.gif" width="350px">
 
 ### 10. Webcam
 
-You can also take pictures using your webcam and accept/delete them at will. Once you accept, it is turned into a picture and is added to the journal.  
+You can also take pictures using your webcam and accept/delete them at will. Once you accept, it is turned into a picture and is added to the journal.    
   
-Click on the `Plus` button in the right-bottom corner of the page where you can find a `Camera` Icon, which upon clicking will display your webcam capture. You can also switch between available cameras by clicking on the `Switch` button to the right of `Capture`.
-<img src="./img/webcam.gif">
+Click on the `Plus` button in the right-bottom corner of the page where you can find a `Camera` Icon, which upon clicking will display your webcam capture. You can also switch between available cameras by clicking on the `Switch` button to the right of `Capture`.  
+<img src="./img/webcam.gif" width="350px">
 
 ### 11. Voice Memo
 
-You can record voice memos using your microphone and add them to your journal. It is rendered as an audio file in the journal.
+You can record voice memos using your microphone and add them to your journal. It is rendered as an audio file in the journal.  
 
-Click on the `Plus` button in the right-bottom corner of the page where you can find a `Microphone` Icon, which upon clicking will display your a 'Record' button. Record at your will and it will show a timer. Upon completion of the record, this will be automatically rendered as an audio file in the journal.
-<img src="./img/voiceNote.gif.gif">
+Click on the `Plus` button in the right-bottom corner of the page where you can find a `Microphone` Icon, which upon clicking will display your a 'Record' button. Record at your will and it will show a timer. Upon completion of the record, this will be automatically rendered as an audio file in the journal.  
+<img src="./img/voiceNote.gif" width="350px">
 
 ### 12. YouTube
 
-You can copy-paste a YouTube link for it to be rendered as a YouTube Video Embed in the Journal and can be watched from the Journal itself. 
-<img src="./img/youtube.gif">
+You can copy-paste a YouTube link for it to be rendered as a YouTube Video Embed in the Journal and can be watched from the Journal itself.   
+<img src="./img/youtube.gif" width="350px">
 
 ### 13. Drag Elements using Button on Top Right
 
-Elements can be dragged across the page by dragging the button with the four dots on the top right of an element. This enables easy reorganization of elements in the journal.
-<img src="./img/dragBlock.gif">
+Elements can be dragged across the page by dragging the button with the four dots on the top right of an element. This enables easy reorganization of elements in the journal.  
+<img src="./img/dragBlock.gif" width="350px">
 
 ### 14. Move Elements using Options from Button on Top Right
 
-For people not comfortable with dragging elements, top and down buttons inside the same button on the top right can allow elements to move up and down respectively by one element with one click of the button.
-<img src="./img/blockMove.gif">
+For people not comfortable with dragging elements, top and down buttons inside the same button on the top right can allow elements to move up and down respectively by one element with one click of the button.  
+<img src="./img/blockMove.gif" width="350px">
 
 ### 15. Ability to Delete using Backspace
 
-Any element can be easily deleted using `Backspace`. This enables easy deletion of the elements. An alternative way to delete elements is to use the `X` Button under the button on the top right. 
+Any element can be easily deleted using `Backspace`. This enables easy deletion of the elements. An alternative way to delete elements is to use the `X` Button under the button on the top right.   
 
 ### 16. Copy-Paste by Highlighting Elements
 
-Elements can be copy-pasted between dates or within the same date by just highlighting over those elements and using the appropriate copy/cut and paste command.
+Elements can be copy-pasted between dates or within the same date by just highlighting over those elements and using the appropriate copy/cut and paste command.  
 
 ### 17. Different Languages
-<img src="./img/languageSwtiching.gif">
+<img src="./img/languageSwtiching.gif" width="350px">
 
 We have implemented the functionality for the different languages:
 1. English
@@ -109,11 +109,11 @@ We have implemented the functionality for the different languages:
 4. Arabic
 5. Tamil
 
-The different languages are implemented in hopes of accomodating people who speak these other languages and feel more comfortable with them. This was suggested by Professor Powell as a meaningful way to showcase our diverse cultural backgrounds.
+The different languages are implemented in hopes of accomodating people who speak these other languages and feel more comfortable with them. This was suggested by Professor Powell as a meaningful way to showcase our diverse cultural backgrounds.  
 
 ### 18. Labels
 
-Labels are implemented for each date so that one could go to a date and quickly know what their 
+Labels are implemented for each date so that one could go to a date and quickly know what their   
 
 ### 19. Reload goes back to Today's Date and Automatically Scrolls to that Date 
 
