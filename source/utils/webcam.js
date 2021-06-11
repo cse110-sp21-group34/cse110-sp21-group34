@@ -1,3 +1,5 @@
+// Citation: Professor Powell and Camdyn Rasque for their implementation of the webcam
+
 import styles from './css/webcamStyle.css';
 
 const storage = require('storage');

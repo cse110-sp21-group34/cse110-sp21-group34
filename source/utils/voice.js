@@ -1,3 +1,5 @@
+// Citation: Professor Powell and Camdyn Rasque for their implementation of the audio note.
+
 const storage = require('storage');
 
 /**
