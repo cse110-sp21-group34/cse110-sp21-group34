@@ -39,7 +39,7 @@ Click on the `Tick` option. These types of bullets can be selected or deselected
 ### 5. Alerts
 
 Click on the `(i)` option. These type of bullets have their own background that can be customized with the following colors/
-<img src="./img/alerts.gif">
+<img src="./img/alert.gif">
 
 ### 6. Bold/Italics/Highlight/Link
 
