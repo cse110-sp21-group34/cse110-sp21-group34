@@ -113,11 +113,15 @@ The different languages are implemented in hopes of accomodating people who spea
 
 ### 18. Labels
 
-Labels are implemented for each date so that one could go to a date and quickly know what their 
+Labels are implemented for each date so that one could go to a date and quickly know an overview of their tasks. It allows for easy compartmentalization and organization of tasks along with rapid checking of the overview for different dates.
 
 ### 19. Reload goes back to Today's Date and Automatically Scrolls to that Date 
 
+As bullet journals as mostly used to log activities for days around the current date, we thought going to the current date would be the most sensible load for the first time entering the page. Even if you have lost yourself to a different date, you can quickly reload to come back to the today's date.
+
 ### 20. Animations
+
+Animations are added to make every change in state look cleaner in terms of UX and aesthetics. This allows for a more pleasant experience with the app and makes it feel alive rather than a rigid outdated web app.
 
 
 ## Features That Were Planned But Did Not Implement
@@ -125,6 +129,8 @@ Labels are implemented for each date so that one could go to a date and quickly 
 There were many features that we wanted to originally implement but due to time constraints and the relative difficulty of the tasks we were not able to:
 
 ### 1. Different Languages for Labels
+
+We really wanted to complete the functionality for changing the languages of the prompts displayed when creating or editing the label. This would allow for the complete experience of using a different language in Equinox. But, as implementation of labels was completed on Wednesday of Week 11, we were not able to 
 
 ### 2. Search Function
 
@@ -135,4 +141,6 @@ There were many features that we wanted to originally implement but due to time 
 ### 5. Calendar Page
 
 ### 6. Summary of Labels
+
+### 7. Dark Mode
 
