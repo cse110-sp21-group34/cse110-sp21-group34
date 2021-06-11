@@ -129,14 +129,15 @@ The different languages are implemented in hopes of accomodating people who spea
 <img src="./img/languageSwtiching.gif" width="350px">
 
 ### 18. Labels
-Labels are implemented for each date so that one could go to a date and quickly know an overview of their tasks. It allows for easy compartmentalization and organization of tasks along with rapid checking of the overview for different dates.
+Labels are implemented for each date so that one could go to a date and quickly know an overview of their tasks. It allows for easy compartmentalization and organization of tasks along with rapid checking of the overview for different dates.  
+  
 <img src="./img/label.gif" width="350px">
 
 ### 19. Reload goes back to Today's Date and Automatically Scrolls to that Date 
+
+As bullet journals as mostly used to log activities for days around the current date, we thought going to the current date would be the most sensible load for the first time entering the page. Even if you have lost yourself to a different date, you can quickly reload to come back to the today's date.  
+  
 <img src="./img/reload_resized.gif" width="350px">
-
-
-As bullet journals as mostly used to log activities for days around the current date, we thought going to the current date would be the most sensible load for the first time entering the page. Even if you have lost yourself to a different date, you can quickly reload to come back to the today's date.
 
 ### 20. Animations
 
