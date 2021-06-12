@@ -63,7 +63,7 @@ You can either upload an image from your computer or copy paste a link to add an
 
 ### 9. Audio
 
-You can either upload an image from your computer or copy paste a link to add an audio. Click on the `Audio` Button to upload from your local computer.   
+You can either upload an audio from your computer or copy paste a link to add an audio. Click on the `Audio` Button to upload from your local computer.   
 
 <img src="./img/audio.gif" width="350px">
 
