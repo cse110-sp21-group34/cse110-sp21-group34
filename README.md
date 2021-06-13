@@ -1,6 +1,10 @@
 # Equinox - CSE 110 Group 34 Project
 ### Organize Your Life Through Bullet Journaling!
 
+## Deployment on Github Pages
+
+[**Click here**](https://cse110-sp21-group34.github.io/app/editing-page.html) to access Equinox! It has been deployed on Github Pages.
+
 ## Onboarding 
 
 Check out our [**Onboarding Document**](./specs/onboard.md) to get started with the Project.  
