@@ -56,7 +56,7 @@ function updateDates() {
           }-${utcDate.getDate()}`;
           let saved_data = storage.journals.get(storage.currentDate);
 
-          if (Object.keys(saved_data).length === 0 || !saved_data.block || saved_data.block.length === 0) {
+          if (Object.keys(saved_data).length === 0) {
             storage.currentEditor.clear();
           }
           else {
