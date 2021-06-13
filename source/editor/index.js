@@ -41,6 +41,9 @@ function initListeners(holderid) {
       }
     }
   });
+  document.getElementById(holderid).addEventListener('paste', () => {
+    window.setTimeout(() => {storage.currentEditor.save().then((outputData) => {storage.journals.save(storage.currentDate, outputData)})} , 1000);
+  })
 }
 
 
