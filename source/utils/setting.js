@@ -17,11 +17,11 @@ document.getElementsByClassName("bi bi-gear")[0].addEventListener("click", () =>
   }else if(document.getElementById("mySidepanel").style.width !== "0px") {
     document.getElementById("mySidepanel").style.width = "0";
     // Activate textarea
-    document.getElementById("contentArea").style.pointerEvents = "all";
-    document.getElementById("editor").style.pointerEvents = "all";
+    document.getElementById("contentArea").style.removeProperty('pointer-events');
+    document.getElementById("editor").style.removeProperty('pointer-events');
     document.getElementById("settingIcon").style.transform = "rotate(0deg)";
     // Deactivate "click somewhere else" function
-    document.getElementById("blocker").style.pointerEvents = "none";
+    document.getElementById("blocker").style.removeProperty('pointer-events');
     document.getElementById("blocker").style.zIndex = "-2";
     console.log("Executing action");
   }
@@ -32,11 +32,11 @@ document.getElementsByClassName("bi bi-gear")[0].addEventListener("click", () =>
  */
 document.getElementById("blocker").addEventListener("click", () => {
   document.getElementById("mySidepanel").style.width = "0";
-  document.getElementById("contentArea").style.pointerEvents = "all";
-  document.getElementById("editor").style.pointerEvents = "all";
+  document.getElementById("contentArea").style.removeProperty('pointer-events');
+  document.getElementById("editor").style.removeProperty('pointer-events');
   document.getElementById("settingIcon").style.transform = "rotate(0deg)";
   // Deactivate this function until revisited
-  document.getElementById("blocker").style.pointerEvents = "none";
+  document.getElementById("blocker").style.removeProperty('pointer-events');
   document.getElementById("blocker").style.zIndex = "-2";
   document.getElementById("dateSelector").style.marginLeft = "-210px";
   document.getElementById("selectorExpBlock").style.left = "210px";
@@ -159,7 +159,7 @@ document.getElementById("selectorExpBlock").addEventListener("click", () => {
     document.getElementById("selectorExp").style.transform = "rotate(0deg)";
     // Deactivate the blocker
     document.getElementById("blocker").style.zIndex = "-2";
-    document.getElementById("blocker").style.pointerEvents = "none";
+    document.getElementById("blocker").style.removeProperty('pointer-events');
   }
 });
 
