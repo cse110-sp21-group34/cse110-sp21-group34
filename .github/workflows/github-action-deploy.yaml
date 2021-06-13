@@ -23,7 +23,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: 'source/dist'
+        source-directory: source/dist
         destination-github-username: 'cse110-sp21-group34'
         destination-repository-name: 'deploy'
         user-email: gordon-zhao@no.reply.github.com
