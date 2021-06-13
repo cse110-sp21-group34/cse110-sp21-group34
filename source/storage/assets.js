@@ -1,4 +1,4 @@
-const Dexie = require("dexie");
+const Dexie = require("dexie").default;
 const Md5 = require("md5");
 
 class Assets {
