@@ -17,14 +17,13 @@ jobs:
     - name: Build Webpage
       run: "cd source; npm i; npx parcel build editing-page.html"
     - name: Pushes to another repository
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'source/dist'
-          destination-github-username: 'gordon-zhao'
-          destination-repository-name: 'deploy'
-          user-email: gordon-zhao@no.reply.github.com
-          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-          target-branch: main
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'source/dist'
+        destination-github-username: 'gordon-zhao'
+        destination-repository-name: 'deploy'
+        user-email: gordon-zhao@no.reply.github.com
+        commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+        target-branch: main
