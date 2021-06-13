@@ -4,7 +4,6 @@ const storage = require("storage");
 
 if(document.getElementById("editingMainPage").style.top === "30px") {
     document.querySelector("#addLabel").addEventListener("click", createNew);
-    console.log("11111111111");
 }
 
 /**
@@ -120,7 +119,6 @@ function createLabel(name, color) {
     oneLabel.addEventListener('click', (e) => e.preventDefault());
     if(document.getElementById("editingMainPage").style.top === "30px") {
         document.querySelector("#addLabel").addEventListener("click", createNew);
-        console.log("22222222222222");
     }
 }
 
