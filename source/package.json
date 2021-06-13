@@ -6,13 +6,13 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "parcel editing-page.html -p 8000",
+    "dev": "cross-env APP_ROOT=/ parcel editing-page.html -p 8000",
     "test": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --silent --coverage --verbose --config config/jest.config.js",
     "test:unit": "jest --config config/jest.config.js --selectProjects Unit --verbose --coverage",
     "test:jsdom": "jest --config config/jest.config.js --selectProjects Jsdom --verbose",
     "test:e2e": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --config config/jest.config.js --selectProjects End-to-End",
     "doc": "jsdoc -c config/jsdoc.json",
-    "build": "parcel build --dist-dir ./build/ --public-url /app editing-page.html"
+    "build": "cross-env APP_ROOT=/app/editing-page.html parcel build --dist-dir ./build/ --public-url /app editing-page.html"
   },
   "author": "",
   "license": "ISC",
