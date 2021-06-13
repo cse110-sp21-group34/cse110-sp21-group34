@@ -2,7 +2,7 @@
   "name": "source",
   "version": "1.0.0",
   "description": "",
-  "main": "test-script.js",
+  "main": "editing-page.html",
   "directories": {
     "test": "tests"
   },
