@@ -22,7 +22,7 @@ describe('Calendar and Editor', () => {
       })
 
       let day = date.getDay();
-      await page.waitForTimeout(1000);
+      console.log(day);
 
       if(day == 1) title = title + 'Monday';
       else if(day == 2) title = title + 'Tuesday';
@@ -30,7 +30,7 @@ describe('Calendar and Editor', () => {
       else if(day == 4) title = title + 'Thursday';
       else if(day == 5) title = title + 'Friday';
       else if(day == 6) title = title + 'Saturday';
-      else if(day == 7) title = title + 'Sunday';
+      else if(day == 0) title = title + 'Sunday';
 
       expect(content).toBe(title);
     });
@@ -52,7 +52,7 @@ describe('Calendar and Editor', () => {
       })
 
       let day = date.getDay();
-      await page.waitForTimeout(1000);
+      console.log(day);
       
       if(day == 1) title = title + '星期一';
       else if(day == 2) title = title + '星期二';
@@ -60,7 +60,7 @@ describe('Calendar and Editor', () => {
       else if(day == 4) title = title + '星期四';
       else if(day == 5) title = title + '星期五';
       else if(day == 6) title = title + '星期六';
-      else if(day == 7) title = title + '星期日';
+      else if(day == 0) title = title + '星期日';
       await settingIcon.click();
       expect(content).toBe(title);
     });
