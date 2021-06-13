@@ -22,6 +22,8 @@ describe('Calendar and Editor', () => {
       })
 
       let day = date.getDay();
+      await page.waitForTimeout(1000);
+
       if(day == 1) title = title + 'Monday';
       else if(day == 2) title = title + 'Tuesday';
       else if(day == 3) title = title + 'Wednesday';
@@ -50,6 +52,8 @@ describe('Calendar and Editor', () => {
       })
 
       let day = date.getDay();
+      await page.waitForTimeout(1000);
+      
       if(day == 1) title = title + '星期一';
       else if(day == 2) title = title + '星期二';
       else if(day == 3) title = title + '星期三';
