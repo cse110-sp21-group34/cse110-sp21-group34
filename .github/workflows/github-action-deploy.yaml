@@ -17,7 +17,7 @@ jobs:
     - name: Build Webpage
       run: "cd source; npm i; npx parcel build editing-page.html"
     - name: Folder structure
-      run: "ls"
+      run: "ls -la; ls -la source; la -la source/build"
     - name: Pushes to another repository
       uses: cpina/github-action-push-to-another-repository@main
       env:
