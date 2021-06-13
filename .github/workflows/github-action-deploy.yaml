@@ -25,7 +25,7 @@ jobs:
       with:
         source-directory: 'source/build'
         destination-github-username: 'cse110-sp21-group34'
-        destination-repository-name: 'deploy'
+        destination-repository-name: 'app'
         user-email: gordon-zhao@no.reply.github.com
         commit-message: See ORIGIN_COMMIT from $GITHUB_REF
         target-branch: main
