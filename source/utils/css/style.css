@@ -631,7 +631,7 @@ border-radius: 10px;
   right: 50px;
   bottom: 50px;
   z-index: 15;
-  opacity: 100%;
+  opacity: 1;
   -webkit-transition: 0.6s;
   transition: 0.6s;
   transform: rotate(0deg);

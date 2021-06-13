@@ -18,7 +18,6 @@ const Header = require('@editorjs/header');
 
 const NotSoSimpleImage = require('./not-so-simple-image/src/index')
 const NotSoSimpleAudio = require('./not-so-simple-audio/src/index')
-const { resolveConfig } = require('prettier');
 
 const storage = require('storage');
 
