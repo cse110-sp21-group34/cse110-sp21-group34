@@ -22,7 +22,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source-directory: 'source/dist'
-        destination-github-username: 'gordon-zhao'
+        destination-github-username: 'cse110-sp21-group34'
         destination-repository-name: 'deploy'
         user-email: gordon-zhao@no.reply.github.com
         commit-message: See ORIGIN_COMMIT from $GITHUB_REF
