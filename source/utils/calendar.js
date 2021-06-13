@@ -4,6 +4,8 @@ const voice = require('./voice');
 const webcam = require('./webcam');
 const { createLabel } = require('./label');
 
+const APP_ROOT = process.env.APP_ROOT;
+
 /**
  * @summary Updates the days and dates depending upon the year and month selected.
  */
@@ -38,7 +40,7 @@ function updateDates() {
     oneDayDiv.addEventListener("click", (event) => {
       window.history.pushState({},
         `entry${utcDate.getMonth() + 1}${currDate}${currYear}`, 
-        `/#entry${utcDate.getMonth() + 1}${currDate}${currYear}`
+        `${APP_ROOT}#entry${utcDate.getMonth() + 1}${currDate}${currYear}`
       );
       const prevDate = document.getElementsByClassName("oneDayActive");
       if (prevDate[0] !== undefined) {
@@ -54,7 +56,7 @@ function updateDates() {
           }-${utcDate.getDate()}`;
           let saved_data = storage.journals.get(storage.currentDate);
 
-          if (Object.keys(saved_data).length === 0) {
+          if (Object.keys(saved_data).length === 0 || !saved_data.blocks || saved_data.blocks.length === 0) {
             storage.currentEditor.clear();
           }
           else {
@@ -157,7 +159,7 @@ document.getElementsByClassName("dailyDate")[0].innerHTML =
 window.history.pushState(
   {},
   `entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`, 
-  `/#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`
+  `${APP_ROOT}#entry${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`
 );
 let routerMonth = todayDate.getMonth();
 let routerYear = todayDate.getFullYear();
