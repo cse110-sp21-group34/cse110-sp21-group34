@@ -2,7 +2,6 @@
   "name": "source",
   "version": "1.0.0",
   "description": "",
-  "main": "editing-page.html",
   "directories": {
     "test": "tests"
   },
@@ -12,7 +11,8 @@
     "test:unit": "jest --config config/jest.config.js --selectProjects Unit --verbose --coverage",
     "test:jsdom": "jest --config config/jest.config.js --selectProjects Jsdom --verbose",
     "test:e2e": "cross-env JEST_PUPPETEER_CONFIG=config/jest-puppeteer.config.js jest --config config/jest.config.js --selectProjects End-to-End",
-    "doc": "jsdoc -c config/jsdoc.json"
+    "doc": "jsdoc -c config/jsdoc.json",
+    "build": "parcel build --dist-dir ./build/ editing-page.html"
   },
   "author": "",
   "license": "ISC",
@@ -30,7 +30,6 @@
     "jest-transform-css": "^2.1.0",
     "jsdoc": "^3.6.7",
     "parcel": "^2.0.0-beta.2",
-    "prettier": "^2.3.0",
     "puppeteer": "^9.1.1"
   },
   "dependencies": {
