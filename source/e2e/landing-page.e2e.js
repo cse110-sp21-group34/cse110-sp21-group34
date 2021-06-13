@@ -12,8 +12,8 @@ describe('Calendar and Editor', () => {
     });
 
     it('First entry correct title', async () => {
-      var title = '';
-      var date = new Date();
+      let title = '';
+      let date = new Date();
       title = title + (date.getMonth() + 1) + '/';
       title = title + date.getDate() + ', ';
 
@@ -21,7 +21,7 @@ describe('Calendar and Editor', () => {
         return document.getElementsByClassName('dailyDate')[0].textContent;
       })
 
-      var day = date.getDay();
+      let day = date.getDay();
       if(day == 1) title = title + 'Monday';
       else if(day == 2) title = title + 'Tuesday';
       else if(day == 3) title = title + 'Wednesday';
@@ -40,8 +40,8 @@ describe('Calendar and Editor', () => {
       const select = await page.$("select[id='languageSelector']");
       await select.click();
       await page.select('#languageSelector', 'Chinese');
-      var title = '';
-      var date = new Date();
+      let title = '';
+      let date = new Date();
       title = title + (date.getMonth() + 1) + '/';
       title = title + date.getDate() + ', ';
 
@@ -49,7 +49,7 @@ describe('Calendar and Editor', () => {
         return document.getElementsByClassName('dailyDate')[0].textContent;
       })
 
-      var day = date.getDay();
+      let day = date.getDay();
       if(day == 1) title = title + '星期一';
       else if(day == 2) title = title + '星期二';
       else if(day == 3) title = title + '星期三';
@@ -86,7 +86,7 @@ describe('Calendar and Editor', () => {
       // await clipboardy.writeSync(text);
       await page.evaluate(() => {
         const text = 'https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg';
-        var dummy = document.createElement("textarea");
+        let dummy = document.createElement("textarea");
         document.body.appendChild(dummy);
         //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
         dummy.value = text;
@@ -119,7 +119,7 @@ describe('Calendar and Editor', () => {
       // await clipboardy.writeSync(text);
       await page.evaluate(() => {
         const text = 'https://www.youtube.com/watch?v=-8BAjBxp6PA';
-        var dummy = document.createElement("textarea");
+        let dummy = document.createElement("textarea");
         document.body.appendChild(dummy);
         //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
         dummy.value = text;
@@ -143,18 +143,18 @@ describe('Calendar and Editor', () => {
 
 
     it('Switching dates and preserve content', async () => {
-      var curr = await page.evaluate(() => {
+      let curr = await page.evaluate(() => {
         return document.getElementsByClassName('oneDay oneDayActive')[0].getAttribute('id');
       })
-      var next = Number(curr.substring(1)) + 10000;
+      let next = Number(curr.substring(1)) + 10000;
       next = curr.substring(0, 1) + next;
-      var pattern = "div[id='" + next + "']";
-      var nextDt = await page.$(pattern);
+      let pattern = "div[id='" + next + "']";
+      let nextDt = await page.$(pattern);
       await nextDt.click();
       await page.waitForTimeout(1000);
 
       pattern = "div[id='" + curr + "']";
-      var nextDt = await page.$(pattern);
+      nextDt = await page.$(pattern);
       await nextDt.click();
       await page.waitForTimeout(1000);
 
@@ -178,12 +178,12 @@ describe('Calendar and Editor', () => {
 
       await page.select('#monthSelector', '1');
 
-      var testYear = await page.evaluate(() => {
+      let testYear = await page.evaluate(() => {
         return document.getElementById('yearNum').innerHTML;
       })
       testYear = Number(testYear);
-      var thisMonth = 2;
-      var numDays = new Date(testYear, thisMonth, 0).getDate();
+      let thisMonth = 2;
+      let numDays = new Date(testYear, thisMonth, 0).getDate();
       console.log(numDays);
 
       const days = await page.evaluate(() => {
