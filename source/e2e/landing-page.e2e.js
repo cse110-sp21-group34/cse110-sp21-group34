@@ -22,7 +22,6 @@ describe('Calendar and Editor', () => {
       })
 
       let day = date.getDay();
-      console.log(day);
 
       if(day == 1) title = title + 'Monday';
       else if(day == 2) title = title + 'Tuesday';
@@ -52,7 +51,6 @@ describe('Calendar and Editor', () => {
       })
 
       let day = date.getDay();
-      console.log(day);
       
       if(day == 1) title = title + '星期一';
       else if(day == 2) title = title + '星期二';
