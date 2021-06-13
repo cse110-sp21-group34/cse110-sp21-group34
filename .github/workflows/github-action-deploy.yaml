@@ -1,0 +1,31 @@
+name: Web Page Deploy
+on: [push]
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Build Webpage
+      run: "cd source; npm i; npm run build"
+    - name: Folder structure
+      run: "ls -la; ls -la source; ls -la source/build"
+    - name: Pushes to another repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'source/build'
+        destination-github-username: 'cse110-sp21-group34'
+        destination-repository-name: 'app'
+        user-email: gordon-zhao@no.reply.github.com
+        commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+        target-branch: main

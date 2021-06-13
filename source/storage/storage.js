@@ -1,5 +1,6 @@
 const Journals = require('./journals');
 const {Assets, AssetsDexieWrapper} = require('./assets');
+import Dexie from 'dexie';
 
 const storage = {
   currentEditor: undefined,
@@ -37,7 +38,6 @@ function init(type, args) {
   switch (type) {
     default:
     case 'dexie':
-      const Dexie = require('dexie');
       const iid = 1; // instance id
 
       const assets_db = new AssetsDexieWrapper("journal-assets")

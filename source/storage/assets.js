@@ -1,4 +1,4 @@
-const Dexie = require("dexie");
+import Dexie from 'dexie';
 const Md5 = require("md5");
 
 class Assets {
