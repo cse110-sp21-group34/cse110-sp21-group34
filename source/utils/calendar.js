@@ -225,6 +225,7 @@ document.querySelector("#monthSelector").addEventListener("change", () => {
 });
 
 // Instantiates the dates when page is first loaded
+document.querySelector("#yearNum").innerHTML = new Date().getFullYear();
 updateDates();
 const todayElement = document
   .getElementById(`${todayDate.getMonth() + 1}${todayDate.getDate()}${todayDate.getFullYear()}`);
